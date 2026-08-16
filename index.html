@@ -1,180 +1,1825 @@
-<div id="rc-crimini" class="foglio" style="background:#08090A !important; color:#E7E8EA !important; width:100% !important; max-width:none !important; margin:0 !important; padding:0 !important;">
+<div id="rm-missioni" class="foglio" style="width:100% !important;max-width:none !important;margin:0 !important;padding:0 !important;">
 <style>
-#rc-crimini {--bg:#08090A;--bg-panel:#101214;--bg-card:#17191C;--line:#34383D;--ink:#E7E8EA;--ink-dim:#A5A9AE;--violet:#9CA2A8;--violet-dim:#686E74;--gold:#C8CBCF;--blood:#858A90;--green:#D8DADD}
-#rc-crimini,#rc-crimini *{box-sizing:border-box}
-#rc-crimini{overflow:hidden !important;background:var(--bg) !important;color:var(--ink) !important}
-#rc-crimini .foglio .wrap{background:var(--bg) !important}
-#rc-crimini h1,#rc-crimini h2,#rc-crimini h3,#rc-crimini h4{font-family:georgia,"Times New Roman",serif;font-weight:600;letter-spacing:.02em;color:var(--ink)}
-#rc-crimini .wrap{max-width:900px;margin:0 auto;padding:0 22px}
-#rc-crimini header.hero{padding:54px 22px 30px 22px;text-align:center;border-bottom:1px solid var(--line);margin-bottom:28px}
-#rc-crimini header.hero .eyebrow{text-transform:uppercase;letter-spacing:.32em;font-size:11px;color:var(--gold);margin-bottom:14px}
-#rc-crimini header.hero h1{font-size:44px;margin:0 0 12px 0;background:linear-gradient(120deg,var(--ink) 30%,var(--violet) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
-#rc-crimini header.hero p{color:var(--ink-dim);max-width:560px;margin:0 auto;font-size:15px}
-#rc-crimini .rules-box{background:var(--bg-panel);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:26px 0;font-size:14px;color:var(--ink-dim)}
-#rc-crimini .rules-box summary{cursor:pointer;color:var(--ink);font-family:georgia,serif;font-size:16px;margin-bottom:4px}
-#rc-crimini .rules-box ul{margin:10px 0 0 0;padding-left:20px}
-#rc-crimini .rules-box li{margin-bottom:6px}
-#rc-crimini .step-marker{display:flex;align-items:center;gap:12px;margin:40px 0 14px 0}
-#rc-crimini .step-marker .num{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--violet);color:var(--violet);display:flex;align-items:center;justify-content:center;font-family:georgia,serif;font-size:15px}
-#rc-crimini .step-marker h2{margin:0;font-size:21px}
-#rc-crimini .step-marker .line{flex:1;height:1px;background:var(--line)}
-#rc-crimini .card{background:var(--bg-card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:18px}
-#rc-crimini .card.locked{opacity:.58}
-#rc-crimini .card h3{margin-top:0;font-size:17px;color:var(--gold)}
-#rc-crimini .card p.desc{color:var(--ink-dim);font-size:14px;margin:6px 0 14px 0}
-#rc-crimini .dice-row{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:10px 0}
-#rc-crimini button.dice-btn{background:linear-gradient(180deg,var(--violet),var(--violet-dim));color:#FFF;border:none;border-radius:8px;padding:9px 14px;font-size:12px;line-height:1.3;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;box-shadow:0 2px 0 rgba(0,0,0,.25);text-align:left;max-width:100%}
-#rc-crimini button.dice-btn:active{transform:translatey(1px);box-shadow:none}
-#rc-crimini button.dice-btn:disabled{cursor:not-allowed;opacity:.45;transform:none;box-shadow:none}
-#rc-crimini button.dice-btn .ico{font-size:15px}
-#rc-crimini .dice-copied{font-size:12px;color:var(--green);opacity:0;transition:opacity .2s}
-#rc-crimini .dice-copied.show{opacity:1}
-#rc-crimini .formula-preview{font-size:12px;color:var(--ink-dim);background:#0C0E10;border:1px dashed var(--line);border-radius:8px;padding:8px 10px;margin:6px 0 10px 0}
-#rc-crimini .formula-preview b{color:var(--gold);font-weight:600}
-#rc-crimini select,#rc-crimini input{width:66px}
-#rc-crimini select.wide{width:auto;min-width:190px;max-width:100%}
-#rc-crimini label.field{display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
-#rc-crimini .pg-stat-grid{display:flex;flex-wrap:wrap;gap:12px}
-#rc-crimini .support-grid{display:flex;flex-wrap:wrap;gap:10px 14px;margin:8px 0 10px 0}
-#rc-crimini .support-grid label.field{margin:0}
-#rc-crimini .pg-card{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:12px;background:#121416}
-#rc-crimini .pg-card h4{margin:0 0 10px 0;color:var(--violet);font-size:14px;display:flex;justify-content:space-between;align-items:center}
-#rc-crimini .pg-card h4 .rm{cursor:pointer;color:var(--blood);font-size:12px;font-family:sans-serif;border:1px solid var(--blood);border-radius:5px;padding:2px 7px}
-#rc-crimini .btn{background:transparent;border:1px solid var(--violet);color:var(--violet);border-radius:7px;padding:8px 14px;font-size:13px;cursor:pointer;font-family:inherit}
-#rc-crimini .btn:hover{background:rgba(190,195,200,.10)}
-#rc-crimini .result-row{display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap}
-#rc-crimini .result-row input{width:70px}
-#rc-crimini .tag{font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--line);color:var(--ink-dim)}
-#rc-crimini .tag.ok{border-color:var(--green);color:var(--green)}
-#rc-crimini .tag.no{border-color:var(--blood);color:var(--blood)}
-#rc-crimini .tag.invalid{border-color:var(--gold);color:var(--gold)}
-#rc-crimini nav.crime-nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px 0}
-#rc-crimini nav.crime-nav button{background:var(--bg-panel);border:1px solid var(--line);color:var(--ink-dim);padding:9px 14px;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit}
-#rc-crimini nav.crime-nav button.active{border-color:var(--gold);color:var(--gold);background:rgba(215,218,221,.08)}
-#rc-crimini .crime-section{display:none}
-#rc-crimini .crime-section.active{display:block}
-#rc-crimini .prelim-select{width:auto;min-width:230px}
-#rc-crimini .rc-note{position:static !important;top:auto !important;right:auto !important;bottom:auto !important;left:auto !important;float:none !important;clear:none !important;display:block !important;width:auto !important;height:auto !important;min-width:0 !important;max-width:none !important;margin:10px 0 !important;padding:0 0 0 10px !important;transform:none !important;z-index:auto !important;overflow:visible !important;white-space:normal !important;font-size:12px !important;line-height:1.55 !important;color:var(--ink-dim) !important;border:0 !important;border-left:2px solid var(--violet) !important;background:transparent !important}
-#rc-crimini .lock-note{display:none;margin-top:8px}
-#rc-crimini .esito-box{margin-top:12px;padding:10px 12px;border-radius:8px;background:#0C0E10;border:1px solid var(--line);font-size:13px}
-#rc-crimini .esito-box.ok{border-color:var(--green);color:var(--green)}
-#rc-crimini .esito-box.no{border-color:var(--blood);color:var(--blood)}
-#rc-crimini footer{text-align:center;color:var(--ink-dim);font-size:12px;margin-top:60px}
-@media(max-width:600px){#rc-crimini header.hero h1{font-size:32px}}
+#rm-missioni{--ink:#4a3a16;
+--ink-dim:#78663a;
+--bg0:#fffdf7;
+--bg1:#fff8df;
+--bg2:#fff0bd;
+--line:#d9bd67;
+--gold:#c79a25;
+--gold-soft:#e0c56d;
+--ok:#66834f;
+--ok-bg:#f1f6e9;
+--bad:#a45d49;
+--bad-bg:#fbefea;
+--accent:#a97d19;
+font-size:16px;}
+#rm-missioni, #rm-missioni *{box-sizing:border-box;}
+#rm-missioni, #rm-missioni{margin:0;padding:0;}
+#rm-missioni{background:
+radial-gradient(1200px 700px at 15% -10%, #fff0b8 0%, transparent 60%),
+radial-gradient(1000px 600px at 110% 10%, #fff8dc 0%, transparent 55%),
+var(--bg0);
+color:var(--ink);
+font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+line-height:1.5;
+padding:0 0 80px 0;}
+#rm-missioni .wrap{width:100% !important;max-width:none !important;margin:0 !important;padding:0 20px !important;box-sizing:border-box !important;}
+#rm-missioni .masthead{padding:46px 18px 30px 18px;
+text-align:center;
+border-bottom:1px solid var(--line);
+background:
+linear-gradient(180deg, rgba(201,162,74,0.07), transparent 70%);
+position:relative;}
+#rm-missioni .masthead .eyebrow{letter-spacing:.35em;
+text-transform:uppercase;
+font-size:.72rem;
+color:var(--gold);
+font-family:Georgia,serif;}
+#rm-missioni .masthead h1{font-family:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
+font-weight:600;
+font-size:2.7rem;
+margin:.35em 0 .2em 0;
+color:var(--ink);
+letter-spacing:.02em;}
+#rm-missioni .masthead .sub{color:var(--ink-dim);
+font-size:1rem;
+max-width:640px;
+margin:0 auto;
+font-style:italic;}
+#rm-missioni .sigil{width:46px;height:46px;margin:0 auto 14px auto;opacity:.85;}
+#rm-missioni .tabbar{display:flex;
+flex-wrap:wrap;
+gap:8px;
+justify-content:center;
+margin:26px 0 8px 0;
+padding:0 18px;}
+#rm-missioni .tabbtn{background:var(--bg2);
+border:1px solid var(--line);
+color:var(--ink-dim);
+font-family:inherit;
+font-size:.92rem;
+padding:10px 16px;
+border-radius:3px;
+cursor:pointer;
+transition:all .15s ease;}
+#rm-missioni .tabbtn:hover{border-color:var(--gold-soft); color:var(--ink);}
+#rm-missioni .tabbtn.active{background:linear-gradient(180deg,#fff1b8,#f6dc86);
+border-color:var(--gold);
+color:var(--gold);}
+#rm-missioni .panel{display:none;padding-top:18px;}
+#rm-missioni .panel.active{display:block;}
+#rm-missioni .introcard{background:var(--bg1);
+border:1px solid var(--line);
+border-left:4px solid var(--gold-soft);
+border-radius:4px;
+padding:20px 22px;
+margin:18px 0;}
+#rm-missioni .introcard h2{margin:0 0 10px 0;
+font-family:"Cormorant Garamond",Georgia,serif;
+font-size:1.6rem;
+color:var(--gold);
+font-weight:600;}
+#rm-missioni .introcard p{color:var(--ink-dim); margin:.5em 0;}
+#rm-missioni details.rules{background:var(--bg2);
+border:1px solid var(--line);
+border-radius:4px;
+margin:10px 0;
+padding:2px 14px;}
+#rm-missioni details.rules summary{cursor:pointer;
+padding:10px 0;
+color:var(--accent);
+font-size:.95rem;}
+#rm-missioni details.rules[open] summary{border-bottom:1px solid var(--line); margin-bottom:8px;}
+#rm-missioni .locgrid{display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:6px;
+font-size:.86rem;
+color:var(--ink-dim);
+margin:.6em 0;}
+#rm-missioni .locgrid div{background:var(--bg1);
+border:1px solid var(--line);
+padding:6px 9px;
+border-radius:3px;}
+#rm-missioni .locgrid div b{color:var(--ink);}
+#rm-missioni .stepwrap{counter-reset:stepnum;}
+#rm-missioni .step{position:relative;
+background:var(--bg1);
+border:1px solid var(--line);
+border-radius:5px;
+margin:22px 0;
+overflow:hidden;}
+#rm-missioni .step-head{display:flex;
+align-items:baseline;
+gap:14px;
+padding:16px 20px;
+background:linear-gradient(180deg, rgba(201,162,74,.06), transparent);
+border-bottom:1px solid var(--line);}
+#rm-missioni .step-num{counter-increment:stepnum;
+font-family:"Cormorant Garamond",Georgia,serif;
+font-size:1.9rem;
+color:var(--gold);
+min-width:1.4em;}
+#rm-missioni .step-num::before{content: counter(stepnum) ".";}
+#rm-missioni .step-head h3{margin:0;
+font-size:1.25rem;
+font-weight:600;
+color:var(--ink);
+font-family:"Cormorant Garamond",Georgia,serif;}
+#rm-missioni .step-body{padding:16px 20px 20px 20px;}
+#rm-missioni .step-desc{color:var(--ink-dim); font-size:.94rem; margin-bottom:14px;}
+#rm-missioni .step-desc i.sc{color:var(--accent); font-style:normal;}
+#rm-missioni .subroll{background:var(--bg2);
+border:1px solid var(--line);
+border-radius:4px;
+padding:14px 16px;
+margin:14px 0;}
+#rm-missioni .subroll h4{margin:0 0 8px 0;
+font-size:.98rem;
+color:var(--gold);
+font-weight:600;}
+#rm-missioni .pgrow{border:1px solid var(--line);
+border-radius:4px;
+padding:12px 14px;
+margin:10px 0;
+background:var(--bg1);}
+#rm-missioni .pgrow .pgname{font-weight:700;
+color:var(--ink);
+margin-bottom:8px;
+font-size:.95rem;
+border-bottom:1px dashed var(--line);
+padding-bottom:6px;}
+#rm-missioni .ctrls{display:flex;
+flex-wrap:wrap;
+gap:10px;
+align-items:flex-end;
+margin-bottom:10px;}
+#rm-missioni .field{display:flex; flex-direction:column; gap:3px;}
+#rm-missioni .field label{font-size:.72rem; color:var(--ink-dim); text-transform:uppercase; letter-spacing:.04em;}
+#rm-missioni .field select, #rm-missioni .field input[type=number]{background:var(--bg0);
+border:1px solid var(--line);
+color:var(--ink);
+padding:6px 8px;
+border-radius:3px;
+font-family:inherit;
+font-size:.9rem;
+width:96px;}
+#rm-missioni .field select{width:100%;min-width:0;max-width:100%;}
+#rm-missioni .field input[type=text]{background:var(--bg0);
+border:1px solid var(--line);
+color:var(--ink);
+padding:6px 8px;
+border-radius:3px;
+font-family:inherit;
+font-size:.9rem;}
+#rm-missioni .btn{background:linear-gradient(180deg,#fff3c4,#f5dc8b);
+border:1px solid var(--gold-soft);
+color:var(--gold);
+padding:8px 14px;
+border-radius:3px;
+cursor:pointer;
+font-family:inherit;
+font-size:.86rem;
+white-space:nowrap;}
+#rm-missioni .btn:hover{border-color:var(--gold); color:#8e6814;}
+#rm-missioni .btn.small{padding:5px 10px; font-size:.78rem;}
+#rm-missioni .btn.ghost{background:transparent; border:1px solid var(--line); color:var(--ink-dim);}
+#rm-missioni .btn.ghost:hover{color:var(--ink); border-color:var(--accent);}
+#rm-missioni .out{margin-top:10px;
+padding-top:10px;
+border-top:1px dashed var(--line);
+display:none;}
+#rm-missioni .out.show{display:block;}
+#rm-missioni .formula{font-size:.84rem;
+color:var(--ink-dim);
+margin-bottom:8px;
+line-height:1.6;}
+#rm-missioni .formula b{color:var(--ink);}
+#rm-missioni .diceline{display:flex;
+gap:8px;
+align-items:center;
+margin-bottom:10px;
+flex-wrap:wrap;}
+#rm-missioni .dicecode{flex:1;
+min-width:0;
+background:var(--bg0);
+border:1px solid var(--gold-soft);
+color:#8e6814;
+padding:8px 10px;
+border-radius:3px;
+font-family:"Courier New",monospace;
+font-size:.84rem;}
+#rm-missioni .resline{display:flex;
+gap:10px;
+align-items:center;
+flex-wrap:wrap;}
+#rm-missioni .resline input[type=number]{width:90px;
+background:var(--bg0);
+border:1px solid var(--line);
+color:var(--ink);
+padding:7px 9px;
+border-radius:3px;
+font-family:inherit;}
+#rm-missioni .badge{padding:6px 12px;
+border-radius:3px;
+font-size:.82rem;
+font-weight:700;
+letter-spacing:.03em;
+display:none;}
+#rm-missioni .badge.ok{display:inline-block; background:var(--ok-bg); color:var(--ok); border:1px solid var(--ok);}
+#rm-missioni .badge.bad{display:inline-block; background:var(--bad-bg); color:var(--bad); border:1px solid var(--bad);}
+#rm-missioni .outcome{margin-top:16px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;}
+@media (max-width:640px){#rm-missioni .outcome{grid-template-columns:1fr;}}
+#rm-missioni .oc-box{border-radius:4px;
+padding:10px 12px;
+font-size:.85rem;
+border:1px solid var(--line);}
+#rm-missioni .oc-box.succ{border-left:3px solid var(--ok); color:var(--ink-dim);}
+#rm-missioni .oc-box.fail{border-left:3px solid var(--bad); color:var(--ink-dim);}
+#rm-missioni .oc-box b{display:block; margin-bottom:4px; color:var(--ink); font-size:.78rem; text-transform:uppercase; letter-spacing:.04em;}
+#rm-missioni .pgpanel{background:var(--bg1);
+border:1px solid var(--line);
+border-radius:5px;
+padding:16px 20px;
+margin:18px 0;}
+#rm-missioni .pgpanel h3{margin:0 0 12px 0;
+color:var(--gold);
+font-family:"Cormorant Garamond",Georgia,serif;
+font-size:1.3rem;}
+#rm-missioni .pgstat-row{display:grid !important;
+grid-template-columns:repeat(auto-fit,minmax(130px,1fr)) !important;
+gap:12px !important;
+align-items:end !important;
+border:1px solid var(--line);
+border-radius:4px;
+padding:10px;
+margin-bottom:8px;
+background:var(--bg2);}
+#rm-missioni .pgstat-row .field{width:100%;min-width:0 !important;}
+#rm-missioni .pgstat-row .field input{width:100% !important;max-width:none !important;min-width:0 !important;}
+#rm-missioni .pgpanel-actions{display:flex; gap:10px; margin-top:6px;}
+#rm-missioni .hint{font-size:.8rem; color:var(--ink-dim); margin-top:8px; font-style:italic;}
+#rm-missioni .copytoast{position:fixed;
+bottom:24px; left:50%;
+transform:translateX(-50%);
+background:var(--gold);
+color:#4a3510;
+padding:9px 18px;
+border-radius:20px;
+font-size:.85rem;
+font-weight:700;
+opacity:0;
+pointer-events:none;
+transition:opacity .25s ease, transform .25s ease;
+z-index:999;}
+#rm-missioni .copytoast.show{opacity:1; transform:translateX(-50%) translateY(-6px);}
+#rm-missioni .divider{text-align:center;
+color:var(--gold-soft);
+margin:30px 0;
+font-size:.8rem;
+letter-spacing:.3em;
+text-transform:uppercase;}
+#rm-missioni .legend{background:var(--bg1);
+border:1px solid var(--line);
+border-radius:5px;
+padding:16px 20px;
+margin:18px 0;
+font-size:.85rem;
+color:var(--ink-dim);}
+#rm-missioni .legend b{color:var(--gold);}
+#rm-missioni .notebox{background:var(--bg2);
+border:1px dashed var(--gold-soft);
+border-radius:4px;
+padding:10px 14px;
+font-size:.82rem;
+color:var(--ink-dim);
+margin:12px 0;}
+/* Tema oro · giallino · bianco */
+#rm-missioni .masthead{background:linear-gradient(180deg,rgba(199,154,37,.16),rgba(255,248,223,.55) 72%,transparent);}
+#rm-missioni .tabbtn{background:#fff4ca;
+  border-color:#dcc170;
+  color:#7a642f;}
+#rm-missioni .tabbtn:hover{background:#ffedb0;
+  border-color:#c79a25;
+  color:#5b4516;}
+#rm-missioni .tabbtn.active{background:linear-gradient(180deg,#fff0b0,#f4d777);
+  border-color:#c79a25;
+  color:#6f5110;}
+#rm-missioni .introcard, #rm-missioni .step, #rm-missioni .pgrow, #rm-missioni .pgpanel, #rm-missioni .legend{background:#fff9e6;
+  border-color:#ddc77d;}
+#rm-missioni .subroll, #rm-missioni details.rules, #rm-missioni .pgstat-row, #rm-missioni .notebox{background:#fff2c7;
+  border-color:#ddc77d;}
+#rm-missioni .field select, #rm-missioni .field input[type=number], #rm-missioni .field input[type=text], #rm-missioni .resline input[type=number], #rm-missioni .dicecode{background:#fffefa;
+  border-color:#d8bd67;
+  color:#4a3a16;}
+#rm-missioni .btn{background:linear-gradient(180deg,#fff1b8,#f4d77c);
+  border-color:#c79a25;
+  color:#725311;}
+#rm-missioni .btn:hover{background:#ffe79a;
+  border-color:#a97d19;
+  color:#543d0c;}
+#rm-missioni .btn.ghost{background:#fffefa;
+  border-color:#d6bf78;
+  color:#7b6739;}
+#rm-missioni .dicecode{color:#79570d;}
+#rm-missioni .copytoast{background:#d0a12e;
+  color:#3f2e0a;}
+#rm-missioni .notebox{border-style:dashed;
+  border-color:#c79a25;}
+/* Correzioni ForumFree: larghezza piena e griglie elastiche */
+#rm-missioni .wrap > *, #rm-missioni .panel, #rm-missioni .introcard, #rm-missioni .step, #rm-missioni .pgpanel, #rm-missioni .subroll, #rm-missioni .legend, #rm-missioni .notebox{max-width:none !important;}
+#rm-missioni .ctrls, #rm-missioni .diceline, #rm-missioni .resline, #rm-missioni .pgpanel-actions{width:100%;
+  min-width:0;}
+#rm-missioni .field{min-width:0 !important;}
+#rm-missioni .locgrid div{min-width:0;
+  overflow-wrap:anywhere;}
+@media (max-width:760px){#rm-missioni .pgstat-row{grid-template-columns:repeat(auto-fit,minmax(150px,1fr)) !important;}
+#rm-missioni .locgrid{grid-template-columns:1fr !important;}}
+/* Stati interattivi e validazione — revisione regolamento */
+#rm-missioni .step.locked{opacity:.62;filter:grayscale(.12)}
+#rm-missioni .step.locked .step-head{background:rgba(120,102,58,.06)}
+#rm-missioni .lock-note{display:none;margin-top:0}
+#rm-missioni .pgrow.locked{opacity:.58;background:#F7EECF}
+#rm-missioni .badge.invalid{display:inline-block;background:#FFF4D8;color:#8A6617;border:1px solid #C79A25}
+#rm-missioni .badge.neutral{display:inline-block;background:#F7F1DF;color:#78663A;border:1px solid #CBB77A}
+#rm-missioni .statusbox.success{border-left:4px solid var(--ok);background:var(--ok-bg)}
+#rm-missioni .statusbox.failure{border-left:4px solid var(--bad);background:var(--bad-bg)}
+#rm-missioni .statusbox.warning{border-left:4px solid var(--gold);background:#FFF6D8}
+#rm-missioni .field select:disabled, #rm-missioni .field input:disabled, #rm-missioni .btn:disabled, #rm-missioni .resline input:disabled{opacity:.58;cursor:not-allowed}
 </style>
-<div class="wrap" id="app"></div>
-<footer>Ricerca Crimini · strumento interattivo per la gestione dei tiri</footer>
-<script type="text/javascript">
-/* ============ HELPERS ============ */
-function g(id){return document.getElementById(id);}
-function num(id){var e=g(id);var v=e?parseFloat(e.value):0;return isNaN(v)?0:v;}
-function fl(x){return Math.floor(x);}
-function setTxt(id,t){var e=g(id);if(e)e.innerHTML=t;}
-function setDice(id,t){var e=g(id);if(e)e.setAttribute('data-dice',t);}
-function signText(v,label){if(!v)return '';return ' '+(v>0?'+':'')+v+' '+label;}
-function effectiveThreshold(th,dieSides){var v=fl(th);if(v<0)v=0;if(v>dieSides)v=dieSides;return v;}
-function dieState(id,dieSides){var e=g(id);if(!e||e.value==='')return {filled:false,valid:false,value:null};var v=Number(e.value);if(!isFinite(v)||Math.floor(v)!==v||v<1||v>dieSides)return {filled:true,valid:false,value:v};return {filled:true,valid:true,value:v};}
-function doCopy(btn){var text=btn.getAttribute('data-dice')||'';var fb=btn.parentElement.querySelector('.dice-copied');function flash(){if(fb){fb.classList.add('show');setTimeout(function(){fb.classList.remove('show');},1400);}}function fallback(){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(flash).catch(function(){fallback();flash();});}else{fallback();flash();}}
-function updateTag(resId,tagId,threshold,dieSides){var t=g(tagId);if(!t)return;var s=dieState(resId,dieSides);if(!s.filled){t.textContent='In attesa del tiro';t.className='tag';return;}if(!s.valid){t.textContent='Risultato impossibile: inserisci un intero da 1 a '+dieSides;t.className='tag invalid';return;}var th=effectiveThreshold(threshold,dieSides);if(s.value<=th){t.textContent='Successo ('+s.value+' ≤ '+th+')';t.className='tag ok';}else{t.textContent='Fallito ('+s.value+' > '+th+')';t.className='tag no';}}
-function setFormulaPreview(fId,dieSides,threshold,formulaText){var th=effectiveThreshold(threshold,dieSides);var head=th<1?'1d'+dieSides+' — nessun risultato valido può riuscire':'1d'+dieSides+' — riesce se il risultato è tra 1 e '+th;setTxt(fId,'<b>'+head+'</b><br>'+threshold+' = '+formulaText);}
-function setDiceButtonLabel(btnId,dieSides,threshold,i,extra){var btn=g(btnId);if(!btn)return;var th=effectiveThreshold(threshold,dieSides);btn.innerHTML='<span class="ico">🎲</span> Copia 1d'+dieSides+' — Riesce se 1-'+th+(extra?(' ('+extra+')'):'')+' — PG '+i;}
-function pgStatsCardHTML(crime,n,fields){var out='';for(var i=1;i<=n;i++){var inputs=fields.map(function(f){var val=f.def!==undefined?f.def:'';return '<label class="field">'+f.label+'<input type="number" id="'+crime+'-'+f.key+i+'" value="'+val+'"'+(f.min!==undefined?' min="'+f.min+'"':'')+'></label>';}).join('');var rm=(i===n&&n>2)?' <span class="rm" data-action="remove-pg" data-crime="'+crime+'">rimuovi</span>':'';out+='<div class="pg-card"><h4>PG '+i+rm+'</h4><div class="pg-stat-grid">'+inputs+'</div></div>';}return out;}
-function rollBlock(crime,phaseId,i,dieSides){var fId=crime+'-'+phaseId+'-f'+i,btnId=crime+'-'+phaseId+'-btn'+i,resId=crime+'-'+phaseId+'-res'+i,tagId=crime+'-'+phaseId+'-tag'+i;return '<div class="formula-preview" id="'+fId+'">calcolo in corso…</div><div class="dice-row"><button type="button" class="dice-btn" id="'+btnId+'" data-dice="" data-action="copy-dice"><span class="ico">🎲</span> Copia dado — PG '+i+'</button><span class="dice-copied">Copiato!</span></div><div class="result-row"><label class="field">Risultato ottenuto<input type="number" id="'+resId+'"></label><span class="tag" id="'+tagId+'">In attesa del tiro</span></div>';}
-function selectHTML(id,scheme,wide){var opts=scheme.map(function(o){return '<option value="'+o[0]+'">'+o[1]+'</option>';}).join('');return '<select id="'+id+'"'+(wide?' class="wide"':'')+'>'+opts+'</select>';}
-var BONUS_STD=[[0,'Nessun bonus'],[1,'+1'],[3,'+3'],[5,'+5']];
-var BONUS_SICARIO_III=[[0,'Nessun bonus'],[5,'+5'],[7,'+7'],[10,'+10']];
-var BONUS_K_STD=[[0,'Nessuna'],[1,'+1 — Conoscenza Scolastica'],[3,'+3 — Conoscenza Extra'],[5,'+5 — Conoscenza Avanzata']];
-var BONUS_P_STD=[[0,'Nessuna'],[1,'+1 — Pozione Standard'],[3,'+3 — Pozione Oltre Ogni Previsione'],[5,'+5 — Pozione Eccezionale']];
-var BONUS_K_SIC=[[0,'Nessuna'],[5,'+5 — Conoscenza Scolastica'],[7,'+7 — Conoscenza Extra'],[10,'+10 — Conoscenza Avanzata']];
-var BONUS_P_SIC=[[0,'Nessuna'],[5,'+5 — Pozione Standard'],[7,'+7 — Pozione Oltre Ogni Previsione'],[10,'+10 — Pozione Eccezionale']];
-function supportHTML(base,scheme,allowK,allowP){var high=(scheme===BONUS_SICARIO_III);var ks=high?BONUS_K_SIC:BONUS_K_STD;var ps=high?BONUS_P_SIC:BONUS_P_STD;var s='<div class="support-grid">';if(allowK!==false)s+='<label class="field">Conoscenza'+selectHTML(base+'-k',ks,true)+'</label>';if(allowP!==false)s+='<label class="field">Pozione'+selectHTML(base+'-p',ps,true)+'</label>';s+='<label class="field">Bonus Oggetto/Borsa<input type="number" id="'+base+'-obj" value="0"></label></div>';return s;}
-function pressurePotionHTML(base,targets){return '<div class="support-grid"><label class="field">Pozione'+selectHTML(base+'-p',BONUS_P_STD,true)+'</label><label class="field">Voce modificata'+selectHTML(base+'-pt',targets,true)+'</label><label class="field">Bonus Oggetto/Borsa<input type="number" id="'+base+'-obj" value="0"></label></div>';}
-function esitoBoxHTML(id){return '<div class="esito-box" id="'+id+'">In attesa dei risultati dei PG in questa fase.</div>';}
-function phaseLockHTML(id){return '<div class="rc-note lock-note" id="'+id+'-lock"></div>';}
-function setPhaseAccess(cardId,enabled,message){var card=g(cardId);if(!card)return;card.className=enabled?'card':'card locked';var els=card.querySelectorAll('input,select,button.dice-btn');for(var i=0;i<els.length;i++)els[i].disabled=!enabled;var note=g(cardId+'-lock');if(note){note.style.display=enabled?'none':'block';note.textContent=message||'Completa prima la fase precedente.';}}
-function evalPhase(crime,phaseId,n,thresholds,rule,dieSides,forcedFail){var any=false,all=true,per=[],complete=true,valid=true;for(var i=1;i<=n;i++){if(forcedFail&&forcedFail[i-1]){per.push(false);all=false;continue;}var sides=(typeof dieSides==='object')?dieSides[i-1]:dieSides;var s=dieState(crime+'-'+phaseId+'-res'+i,sides);if(!s.filled){complete=false;per.push(null);continue;}if(!s.valid){valid=false;per.push(null);continue;}var ok=s.value<=effectiveThreshold(thresholds[i-1],sides);per.push(ok);if(ok)any=true;else all=false;}var success=(rule==='all')?all:any;return {complete:complete,valid:valid,success:success,perPG:per};}
-function computeEsito(crime,phaseId,n,thresholds,rule,dieSides,forcedFail){var st=evalPhase(crime,phaseId,n,thresholds,rule,dieSides,forcedFail);var box=g(crime+'-'+phaseId+'-esito');if(!box)return st;if(!st.complete){box.className='esito-box';box.textContent='In attesa dei risultati di tutti i PG in questa fase.';return st;}if(!st.valid){box.className='esito-box';box.textContent='Uno o più risultati non sono validi per il dado indicato.';return st;}box.className='esito-box '+(st.success?'ok':'no');var regola=(rule==='all')?'Serve che TUTTI i PG abbiano successo.':'Basta che ALMENO UN PG abbia successo.';box.textContent=(st.success?'Esito Fase: SUCCESSO — ':'Esito Fase: FALLIMENTO — ')+regola;return st;}
-function setBox(id,state,text){var e=g(id);if(!e)return;e.className='esito-box'+(state?(' '+state):'');e.textContent=text;}
-function syncSelect(id,options){var s=g(id);if(!s)return;var old=s.value;var html='';for(var i=0;i<options.length;i++)html+='<option value="'+options[i][0]+'">'+options[i][1]+'</option>';s.innerHTML=html;var found=false;for(var j=0;j<options.length;j++)if(String(options[j][0])===String(old))found=true;if(found)s.value=old;}
+<div class="masthead">
+<svg class="sigil" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<circle cx="50" cy="50" r="44" fill="none" stroke="#c9a24a" stroke-width="1.5"/>
+<path d="M50 14 L58 42 L88 42 L64 58 L72 86 L50 68 L28 86 L36 58 L12 42 L42 42 Z" fill="none" stroke="#c9a24a" stroke-width="1.2"/>
+</svg>
+<div class="eyebrow">Ministero della Magia · Ufficio Auror</div>
+<h1>Ricerca Missioni</h1>
+<div class="sub">Assistente interattivo passo per passo: genera i tiri, copiali nel forum con [dice], registra i risultati e segui l'esito della missione.</div>
+</div>
 
-/* ============ APP SHELL ============ */
-function buildShell(){var html='<header class="hero"><div class="eyebrow">Mondo Magico Oscuro</div><h1>Ricerca Crimini</h1><p>Uno strumento guidato, passo per passo, per svolgere la Ricerca Crimini: tira i dadi copiandoli direttamente nel forum, registra i risultati e lascia che la pagina calcoli soglie e bonus per te.</p></header><div class="rules-box"><details><summary>Regole generali da ricordare</summary><ul><li>Massimo <b>1 Conoscenza</b> e <b>1 Pozione</b> per post; quando entrambe sono applicabili, i bonus si sommano e valgono solo per la fase in cui vengono usati.</li><li>Quando una formula prevede una divisione, il risultato viene sempre <b>arrotondato per difetto</b>.</li><li>Incantesimi e Conoscenze hanno riuscita narrativa al 100% dove non specificato altrimenti: i dadi determinano l’esito complessivo.</li><li>Un PG è “scoperto” solo se identificato con certezza o fermato/catturato.</li><li>Servono almeno <b>2 PG</b> e <b>tutti i partecipanti</b> devono possedere almeno uno dei requisiti: Intracciabile, Malvagio oppure almeno 20 Punti Sinistri. La role è sempre free-role.</li><li>L’esecuzione può avvenire in Gran Bretagna o all’estero secondo le regole del mandante; eventuali spostamenti usati anche per altre giocate restano a carico dei PG.</li><li>Gli eventuali bonus di Oggetti/Borsa vanno inseriti solo quando previsti dal Prezzario. I campi delle statistiche sono volutamente vuoti: inserisci sempre i valori reali del PG; se un valore è realmente 0, scrivi 0.</li><li>Successo senza essere identificati: +1 Punto Sinistro (una volta), 2 Galeoni e 2 PP per post (max 5 post). Fallimento: solo +2 PP per post (max 5 post). I premi non sono cumulabili con quelli delle Missioni Caotiche del FantaWiz.</li></ul></details></div><div class="step-marker"><div class="num">1</div><h2>Per prima cosa, scopriamo quale Crimine dovrai compiere</h2><div class="line"></div></div><div class="card"><p class="desc">Lancia il dado per determinare quale Crimine viene commissionato dal PNG o PPNG. Il compenso del mandante è solo narrativo.</p><div class="dice-row"><button type="button" class="dice-btn" data-dice="[dice=1d5]Determinazione del Crimine[/dice]" data-action="copy-dice"><span class="ico">🎲</span> Copia dado — Tipo di Crimine</button><span class="dice-copied">Copiato!</span></div><div class="rc-note">1: Furto · 2: Contrabbando · 3: Pressione Psicologica · 4: Sicario · 5: Affari Clandestini.</div></div><div class="step-marker"><div class="num">2</div><h2>Segui passo per passo la scheda del Crimine assegnato</h2><div class="line"></div></div><nav class="crime-nav"><button id="nav-btn-furto" class="active" data-action="show-crime" data-crime="furto">1 · Furto</button><button id="nav-btn-contrabbando" data-action="show-crime" data-crime="contrabbando">2 · Contrabbando</button><button id="nav-btn-pressione" data-action="show-crime" data-crime="pressione">3 · Pressione Psicologica</button><button id="nav-btn-sicario" data-action="show-crime" data-crime="sicario">4 · Sicario</button><button id="nav-btn-affari" data-action="show-crime" data-crime="affari">5 · Affari Clandestini</button></nav><section class="crime-section active" id="section-furto"></section><section class="crime-section" id="section-contrabbando"></section><section class="crime-section" id="section-pressione"></section><section class="crime-section" id="section-sicario"></section><section class="crime-section" id="section-affari"></section>';g('app').innerHTML=html;}
+<div class="wrap" style="width:100% !important;max-width:none !important;margin:0 !important;padding:0 20px !important;box-sizing:border-box !important;">
 
-/* ============ CRIME STATE ============ */
-var PG_COUNT={furto:2,contrabbando:2,pressione:2,sicario:2,affari:2};
-var RENDERERS={};
-var PHASE_ORDER={furto:['faseI1','faseI2','faseII','faseIII'],contrabbando:['faseI','faseII','faseIII'],pressione:['faseI','faseII','faseIII'],sicario:['faseI','faseII','faseIII'],affari:['faseI','faseII','faseIII']};
-function snapshotValues(container){var map={};var els=container.querySelectorAll('input,select');for(var i=0;i<els.length;i++)map[els[i].id]=els[i].value;return map;}
-function restoreValues(container,map){var els=container.querySelectorAll('input,select');for(var i=0;i<els.length;i++)if(map.hasOwnProperty(els[i].id))els[i].value=map[els[i].id];}
-function clearPhaseResults(crime,phaseId){var c=g('section-'+crime);if(!c)return;var els=c.querySelectorAll('input');var pref=crime+'-'+phaseId+'-res';for(var i=0;i<els.length;i++)if(els[i].id.indexOf(pref)===0)els[i].value='';if(crime==='contrabbando'&&phaseId==='faseII'){var r=g('contrabbando-mezzo-res');if(r)r.value='';}}
-function clearFromPhase(crime,phaseId,includeCurrent){var order=PHASE_ORDER[crime]||[];var pos=-1;for(var i=0;i<order.length;i++)if(order[i]===phaseId){pos=i;break;}if(pos<0)return;var start=includeCurrent?pos:pos+1;for(var j=start;j<order.length;j++)clearPhaseResults(crime,order[j]);}
-function clearAllRollResults(crime){var order=PHASE_ORDER[crime]||[];for(var i=0;i<order.length;i++)clearPhaseResults(crime,order[i]);}
-function phaseCardIdOf(target){var root=g('rc-crimini'),n=target;while(n&&n!==root){if(n.id&&n.id.indexOf('-card')>0&&(' '+n.className+' ').indexOf(' card ')>=0)return n.id;n=n.parentNode;}return '';}
-function phaseFromCardId(crime,cardId){var pref=crime+'-',suf='-card';if(cardId.indexOf(pref)!==0||cardId.slice(-suf.length)!==suf)return '';return cardId.slice(pref.length,-suf.length);}
-function isPhaseResultId(crime,phaseId,id){return id.indexOf(crime+'-'+phaseId+'-res')===0||(crime==='contrabbando'&&phaseId==='faseII'&&id==='contrabbando-mezzo-res');}
-function invalidateForChange(crime,target){if(!target||!target.id)return;var id=target.id,cardId=phaseCardIdOf(target),phase=phaseFromCardId(crime,cardId);if(phase){if(isPhaseResultId(crime,phase,id))clearFromPhase(crime,phase,false);else clearFromPhase(crime,phase,true);return;}if(crime==='pressione'&&id==='pressione-profilo'){clearFromPhase(crime,'faseIII',true);return;}if(crime==='sicario'&&id==='sicario-incarico'){clearFromPhase(crime,'faseIII',true);return;}if(id===crime+'-bottino'||id===crime+'-carico'||id===crime+'-profilo'||id.indexOf(crime+'-')===0){clearAllRollResults(crime);}}
-function addPG(crime){clearAllRollResults(crime);PG_COUNT[crime]++;rerender(crime);}
-function removePG(crime){if(PG_COUNT[crime]>2){clearAllRollResults(crime);PG_COUNT[crime]--;rerender(crime);}}
-function rerender(crime){var c=g('section-'+crime);var snap=snapshotValues(c);c.innerHTML=RENDERERS[crime].render(PG_COUNT[crime]);restoreValues(c,snap);RENDERERS[crime].recompute(PG_COUNT[crime]);}
-function initCrime(crime){var c=g('section-'+crime);c.innerHTML=RENDERERS[crime].render(PG_COUNT[crime]);c.addEventListener('input',function(e){invalidateForChange(crime,e.target);RENDERERS[crime].recompute(PG_COUNT[crime]);});c.addEventListener('change',function(e){invalidateForChange(crime,e.target);RENDERERS[crime].recompute(PG_COUNT[crime]);});RENDERERS[crime].recompute(PG_COUNT[crime]);}
+<div class="legend">
+<p><b>Come funziona questa pagina.</b> Ogni missione è divisa in fasi. Per ogni fase trovi le formule dei tiri richiesti: seleziona separatamente i bonus di Conoscenza e Pozione (cumulabili quando entrambi appropriati) e gli eventuali Bonus Oggetti, genera il codice del tiro (già pronto per essere incollato nel forum), copialo, tiralo nella tua giocata e infine inserisci qui il risultato ottenuto per vedere subito se hai avuto successo.</p>
+<p><b>Prima di iniziare:</b> determina innanzitutto quale Missione viene assegnata lanciando 1d5, salvo che si tratti di una Missione collegata a una precedente completata con successo. Solo dopo aver individuato la Missione, apri la relativa scheda e compila il pannello dei Personaggi Giocanti (PG) con i parametri richiesti. Puoi aggiungere più PG con l'apposito tasto, poiché la Ricerca Missioni può essere svolta in gruppo.</p>
+<p><b>Regole generali:</b> i PG vengono sempre coinvolti in una Missione. Il tipo si determina con 1d5; è possibile rinunciare e tentare una nuova Missione fino a 3 volte per role, ruolando ogni rinuncia ONGame. Si può svolgere una sola Missione per role e non esiste un limite generale di post, salvo specifiche. Una Missione può essere collegata direttamente a una precedente, senza nuovo 1d5, solo se la precedente è stata completata con successo.</p>
+<p><b>Ambito e partecipanti:</b> le Role di Ricerca Missioni sono free-role e possono essere svolte da PG Auror o PG Numen, anche non Auror. La Ricerca si svolge sempre in Gran Bretagna, magica o non magica. La parte narrativa è autogestita dai player, ma ciò che i PG comprendono, individuano o ottengono deve rispettare gli esiti dei tiri previsti dalla Missione.</p>
+</div>
 
-/* ============ 1. FURTO ============ */
-function renderFurto(n){var html='<h2>1. Furto</h2><p class="desc">Sottrarre oggetti di valore, artefatti, ingredienti illegali o altro. Vietato in abitazioni di PG Giocanti o in luoghi ufficiali di Diagon Alley, Notturn Alley o Hogsmeade: scegli location di colore o di fantasia.</p><div class="step-marker"><div class="num">A</div><h3 style="margin:0">Determina il Bottino</h3></div><div class="card"><div class="dice-row"><button type="button" class="dice-btn" data-dice="[dice=1d3]Determinazione del Bottino — Furto[/dice]" data-action="copy-dice"><span class="ico">🎲</span> Copia dado — Bottino</button><span class="dice-copied">Copiato!</span></div><label class="field">Risultato ottenuto'+selectHTML('furto-bottino',[[3,'1 — Bottino Minore (+3)'],[0,'2 — Bottino Notevole (0)'],[-4,'3 — Bottino Elevato (-4)']],true)+'</label></div><div class="step-marker"><div class="num">B</div><h3 style="margin:0">Statistiche dei Personaggi coinvolti</h3></div><div class="card">'+pgStatsCardHTML('furto',n,[{key:'destrezza',label:'Destrezza'},{key:'sapOscura',label:'Sapienza Oscura'},{key:'fatica',label:'Fatica'}])+'<button type="button" class="btn" data-action="add-pg" data-crime="furto">+ Aggiungi PG</button></div><div class="step-marker"><div class="num">C</div><h3 style="margin:0">Fase I — Infiltrazione, primo tentativo</h3></div><div class="card" id="furto-faseI1-card"><p class="desc">1d40 ≤ Destrezza + Sapienza Oscura/5 ± Bottino. Devono riuscire tutti i PG.</p>'+(function(){var s='';for(var i=1;i<=n;i++)s+='<div class="pg-card"><h4>PG '+i+'</h4>'+supportHTML('furto-faseI1-b'+i,BONUS_STD,true,true)+rollBlock('furto','faseI1',i,40)+'</div>';return s;})()+esitoBoxHTML('furto-faseI1-esito')+'</div><div class="step-marker"><div class="num">C2</div><h3 style="margin:0">Fase I — Secondo tentativo</h3></div><div class="card" id="furto-faseI2-card"><p class="desc">Si effettua solo se il primo tentativo fallisce. Tutti i PG ritirano con un ulteriore malus automatico di -3.</p>'+phaseLockHTML('furto-faseI2-card')+(function(){var s='';for(var i=1;i<=n;i++)s+='<div class="pg-card"><h4>PG '+i+'</h4>'+supportHTML('furto-faseI2-b'+i,BONUS_STD,true,true)+rollBlock('furto','faseI2',i,40)+'</div>';return s;})()+esitoBoxHTML('furto-faseI2-esito')+'</div><div class="step-marker"><div class="num">D</div><h3 style="margin:0">Fase II — Recupero</h3></div><div class="card" id="furto-faseII-card"><p class="desc">1d50 ≤ Destrezza + Sapienza Oscura ± Bottino. Basta che almeno un PG riesca.</p>'+phaseLockHTML('furto-faseII-card')+(function(){var s='';for(var i=1;i<=n;i++)s+='<div class="pg-card"><h4>PG '+i+'</h4>'+supportHTML('furto-faseII-b'+i,BONUS_STD,true,true)+rollBlock('furto','faseII',i,50)+'</div>';return s;})()+esitoBoxHTML('furto-faseII-esito')+'</div><div class="step-marker"><div class="num">E</div><h3 style="margin:0">Fase III — Fuga</h3></div><div class="card" id="furto-faseIII-card"><p class="desc">1d50 ≤ Destrezza + Fatica attuale ± Bottino. Inserisci la Fatica già consumata prima del tiro: il calcolatore la sottrae dalla Fatica indicata nel pannello PG.</p>'+phaseLockHTML('furto-faseIII-card')+(function(){var s='';for(var i=1;i<=n;i++)s+='<div class="pg-card"><h4>PG '+i+'</h4><label class="field">Fatica consumata prima del tiro<input type="number" id="furto-faseIII-fatsp'+i+'" value="0" min="0"></label>'+supportHTML('furto-faseIII-b'+i,BONUS_STD,true,true)+rollBlock('furto','faseIII',i,50)+'</div>';return s;})()+esitoBoxHTML('furto-faseIII-esito')+'</div>';return html;}
-function recomputeFurto(n){var bottino=parseInt(g('furto-bottino').value,10);var t1=[],t1b=[],t2=[],t3=[],badFat=[],i;for(i=1;i<=n;i++){var d=num('furto-destrezza'+i),s=num('furto-sapOscura'+i),f=num('furto-fatica'+i);var b1=num('furto-faseI1-b'+i+'-k')+num('furto-faseI1-b'+i+'-p')+num('furto-faseI1-b'+i+'-obj');var x1=fl(d)+fl(s/5)+bottino+b1;t1.push(x1);var q1=d+' Destrezza + '+fl(s/5)+' (Sapienza/5)'+signText(bottino,'Bottino')+signText(b1,'Supporti');setFormulaPreview('furto-faseI1-f'+i,40,x1,q1);setDice('furto-faseI1-btn'+i,'[dice=1d40]Riesce se 1-'+effectiveThreshold(x1,40)+' ('+q1+' = '+x1+') — Furto, Fase I primo tentativo, PG'+i+'[/dice]');setDiceButtonLabel('furto-faseI1-btn'+i,40,x1,i);updateTag('furto-faseI1-res'+i,'furto-faseI1-tag'+i,x1,40);var b1b=num('furto-faseI2-b'+i+'-k')+num('furto-faseI2-b'+i+'-p')+num('furto-faseI2-b'+i+'-obj');var x1b=fl(d)+fl(s/5)+bottino-3+b1b;t1b.push(x1b);var q1b=d+' Destrezza + '+fl(s/5)+' (Sapienza/5)'+signText(bottino,'Bottino')+' -3 Secondo tentativo'+signText(b1b,'Supporti');setFormulaPreview('furto-faseI2-f'+i,40,x1b,q1b);setDice('furto-faseI2-btn'+i,'[dice=1d40]Riesce se 1-'+effectiveThreshold(x1b,40)+' ('+q1b+' = '+x1b+') — Furto, Fase I secondo tentativo, PG'+i+'[/dice]');setDiceButtonLabel('furto-faseI2-btn'+i,40,x1b,i);updateTag('furto-faseI2-res'+i,'furto-faseI2-tag'+i,x1b,40);var b2=num('furto-faseII-b'+i+'-k')+num('furto-faseII-b'+i+'-p')+num('furto-faseII-b'+i+'-obj');var x2=fl(d)+fl(s)+bottino+b2;t2.push(x2);var q2=d+' Destrezza + '+s+' Sapienza Oscura'+signText(bottino,'Bottino')+signText(b2,'Supporti');setFormulaPreview('furto-faseII-f'+i,50,x2,q2);setDice('furto-faseII-btn'+i,'[dice=1d50]Riesce se 1-'+effectiveThreshold(x2,50)+' ('+q2+' = '+x2+') — Furto, Fase II Recupero, PG'+i+'[/dice]');setDiceButtonLabel('furto-faseII-btn'+i,50,x2,i);updateTag('furto-faseII-res'+i,'furto-faseII-tag'+i,x2,50);var b3=num('furto-faseIII-b'+i+'-k')+num('furto-faseIII-b'+i+'-p')+num('furto-faseIII-b'+i+'-obj'),fatsp=num('furto-faseIII-fatsp'+i),fatbad=fatsp<0||fatsp>f,fcur=fl(f)-fl(fatsp);badFat.push(fatbad);var x3=fl(d)+fcur+bottino+b3;t3.push(x3);var q3=d+' Destrezza + '+fcur+' Fatica attuale ('+f+' - '+fatsp+')'+signText(bottino,'Bottino')+signText(b3,'Supporti');setFormulaPreview('furto-faseIII-f'+i,50,x3,q3);setDice('furto-faseIII-btn'+i,'[dice=1d50]Riesce se 1-'+effectiveThreshold(x3,50)+' ('+q3+' = '+x3+') — Furto, Fase III Fuga, PG'+i+'[/dice]');setDiceButtonLabel('furto-faseIII-btn'+i,50,x3,i);updateTag('furto-faseIII-res'+i,'furto-faseIII-tag'+i,x3,50);}var st1=computeEsito('furto','faseI1',n,t1,'all',40);var f1ok=false;if(st1.complete&&st1.valid){if(st1.success){setPhaseAccess('furto-faseI2-card',false,'Secondo tentativo non necessario: il primo è riuscito.');setBox('furto-faseI2-esito','','Secondo tentativo non necessario.');f1ok=true;}else{setPhaseAccess('furto-faseI2-card',true);var st1b=computeEsito('furto','faseI2',n,t1b,'all',40);if(st1b.complete&&st1b.valid&&st1b.success)f1ok=true;else if(st1b.complete&&st1b.valid&&!st1b.success)setBox('furto-faseI2-esito','no','Esito Fase: FALLIMENTO — secondo tentativo fallito. Missione fallita.');}}else{setPhaseAccess('furto-faseI2-card',false,'Completa il primo tentativo.');}setPhaseAccess('furto-faseII-card',f1ok,f1ok?'':'La Fase II si sblocca solo dopo aver superato la Fase I.');var st2=null;if(f1ok)st2=computeEsito('furto','faseII',n,t2,'atLeastOne',50);else setBox('furto-faseII-esito','','Fase bloccata.');var f2ok=!!(st2&&st2.complete&&st2.valid&&st2.success);setPhaseAccess('furto-faseIII-card',f2ok,f2ok?'':'La Fase III si sblocca solo dopo il successo della Fase II.');for(i=1;i<=n;i++){if(f2ok&&badFat[i-1]){setTxt('furto-faseIII-f'+i,'<b>Fatica consumata non valida</b><br>Deve essere compresa fra 0 e la Fatica del PG.');g('furto-faseIII-btn'+i).disabled=true;g('furto-faseIII-res'+i).disabled=true;}}if(f2ok&&!badFat.some(function(v){return v;}))computeEsito('furto','faseIII',n,t3,'atLeastOne',50);else if(f2ok)setBox('furto-faseIII-esito','','Correggi la Fatica consumata prima di effettuare i tiri.');else setBox('furto-faseIII-esito','','Fase bloccata.');}
-RENDERERS.furto={render:renderFurto,recompute:recomputeFurto};
+<div class="introcard" id="rm-mission-picker">
+<h2>Passo 1 — determina la Missione assegnata</h2>
+<p>I PG lanciano <b>1d5</b> per stabilire quale Missione viene assegnata. Se la Missione è collegata direttamente a una precedente completata con successo, non effettuare questo tiro e seleziona manualmente la scheda corretta.</p>
+<div class="locgrid">
+<div><b>1.</b> Inseguimento</div>
+<div><b>2.</b> Irruzione e Arresto</div>
+<div><b>3.</b> Scorta e Protezione</div>
+<div><b>4.</b> Sotto Copertura</div>
+<div><b>5.</b> Sventare uno Scontro</div>
+</div>
+<div class="diceline">
+<input type="text" class="dicecode" id="rm-mission-dice-code" readonly value="[dice=1d5]Determinazione della Missione - Ricerca Missioni[/dice]">
+<button class="btn small" type="button" id="rm-mission-dice-copy">Copia 1d5</button>
+</div>
+<div class="resline">
+<input type="number" id="rm-mission-dice-result" min="1" max="5" step="1" placeholder="1d5">
+<span class="formula" id="rm-mission-dice-outcome">Inserisci il risultato del 1d5.</span>
+</div>
+</div>
 
-/* ============ 2. CONTRABBANDO ============ */
-function contrabbandoTransportNote(mezzo,carico){carico=parseInt(carico,10);if(mezzo==='carrozza')return {needCheck:false,duration:3,text:'Compatibile con qualunque carico. Durata: 3 post per PG.'};if(mezzo==='passaporta'){if(carico<=2)return {needCheck:false,duration:1,fatica:-3,text:'Compatibile. Durata: 1 post per PG; -3 Fatica fino alla fine della role.'};return {needCheck:true,duration:1,fatica:-3,breakOn:[1],damage:'partial',text:'Combinazione non compatibile. Durata: 1 post per PG; -3 Fatica fino alla fine della role. Tira un unico 1d5 per tutto il gruppo: con 1 il carico si danneggia parzialmente e, anche in caso di successo finale, non si guadagnano Galeoni.'};}if(mezzo==='scopa'){if(carico<=2)return {needCheck:false,duration:2,text:'Compatibile. Durata: 2 post per PG.'};return {needCheck:true,duration:2,breakOn:[1,2],damage:'partial',text:'Combinazione non compatibile. Durata: 2 post per PG. Tira un unico 1d5 per tutto il gruppo: con 1-2 il carico si danneggia parzialmente e, anche in caso di successo finale, non si guadagnano Galeoni.'};}if(mezzo==='smater'){if(carico===1)return {needCheck:false,duration:1,destrezza:-3,text:'Compatibile. Durata: 1 post per PG; -3 Destrezza fino alla fine della role.'};return {needCheck:true,duration:1,destrezza:-3,breakOn:[1],damage:'total',text:'Combinazione non compatibile. Durata: 1 post per PG; -3 Destrezza fino alla fine della role. Tira un unico 1d5 per tutto il gruppo: con 1 il carico si rompe o si disperde del tutto e la missione fallisce.'};}return {needCheck:false,text:''};}
-function renderContrabbando(n){var html='<h2>2. Contrabbando</h2><p class="desc">Trasporto e consegna di materiale proibito, prezioso o illegale, eludendo controlli, pattuglie o trappole magiche. I mezzi sono considerati disponibili di base ai fini della Ricerca; non si applicano i normali bonus, malus o Parametri dei Mezzi di Trasporto.</p><div class="step-marker"><div class="num">A</div><h3 style="margin:0">Determina il Tipo di Carico</h3></div><div class="card"><div class="dice-row"><button type="button" class="dice-btn" data-dice="[dice=1d4]Determinazione del Tipo di Carico — Contrabbando[/dice]" data-action="copy-dice"><span class="ico">🎲</span> Copia dado — Tipo di Carico</button><span class="dice-copied">Copiato!</span></div><label class="field">Risultato ottenuto'+selectHTML('contrabbando-carico',[[3,'1 — Comune e Discreto (+3)'],[0,'2 — Sensibile ma Gestibile (0)'],[-3,'3 — Illegale o Instabile (-3)'],[-5,'4 — Altamente Proibito (-5)']],true)+'</label></div><div class="step-marker"><div class="num">B</div><h3 style="margin:0">Statistiche dei Personaggi coinvolti</h3></div><div class="card">'+pgStatsCardHTML('contrabbando',n,[{key:'acume',label:'Acume'},{key:'sapOscura',label:'Sapienza Oscura'},{key:'sapMentale',label:'Sapienza Mentale'},{key:'fatica',label:'Fatica'},{key:'destrezza',label:'Destrezza'}])+'<button type="button" class="btn" data-action="add-pg" data-crime="contrabbando">+ Aggiungi PG</button></div><div class="step-marker"><div class="num">C</div><h3 style="margin:0">Fase I — Preparazione e Carico</h3></div><div class="card" id="contrabbando-faseI-card"><p class="desc">1d40 ≤ Acume + Sapienza Oscura oppure Mentale/5 ± Carico. Ogni PG sceglie quale Sapienza utilizzare; devono riuscire tutti.</p>'+(function(){var s='';for(var i=1;i<=n;i++)s+='<div class="pg-card"><h4>PG '+i+'</h4><label class="field">Sapienza utilizzata'+selectHTML('contrabbando-faseI-sap'+i,[['oscura','Sapienza Oscura'],['mentale','Sapienza Mentale']],true)+'</label>'+supportHTML('contrabbando-faseI-b'+i,BONUS_STD,true,true)+rollBlock('contrabbando','faseI',i,40)+'</div>';return s;})()+esitoBoxHTML('contrabbando-faseI-esito')+'</div><div class="step-marker"><div class="num">D</div><h3 style="margin:0">Fase II — Trasporto e Attraversamento</h3></div><div class="card" id="contrabbando-faseII-card">'+phaseLockHTML('contrabbando-faseII-card')+'<label class="field">Mezzo scelto'+selectHTML('contrabbando-mezzo',[['carrozza','Carrozza Magica / a piedi / su creatura'],['passaporta','Passaporta'],['scopa','Scopa Volante'],['smater','Smaterializzazione']],true)+'</label><div class="rc-note" id="contrabbando-mezzo-note"></div><div id="contrabbando-check-wrap"><div class="rc-note"><b>Verifica unica di gruppo:</b> quando richiesta, si lancia un solo 1d5 per tutti i PG.</div><div class="dice-row"><button type="button" class="dice-btn" id="contrabbando-check-btn" data-dice="[dice=1d5]Verifica integrità del carico — Contrabbando Fase II — unico tiro per il gruppo[/dice]" data-action="copy-dice"><span class="ico">🎲</span> Copia 1d5 — Verifica Carico</button><span class="dice-copied">Copiato!</span></div><div class="result-row"><label class="field">Risultato ottenuto<input type="number" id="contrabbando-mezzo-res"></label><span class="tag" id="contrabbando-mezzo-tag">In attesa del tiro</span></div></div>'+esitoBoxHTML('contrabbando-faseII-esito')+'</div><div class="step-marker"><div class="num">E</div><h3 style="margin:0">Fase III — Consegna e Copertura</h3></div><div class="card" id="contrabbando-faseIII-card">'+phaseLockHTML('contrabbando-faseIII-card')+'<p class="desc">1d50 ≤ Fatica attuale + Destrezza ± Carico + Sapienza Oscura oppure Mentale/5. Inserisci la Fatica già consumata; i malus del mezzo vengono applicati automaticamente.</p>'+(function(){var s='';for(var i=1;i<=n;i++)s+='<div class="pg-card"><h4>PG '+i+'</h4><label class="field">Sapienza utilizzata'+selectHTML('contrabbando-faseIII-sap'+i,[['oscura','Sapienza Oscura'],['mentale','Sapienza Mentale']],true)+'</label><label class="field">Fatica consumata prima del tiro<input type="number" id="contrabbando-faseIII-fatsp'+i+'" value="0" min="0"></label>'+supportHTML('contrabbando-faseIII-b'+i,BONUS_STD,true,true)+rollBlock('contrabbando','faseIII',i,50)+'</div>';return s;})()+esitoBoxHTML('contrabbando-faseIII-esito')+'<div class="rc-note" id="contrabbando-reward-note"></div></div>';return html;}
-function recomputeContrabbando(n){var cSel=g('contrabbando-carico'),carico=parseInt(cSel.value,10),caricoIdx=['3','0','-3','-5'].indexOf(cSel.value)+1;var t1=[],t3=[],badFat=[],i;for(i=1;i<=n;i++){var a=num('contrabbando-acume'+i),s=g('contrabbando-faseI-sap'+i).value==='mentale'?num('contrabbando-sapMentale'+i):num('contrabbando-sapOscura'+i);var b=num('contrabbando-faseI-b'+i+'-k')+num('contrabbando-faseI-b'+i+'-p')+num('contrabbando-faseI-b'+i+'-obj');var x=fl(a)+fl(s/5)+carico+b;t1.push(x);var q=a+' Acume + '+fl(s/5)+' (Sapienza/5)'+signText(carico,'Carico')+signText(b,'Supporti');setFormulaPreview('contrabbando-faseI-f'+i,40,x,q);setDice('contrabbando-faseI-btn'+i,'[dice=1d40]Riesce se 1-'+effectiveThreshold(x,40)+' ('+q+' = '+x+') — Contrabbando, Fase I, PG'+i+'[/dice]');setDiceButtonLabel('contrabbando-faseI-btn'+i,40,x,i);updateTag('contrabbando-faseI-res'+i,'contrabbando-faseI-tag'+i,x,40);}var st1=computeEsito('contrabbando','faseI',n,t1,'all',40);var access2=st1.complete&&st1.valid&&st1.success;setPhaseAccess('contrabbando-faseII-card',access2,access2?'':'La missione prosegue solo se tutti superano la Fase I.');var mezzo=g('contrabbando-mezzo').value,info=contrabbandoTransportNote(mezzo,caricoIdx);setTxt('contrabbando-mezzo-note',info.text);var wrap=g('contrabbando-check-wrap');var transport={complete:false,success:false,damage:false,catastrophic:false};if(access2){if(info.needCheck){wrap.style.display='block';var ds=dieState('contrabbando-mezzo-res',5);updateTag('contrabbando-mezzo-res','contrabbando-mezzo-tag',info.breakOn[0]-1,5);if(!ds.filled)setBox('contrabbando-faseII-esito','','In attesa del tiro di sicurezza del carico.');else if(!ds.valid)setBox('contrabbando-faseII-esito','','Risultato impossibile: inserisci un intero da 1 a 5.');else{transport.complete=true;var hit=info.breakOn.indexOf(ds.value)>=0;if(hit&&info.damage==='total'){transport.catastrophic=true;setBox('contrabbando-faseII-esito','no','Carico distrutto o disperso: missione fallita.');g('contrabbando-mezzo-tag').textContent='Carico distrutto/disperso';g('contrabbando-mezzo-tag').className='tag no';}else if(hit){transport.success=true;transport.damage=true;setBox('contrabbando-faseII-esito','ok','Trasporto completato, ma il carico è parzialmente danneggiato: la missione può proseguire senza Galeoni.');g('contrabbando-mezzo-tag').textContent='Carico parzialmente danneggiato';g('contrabbando-mezzo-tag').className='tag no';}else{transport.success=true;setBox('contrabbando-faseII-esito','ok','Trasporto completato: carico integro.');g('contrabbando-mezzo-tag').textContent='Carico integro';g('contrabbando-mezzo-tag').className='tag ok';}}}else{wrap.style.display='none';transport.complete=true;transport.success=true;setBox('contrabbando-faseII-esito','ok','Trasporto autoconclusivo: si passa alla Fase III.');}}else{wrap.style.display=info.needCheck?'block':'none';setBox('contrabbando-faseII-esito','','Fase bloccata.');}var access3=access2&&transport.complete&&!transport.catastrophic;setPhaseAccess('contrabbando-faseIII-card',access3,access3?'':'Completa con successo le fasi precedenti.');for(i=1;i<=n;i++){var fat=num('contrabbando-fatica'+i),fatsp=num('contrabbando-faseIII-fatsp'+i),fatbad=fatsp<0||fatsp>fat,fatcur=fl(fat)-fl(fatsp),des=num('contrabbando-destrezza'+i),sap=g('contrabbando-faseIII-sap'+i).value==='mentale'?num('contrabbando-sapMentale'+i):num('contrabbando-sapOscura'+i),mFat=(access3&&info.fatica)?info.fatica:0,mDes=(access3&&info.destrezza)?info.destrezza:0;badFat.push(fatbad);var sup=num('contrabbando-faseIII-b'+i+'-k')+num('contrabbando-faseIII-b'+i+'-p')+num('contrabbando-faseIII-b'+i+'-obj');var x3=fatcur+mFat+fl(des)+mDes+carico+fl(sap/5)+sup;t3.push(x3);var q3=fatcur+' Fatica attuale ('+fat+' - '+fatsp+')'+signText(mFat,'Mezzo')+' + '+des+' Destrezza'+signText(mDes,'Mezzo')+signText(carico,'Carico')+' + '+fl(sap/5)+' (Sapienza/5)'+signText(sup,'Supporti');setFormulaPreview('contrabbando-faseIII-f'+i,50,x3,q3);setDice('contrabbando-faseIII-btn'+i,'[dice=1d50]Riesce se 1-'+effectiveThreshold(x3,50)+' ('+q3+' = '+x3+') — Contrabbando, Fase III, PG'+i+'[/dice]');setDiceButtonLabel('contrabbando-faseIII-btn'+i,50,x3,i);updateTag('contrabbando-faseIII-res'+i,'contrabbando-faseIII-tag'+i,x3,50);}for(i=1;i<=n;i++){if(access3&&badFat[i-1]){setTxt('contrabbando-faseIII-f'+i,'<b>Fatica consumata non valida</b><br>Deve essere compresa fra 0 e la Fatica del PG.');g('contrabbando-faseIII-btn'+i).disabled=true;g('contrabbando-faseIII-res'+i).disabled=true;}}if(access3&&!badFat.some(function(v){return v;})){var st3=computeEsito('contrabbando','faseIII',n,t3,'atLeastOne',50);if(transport.damage)setTxt('contrabbando-reward-note','Il carico è parzialmente danneggiato: anche in caso di successo finale non si guadagnano Galeoni.');else setTxt('contrabbando-reward-note','');if(st3.complete&&st3.valid&&st3.success&&transport.damage)setBox('contrabbando-faseIII-esito','ok','Esito Fase: SUCCESSO — consegna completata, ma senza Galeoni per il danno al carico.');}else if(access3){setBox('contrabbando-faseIII-esito','','Correggi la Fatica consumata prima di effettuare i tiri.');setTxt('contrabbando-reward-note','');}else{setBox('contrabbando-faseIII-esito','','Fase bloccata.');setTxt('contrabbando-reward-note','');}}
-RENDERERS.contrabbando={render:renderContrabbando,recompute:recomputeContrabbando};
+<div class="introcard">
+<h2>Passo 2 — apri la scheda e inserisci i Parametri dei PG</h2>
+<p>Dopo il risultato del 1d5, la scheda della Missione corrispondente viene aperta automaticamente. Compila quindi i Parametri richiesti nelle caselle presenti all'interno di quella scheda e prosegui con i passaggi specifici della Missione. Per una Missione collegata, puoi scegliere direttamente la scheda dai pulsanti qui sotto.</p>
+</div>
 
-/* ============ 3. PRESSIONE PSICOLOGICA ============ */
-var PROFILO_MOD={avido:{label:'Avido',corr:3,intim:0,ric:-3},codardo:{label:'Codardo',corr:-3,intim:3,ric:3},sospettoso:{label:'Sospettoso',corr:0,intim:0,ric:0},orgoglioso:{label:'Orgoglioso',corr:-3,intim:-3,ric:-3},pericoloso:{label:'Pericoloso',corr:3,intim:-3,ric:0},ingenuo:{label:'Ingenuo',corr:3,intim:3,ric:3}};
-function renderPressione(n){var html='<h2>3. Pressione Psicologica</h2><p class="desc">Conoscenze solo di colore. Le Pozioni modificano una voce della formula del PG; gli Oggetti/Borsa applicano solo i bonus previsti dal Prezzario. Non è consentito utilizzare magia direttamente sul bersaglio né danneggiarlo fisicamente.</p><div class="step-marker"><div class="num">A</div><h3 style="margin:0">Statistiche dei Personaggi coinvolti</h3></div><div class="card">'+pgStatsCardHTML('pressione',n,[{key:'volonta',label:'Volontà'},{key:'sapOscura',label:'Sapienza Oscura'},{key:'sapMentale',label:'Sapienza Mentale'},{key:'lvPers',label:'Lv Persuasore'},{key:'dialettica',label:'Dialettica'},{key:'sinistri',label:'Punti Sinistri'},{key:'acume',label:'Acume'},{key:'resistenza',label:'Resistenza'}])+'<button type="button" class="btn" data-action="add-pg" data-crime="pressione">+ Aggiungi PG</button></div><div class="step-marker"><div class="num">B</div><h3 style="margin:0">Fase I — Preparazione e Indagine</h3></div><div class="card" id="pressione-faseI-card"><p class="desc">1d60 ≤ Volontà + Sapienza Oscura oppure Mentale/5 + Lv Persuasore + Dialettica + Punti Sinistri/2. Ogni PG sceglie quale Sapienza utilizzare.</p>'+(function(){var s='';var tg=[['volonta','Volontà'],['sapienza','Sapienza scelta'],['lvPers','Lv Persuasore'],['dialettica','Dialettica'],['sinistri','Punti Sinistri']];for(var i=1;i<=n;i++)s+='<div class="pg-card"><h4>PG '+i+'</h4><label class="field">Sapienza utilizzata'+selectHTML('pressione-faseI-sap'+i,[['oscura','Sapienza Oscura'],['mentale','Sapienza Mentale']],true)+'</label>'+pressurePotionHTML('pressione-faseI-b'+i,tg)+rollBlock('pressione','faseI',i,60)+'</div>';return s;})()+esitoBoxHTML('pressione-faseI-esito')+'<div class="rc-note">Ogni PG che fallisce riceve personalmente -3 Possibilità nella Fase II. Si passa comunque alla Fase II una volta completati tutti i tiri.</div></div><div class="step-marker"><div class="num">C</div><h3 style="margin:0">Determina il Profilo della Vittima</h3></div><div class="card"><div class="dice-row"><button type="button" class="dice-btn" data-dice="[dice=1d6]Profilo della Vittima — Pressione Psicologica[/dice]" data-action="copy-dice"><span class="ico">🎲</span> Copia dado — Profilo Vittima</button><span class="dice-copied">Copiato!</span></div><label class="field">Risultato ottenuto'+selectHTML('pressione-profilo',[['avido','1 — Avido'],['codardo','2 — Codardo'],['sospettoso','3 — Sospettoso'],['orgoglioso','4 — Orgoglioso'],['pericoloso','5 — Pericoloso'],['ingenuo','6 — Ingenuo']],true)+'</label><div class="rc-note" id="pressione-profilo-note"></div></div><div class="step-marker"><div class="num">D</div><h3 style="margin:0">Fase II — Pianificazione e Avvicinamento</h3></div><div class="card" id="pressione-faseII-card">'+phaseLockHTML('pressione-faseII-card')+'<p class="desc">Ogni PG lancia 1d40 su Volontà + Acume, con l’eventuale -3 personale dalla Fase I.</p>'+(function(){var s='';var tg=[['volonta','Volontà'],['acume','Acume']];for(var i=1;i<=n;i++)s+='<div class="pg-card"><h4>PG '+i+'</h4>'+pressurePotionHTML('pressione-faseII-b'+i,tg)+rollBlock('pressione','faseII',i,40)+'</div>';return s;})()+esitoBoxHTML('pressione-faseII-esito')+'<div class="rc-note">Almeno un successo: +3 per tutti in Fase III. Tutti falliscono: -3 per tutti in Fase III.</div></div><div class="step-marker"><div class="num">E</div><h3 style="margin:0">Fase III — Applicazione della Modalità</h3></div><div class="card" id="pressione-faseIII-card">'+phaseLockHTML('pressione-faseIII-card')+(function(){var s='';for(var i=1;i<=n;i++)s+='<div class="pg-card"><h4>PG '+i+'</h4><label class="field">Modalità scelta'+selectHTML('pressione-faseIII-metodo'+i,[['corr','Corruzione (1d20)'],['ric','Ricatto (1d30)'],['intim','Intimidazione (1d40)']],true)+'</label>'+pressurePotionHTML('pressione-faseIII-b'+i,[['dialettica','Dialettica'],['lvPers','Lv Persuasore']])+rollBlock('pressione','faseIII',i,20)+'</div>';return s;})()+esitoBoxHTML('pressione-faseIII-esito')+'</div>';return html;}
-function boosted(v,target,key,bonus){return key===target?v+bonus:v;}
-function recomputePressione(n){var p=g('pressione-profilo').value,prof=PROFILO_MOD[p];setTxt('pressione-profilo-note','Profilo attuale: <b>'+prof.label+'</b> — Corruzione '+(prof.corr>=0?'+':'')+prof.corr+', Intimidazione '+(prof.intim>=0?'+':'')+prof.intim+', Ricatto '+(prof.ric>=0?'+':'')+prof.ric+'.');var t1=[],t2=[],t3=[],sides3=[],i;for(i=1;i<=n;i++){var vo=num('pressione-volonta'+i),sa=g('pressione-faseI-sap'+i).value==='mentale'?num('pressione-sapMentale'+i):num('pressione-sapOscura'+i),lv=num('pressione-lvPers'+i),di=num('pressione-dialettica'+i),si=num('pressione-sinistri'+i),ac=num('pressione-acume'+i),re=num('pressione-resistenza'+i);var pb=num('pressione-faseI-b'+i+'-p'),pt=g('pressione-faseI-b'+i+'-pt').value,obj=num('pressione-faseI-b'+i+'-obj');var v1=boosted(vo,pt,'volonta',pb),s1=boosted(sa,pt,'sapienza',pb),l1=boosted(lv,pt,'lvPers',pb),d1v=boosted(di,pt,'dialettica',pb),si1=boosted(si,pt,'sinistri',pb);var x1=fl(v1)+fl(s1/5)+l1+d1v+fl(si1/2)+obj;t1.push(x1);var q1=v1+' Volontà + '+fl(s1/5)+' (Sapienza/5) + '+l1+' Lv Persuasore + '+d1v+' Dialettica + '+fl(si1/2)+' (Punti Sinistri/2)'+signText(obj,'Oggetto/Borsa');setFormulaPreview('pressione-faseI-f'+i,60,x1,q1);setDice('pressione-faseI-btn'+i,'[dice=1d60]Riesce se 1-'+effectiveThreshold(x1,60)+' ('+q1+' = '+x1+') — Pressione Psicologica, Fase I, PG'+i+'[/dice]');setDiceButtonLabel('pressione-faseI-btn'+i,60,x1,i);updateTag('pressione-faseI-res'+i,'pressione-faseI-tag'+i,x1,60);}var st1=computeEsito('pressione','faseI',n,t1,'atLeastOne',60);var access2=st1.complete&&st1.valid;setPhaseAccess('pressione-faseII-card',access2,access2?'':'Completa tutti i tiri della Fase I.');for(i=1;i<=n;i++){var vo2=num('pressione-volonta'+i),ac2=num('pressione-acume'+i),pb2=num('pressione-faseII-b'+i+'-p'),pt2=g('pressione-faseII-b'+i+'-pt').value,obj2=num('pressione-faseII-b'+i+'-obj');var vv=boosted(vo2,pt2,'volonta',pb2),aa=boosted(ac2,pt2,'acume',pb2);var mal=(access2&&st1.perPG[i-1]===false)?-3:0;var x2=fl(vv)+fl(aa)+mal+obj2;t2.push(x2);var q2=vv+' Volontà + '+aa+' Acume'+signText(mal,'Fase I')+signText(obj2,'Oggetto/Borsa');setFormulaPreview('pressione-faseII-f'+i,40,x2,q2);setDice('pressione-faseII-btn'+i,'[dice=1d40]Riesce se 1-'+effectiveThreshold(x2,40)+' ('+q2+' = '+x2+') — Pressione Psicologica, Fase II, PG'+i+'[/dice]');setDiceButtonLabel('pressione-faseII-btn'+i,40,x2,i);updateTag('pressione-faseII-res'+i,'pressione-faseII-tag'+i,x2,40);}var st2=null;if(access2)st2=computeEsito('pressione','faseII',n,t2,'atLeastOne',40);else setBox('pressione-faseII-esito','','Fase bloccata.');var access3=!!(st2&&st2.complete&&st2.valid);setPhaseAccess('pressione-faseIII-card',access3,access3?'':'Completa tutti i tiri della Fase II.');var carry=access3?(st2.success?3:-3):0;for(i=1;i<=n;i++){var metodo=g('pressione-faseIII-metodo'+i).value;var opts=metodo==='corr'?[['dialettica','Dialettica'],['lvPers','Lv Persuasore']]:metodo==='ric'?[['volonta','Volontà'],['dialettica','Dialettica']]:[['volonta','Volontà'],['resistenza','Resistenza'],['sinistri','Punti Sinistri']];syncSelect('pressione-faseIII-b'+i+'-pt',opts);var pb3=num('pressione-faseIII-b'+i+'-p'),pt3=g('pressione-faseIII-b'+i+'-pt').value,obj3=num('pressione-faseIII-b'+i+'-obj');var vo3=num('pressione-volonta'+i),re3=num('pressione-resistenza'+i),di3=num('pressione-dialettica'+i),lv3=num('pressione-lvPers'+i),si3=num('pressione-sinistri'+i);var x3,q3,ds,label;if(metodo==='corr'){ds=20;label='Corruzione';di3=boosted(di3,pt3,'dialettica',pb3);lv3=boosted(lv3,pt3,'lvPers',pb3);x3=fl(di3)+lv3+prof.corr+carry+obj3;q3=di3+' Dialettica + '+lv3+' Lv Persuasore'+signText(prof.corr,'Profilo')+signText(carry,'Fase II')+signText(obj3,'Oggetto/Borsa');}else if(metodo==='ric'){ds=30;label='Ricatto';vo3=boosted(vo3,pt3,'volonta',pb3);di3=boosted(di3,pt3,'dialettica',pb3);x3=fl(vo3)+fl(di3)+prof.ric+carry+obj3;q3=vo3+' Volontà + '+di3+' Dialettica'+signText(prof.ric,'Profilo')+signText(carry,'Fase II')+signText(obj3,'Oggetto/Borsa');}else{ds=40;label='Intimidazione';vo3=boosted(vo3,pt3,'volonta',pb3);re3=boosted(re3,pt3,'resistenza',pb3);si3=boosted(si3,pt3,'sinistri',pb3);var base=Math.max(vo3,re3);x3=fl(base)+fl(si3/2)+prof.intim+carry+obj3;q3=base+' max(Volontà, Resistenza) + '+fl(si3/2)+' (Punti Sinistri/2)'+signText(prof.intim,'Profilo')+signText(carry,'Fase II')+signText(obj3,'Oggetto/Borsa');}t3.push(x3);sides3.push(ds);setFormulaPreview('pressione-faseIII-f'+i,ds,x3,q3);setDice('pressione-faseIII-btn'+i,'[dice=1d'+ds+']Riesce se 1-'+effectiveThreshold(x3,ds)+' ('+q3+' = '+x3+') — Pressione Psicologica, Fase III '+label+', PG'+i+'[/dice]');setDiceButtonLabel('pressione-faseIII-btn'+i,ds,x3,i,label);updateTag('pressione-faseIII-res'+i,'pressione-faseIII-tag'+i,x3,ds);}if(access3)computeEsito('pressione','faseIII',n,t3,'atLeastOne',sides3);else setBox('pressione-faseIII-esito','','Fase bloccata.');}
-RENDERERS.pressione={render:renderPressione,recompute:recomputePressione};
+<div class="tabbar" id="rm-tabbar"></div>
 
-/* ============ 4. SICARIO ============ */
-var SICARIO_INCARICO_METODO={'1':'furtivo','2':'dannopsi','3':'azionem','4':'furtivo','5':'dannogen'};
-function renderSicario(n){var html='<h2>4. Sicario</h2><p class="desc">Esecuzione di un incarico a pagamento. Conoscenza e Pozione possono essere usate insieme e i bonus si sommano; nell’approccio Testimoni non si ottengono bonus tramite Pozioni o magie e il loro uso in presenza dei testimoni fa fallire automaticamente quel tentativo.</p><div class="step-marker"><div class="num">A</div><h3 style="margin:0">Determina il Profilo del Bersaglio</h3></div><div class="card"><div class="dice-row"><button type="button" class="dice-btn" data-dice="[dice=1d4]Profilo del Bersaglio — Sicario[/dice]" data-action="copy-dice"><span class="ico">🎲</span> Copia dado — Profilo Bersaglio</button><span class="dice-copied">Copiato!</span></div><label class="field">Risultato ottenuto'+selectHTML('sicario-profilo',[[3,'1 — Isolato/Poco noto (+3)'],[0,'2 — Conosciuto (0)'],[-3,'3 — Ricco/Frequentato (-3)'],[-5,'4 — Celebre/Protetto (-5)']],true)+'</label></div><div class="step-marker"><div class="num">B</div><h3 style="margin:0">Determina il Tipo di Incarico</h3></div><div class="card"><div class="dice-row"><button type="button" class="dice-btn" data-dice="[dice=1d5]Tipo di Incarico — Sicario[/dice]" data-action="copy-dice"><span class="ico">🎲</span> Copia dado — Tipo di Incarico</button><span class="dice-copied">Copiato!</span></div><label class="field">Risultato ottenuto'+selectHTML('sicario-incarico',[['1','1 — Eliminazione totale'],['2','2 — Punizione o vendetta'],['3','3 — Rimozione/manipolazione mnemonica'],['4','4 — Inscenamento'],['5','5 — Missione alternativa o simbolica']],true)+'</label></div><div class="step-marker"><div class="num">C</div><h3 style="margin:0">Statistiche dei Personaggi coinvolti</h3></div><div class="card">'+pgStatsCardHTML('sicario',n,[{key:'volonta',label:'Volontà'},{key:'dialettica',label:'Dialettica'},{key:'lvPers',label:'Lv Persuasore'},{key:'sapMentale',label:'Sapienza Mentale'},{key:'destrezza',label:'Destrezza'},{key:'popolarita',label:'Popolarità'},{key:'sapArcaica',label:'Sapienza Arcaica'},{key:'sinistri',label:'Punti Sinistri'},{key:'acume',label:'Acume'},{key:'sapOscura',label:'Sapienza Oscura'}])+'<button type="button" class="btn" data-action="add-pg" data-crime="sicario">+ Aggiungi PG</button></div><div class="step-marker"><div class="num">D</div><h3 style="margin:0">Fase I — Raccolta Informazioni</h3></div><div class="card" id="sicario-faseI-card">'+(function(){var s='';for(var i=1;i<=n;i++)s+='<div class="pg-card"><h4>PG '+i+'</h4><label class="field">Metodo scelto'+selectHTML('sicario-faseI-metodo'+i,[['testimoni','Testimoni (1d40)'],['pedinamento','Pedinamento e spionaggio (1d30)'],['tracce','Individuazione tracce di magia (1d40)'],['intimric','Intimidazioni/minacce/ricatti (1d60)']],true)+'</label><div id="sicario-faseI-sapwrap'+i+'"><label class="field">Sapienza per Intimidazioni/Ricatti'+selectHTML('sicario-faseI-sap'+i,[['oscura','Sapienza Oscura'],['mentale','Sapienza Mentale']],true)+'</label></div><div id="sicario-testimoni-wrap'+i+'"><label class="field">Magia o Pozione usata in presenza dei testimoni?'+selectHTML('sicario-testimoni-uso'+i,[['no','No'],['si','Sì — fallimento automatico']],true)+'</label></div>'+supportHTML('sicario-faseI-b'+i,BONUS_STD,true,true)+'<div class="rc-note" id="sicario-testimoni-note'+i+'"></div>'+rollBlock('sicario','faseI',i,40)+'</div>';return s;})()+esitoBoxHTML('sicario-faseI-esito')+'</div><div class="step-marker"><div class="num">E</div><h3 style="margin:0">Fase II — Avvicinamento</h3></div><div class="card" id="sicario-faseII-card">'+phaseLockHTML('sicario-faseII-card')+'<p class="desc">1d35 ≤ Acume + Punti Sinistri/2 ± Profilo, con eventuale -3 automatico se tutti hanno fallito la Fase I.</p>'+(function(){var s='';for(var i=1;i<=n;i++)s+='<div class="pg-card"><h4>PG '+i+'</h4>'+supportHTML('sicario-faseII-b'+i,BONUS_STD,true,true)+rollBlock('sicario','faseII',i,35)+'</div>';return s;})()+esitoBoxHTML('sicario-faseII-esito')+'</div><div class="step-marker"><div class="num">F</div><h3 style="margin:0">Fase III — Esecuzione</h3></div><div class="card" id="sicario-faseIII-card">'+phaseLockHTML('sicario-faseIII-card')+(function(){var s='';for(var i=1;i<=n;i++)s+='<div class="pg-card"><h4>PG '+i+'</h4><label class="field">Metodo scelto'+selectHTML('sicario-faseIII-metodo'+i,[['furtivo','Furtivo'],['azionem','Azione Mentale'],['dannogen','Danno generico o simbolico'],['dannopsi','Danno psicologico']],true)+'</label>'+supportHTML('sicario-faseIII-b'+i,BONUS_SICARIO_III,true,true)+rollBlock('sicario','faseIII',i,40)+'</div>';return s;})()+esitoBoxHTML('sicario-faseIII-esito')+'</div>';return html;}
-function recomputeSicario(n){var prof=parseInt(g('sicario-profilo').value,10),inc=g('sicario-incarico').value,aff=SICARIO_INCARICO_METODO[inc];var t1=[],s1=[],autoFail1=[],t2=[],t3=[],i;for(i=1;i<=n;i++){var vo=num('sicario-volonta'+i),di=num('sicario-dialettica'+i),lv=num('sicario-lvPers'+i),sm=num('sicario-sapMentale'+i),de=num('sicario-destrezza'+i),po=num('sicario-popolarita'+i),sa=num('sicario-sapArcaica'+i),si=num('sicario-sinistri'+i),ac=num('sicario-acume'+i),so=num('sicario-sapOscura'+i);var met=g('sicario-faseI-metodo'+i).value,ks=num('sicario-faseI-b'+i+'-k'),ps=num('sicario-faseI-b'+i+'-p'),obj=num('sicario-faseI-b'+i+'-obj'),ds,label,x,q;var psel=g('sicario-faseI-b'+i+'-p'),sw=g('sicario-faseI-sapwrap'+i),tw=g('sicario-testimoni-wrap'+i),tuse=g('sicario-testimoni-uso'+i);sw.style.display=met==='intimric'?'block':'none';tw.style.display=met==='testimoni'?'block':'none';var forced=met==='testimoni'&&tuse.value==='si';autoFail1.push(forced);if(met==='testimoni'){ps=0;psel.disabled=true;setTxt('sicario-testimoni-note'+i,forced?'Uso di magia/Pozione dichiarato: questo approccio fallisce automaticamente, senza tiro.':'Con i Testimoni la Pozione non può fornire bonus; se vengono usate magie/Pozioni in loro presenza, seleziona “Sì” e il tentativo fallirà automaticamente.');}else{psel.disabled=false;setTxt('sicario-testimoni-note'+i,'');}var sup=ks+ps+obj;if(met==='testimoni'){ds=40;label='Testimoni';x=fl(vo)+fl(di)+lv+fl(sm/5)+prof+sup;q=vo+' Volontà + '+di+' Dialettica + '+lv+' Lv Persuasore + '+fl(sm/5)+' (Sapienza Mentale/5)'+signText(prof,'Profilo')+signText(sup,'Supporti');}else if(met==='pedinamento'){ds=30;label='Pedinamento';x=fl(de)-fl(po/2)+prof+sup;q=de+' Destrezza - '+fl(po/2)+' (Popolarità/2)'+signText(prof,'Profilo')+signText(sup,'Supporti');}else if(met==='tracce'){ds=40;label='Tracce di Magia';x=fl(ac)+fl(sa/5)+prof+sup;q=ac+' Acume + '+fl(sa/5)+' (Sapienza Arcaica/5)'+signText(prof,'Profilo')+signText(sup,'Supporti');}else{ds=60;label='Intimidazioni/Ricatti';var sap=g('sicario-faseI-sap'+i).value==='mentale'?sm:so;x=fl(vo)+fl(sap/5)+lv+di+fl(si/2)+prof+sup;q=vo+' Volontà + '+fl(sap/5)+' (Sapienza scelta/5) + '+lv+' Lv Persuasore + '+di+' Dialettica + '+fl(si/2)+' (Punti Sinistri/2)'+signText(prof,'Profilo')+signText(sup,'Supporti');}t1.push(x);s1.push(ds);setFormulaPreview('sicario-faseI-f'+i,ds,x,q);setDice('sicario-faseI-btn'+i,'[dice=1d'+ds+']Riesce se 1-'+effectiveThreshold(x,ds)+' ('+q+' = '+x+') — Sicario, Fase I '+label+', PG'+i+'[/dice]');setDiceButtonLabel('sicario-faseI-btn'+i,ds,x,i,label);if(forced){setTxt('sicario-faseI-f'+i,'<b>Fallimento automatico</b><br>Magia/Pozione usata in presenza dei testimoni.');g('sicario-faseI-btn'+i).disabled=true;g('sicario-faseI-res'+i).disabled=true;setTxt('sicario-faseI-tag'+i,'Fallimento automatico');g('sicario-faseI-tag'+i).className='tag no';}else{g('sicario-faseI-btn'+i).disabled=false;g('sicario-faseI-res'+i).disabled=false;updateTag('sicario-faseI-res'+i,'sicario-faseI-tag'+i,x,ds);}}var st1=computeEsito('sicario','faseI',n,t1,'atLeastOne',s1,autoFail1);var access2=st1.complete&&st1.valid;setPhaseAccess('sicario-faseII-card',access2,access2?'':'Completa tutti i tiri della Fase I.');var carry2=access2?(st1.success?0:-3):0;for(i=1;i<=n;i++){var ac2=num('sicario-acume'+i),si2=num('sicario-sinistri'+i),sup2=num('sicario-faseII-b'+i+'-k')+num('sicario-faseII-b'+i+'-p')+num('sicario-faseII-b'+i+'-obj');var x2=fl(ac2)+fl(si2/2)+prof+carry2+sup2;t2.push(x2);var q2=ac2+' Acume + '+fl(si2/2)+' (Punti Sinistri/2)'+signText(prof,'Profilo')+signText(carry2,'Fase I')+signText(sup2,'Supporti');setFormulaPreview('sicario-faseII-f'+i,35,x2,q2);setDice('sicario-faseII-btn'+i,'[dice=1d35]Riesce se 1-'+effectiveThreshold(x2,35)+' ('+q2+' = '+x2+') — Sicario, Fase II, PG'+i+'[/dice]');setDiceButtonLabel('sicario-faseII-btn'+i,35,x2,i);updateTag('sicario-faseII-res'+i,'sicario-faseII-tag'+i,x2,35);}var st2=null;if(access2)st2=computeEsito('sicario','faseII',n,t2,'atLeastOne',35);else setBox('sicario-faseII-esito','','Fase bloccata.');var access3=!!(st2&&st2.complete&&st2.valid);setPhaseAccess('sicario-faseIII-card',access3,access3?'':'Completa tutti i tiri della Fase II.');var carry3=access3?(st2.success?3:-3):0;for(i=1;i<=n;i++){var met3=g('sicario-faseIII-metodo'+i).value,vo3=num('sicario-volonta'+i),di3=num('sicario-dialettica'+i),sm3=num('sicario-sapMentale'+i),de3=num('sicario-destrezza'+i),so3=num('sicario-sapOscura'+i),sup3=num('sicario-faseIII-b'+i+'-k')+num('sicario-faseIII-b'+i+'-p')+num('sicario-faseIII-b'+i+'-obj'),match=met3===aff?3:0,x3,q3,label3;if(met3==='furtivo'){label3='Furtivo';x3=fl(de3)+fl(so3/5)+prof+carry3+sup3+match;q3=de3+' Destrezza + '+fl(so3/5)+' (Sapienza Oscura/5)';}else if(met3==='azionem'){label3='Azione Mentale';x3=fl(vo3)+fl(sm3/5)+prof+carry3+sup3+match;q3=vo3+' Volontà + '+fl(sm3/5)+' (Sapienza Mentale/5)';}else if(met3==='dannogen'){label3='Danno Generico/Simbolico';x3=fl(so3)+prof+carry3+sup3+match;q3=so3+' Sapienza Oscura';}else{label3='Danno Psicologico';x3=fl(vo3)+fl(di3)+prof+carry3+sup3+match;q3=vo3+' Volontà + '+di3+' Dialettica';}q3+=signText(prof,'Profilo')+signText(carry3,'Fase II')+signText(sup3,'Supporti')+signText(match,'Metodo affine');t3.push(x3);setFormulaPreview('sicario-faseIII-f'+i,40,x3,q3);setDice('sicario-faseIII-btn'+i,'[dice=1d40]Riesce se 1-'+effectiveThreshold(x3,40)+' ('+q3+' = '+x3+') — Sicario, Fase III '+label3+', PG'+i+'[/dice]');setDiceButtonLabel('sicario-faseIII-btn'+i,40,x3,i,label3);updateTag('sicario-faseIII-res'+i,'sicario-faseIII-tag'+i,x3,40);}if(access3)computeEsito('sicario','faseIII',n,t3,'atLeastOne',40);else setBox('sicario-faseIII-esito','','Fase bloccata.');}
-RENDERERS.sicario={render:renderSicario,recompute:recomputeSicario};
+<div id="rm-panels"></div>
 
-/* ============ 5. AFFARI CLANDESTINI ============ */
-function renderAffari(n){var html='<h2>5. Affari Clandestini</h2><p class="desc">Organizzare e dirigere eventi illegali. Conoscenza e Pozione possono essere utilizzate nello stesso post e i bonus si sommano.</p><div class="step-marker"><div class="num">A</div><h3 style="margin:0">Determina la Tipologia di Evento</h3></div><div class="card"><div class="dice-row"><button type="button" class="dice-btn" data-dice="[dice=1d5]Tipologia di Evento — Affari Clandestini[/dice]" data-action="copy-dice"><span class="ico">🎲</span> Copia dado — Tipologia Evento</button><span class="dice-copied">Copiato!</span></div><div class="rc-note">1: Duello/scontro/torneo/gara non autorizzati · 2: Festa o spettacolo illegale · 3: Asta di oggetti oscuri/illegali · 4: Raduno magico · 5: Evento di copertura.</div></div><div class="step-marker"><div class="num">B</div><h3 style="margin:0">Statistiche dei Personaggi coinvolti</h3></div><div class="card">'+pgStatsCardHTML('affari',n,[{key:'volonta',label:'Volontà'},{key:'dialettica',label:'Dialettica'},{key:'lvPers',label:'Lv Persuasore'},{key:'sapMentale',label:'Sapienza Mentale'},{key:'sinistri',label:'Punti Sinistri'},{key:'sapOscura',label:'Sapienza Oscura'},{key:'acume',label:'Acume'},{key:'sapArcaica',label:'Sapienza Arcaica'},{key:'popolarita',label:'Popolarità'}])+'<button type="button" class="btn" data-action="add-pg" data-crime="affari">+ Aggiungi PG</button></div><div class="step-marker"><div class="num">C</div><h3 style="margin:0">Fase I — Reclutamento e Contatti</h3></div><div class="card" id="affari-faseI-card">'+(function(){var s='';for(var i=1;i<=n;i++)s+='<div class="pg-card"><h4>PG '+i+'</h4><label class="field">Metodo scelto'+selectHTML('affari-faseI-metodo'+i,[['persuasione','Persuasione'],['corruzione','Corruzione e ricatti'],['notorieta','Notorietà']],true)+'</label>'+supportHTML('affari-faseI-b'+i,BONUS_STD,true,true)+rollBlock('affari','faseI',i,50)+'</div>';return s;})()+esitoBoxHTML('affari-faseI-esito')+'</div><div class="step-marker"><div class="num">D</div><h3 style="margin:0">Fase II — Organizzazione e Sicurezza</h3></div><div class="card" id="affari-faseII-card">'+phaseLockHTML('affari-faseII-card')+'<p class="desc">1d35 ≤ Acume + Sapienza Arcaica/5 ± esito Fase I.</p>'+(function(){var s='';for(var i=1;i<=n;i++)s+='<div class="pg-card"><h4>PG '+i+'</h4>'+supportHTML('affari-faseII-b'+i,BONUS_STD,true,true)+rollBlock('affari','faseII',i,35)+'</div>';return s;})()+esitoBoxHTML('affari-faseII-esito')+'</div><div class="step-marker"><div class="num">E</div><h3 style="margin:0">Fase III — Svolgimento dell’Evento</h3></div><div class="card" id="affari-faseIII-card">'+phaseLockHTML('affari-faseIII-card')+(function(){var s='';for(var i=1;i<=n;i++)s+='<div class="pg-card"><h4>PG '+i+'</h4><label class="field">Sapienza utilizzata'+selectHTML('affari-faseIII-sap'+i,[['mentale','Sapienza Mentale'],['oscura','Sapienza Oscura']],true)+'</label>'+supportHTML('affari-faseIII-b'+i,BONUS_STD,true,true)+rollBlock('affari','faseIII',i,60)+'</div>';return s;})()+esitoBoxHTML('affari-faseIII-esito')+'</div>';return html;}
-function recomputeAffari(n){var t1=[],t2=[],t3=[],i;for(i=1;i<=n;i++){var vo=num('affari-volonta'+i),di=num('affari-dialettica'+i),lv=num('affari-lvPers'+i),sm=num('affari-sapMentale'+i),si=num('affari-sinistri'+i),so=num('affari-sapOscura'+i),ac=num('affari-acume'+i),sa=num('affari-sapArcaica'+i),po=num('affari-popolarita'+i),sup=num('affari-faseI-b'+i+'-k')+num('affari-faseI-b'+i+'-p')+num('affari-faseI-b'+i+'-obj'),met=g('affari-faseI-metodo'+i).value,x,q,label;if(met==='persuasione'){label='Persuasione';x=fl(vo)+fl(di)+lv+fl(sm/5)+sup;q=vo+' Volontà + '+di+' Dialettica + '+lv+' Lv Persuasore + '+fl(sm/5)+' (Sapienza Mentale/5)'+signText(sup,'Supporti');}else if(met==='corruzione'){label='Corruzione e Ricatti';x=fl(vo)+fl(si/2)+fl(so/5)+sup;q=vo+' Volontà + '+fl(si/2)+' (Punti Sinistri/2) + '+fl(so/5)+' (Sapienza Oscura/5)'+signText(sup,'Supporti');}else{label='Notorietà';x=fl(po)+fl(di)-fl(si/2)+sup;q=po+' Popolarità + '+di+' Dialettica - '+fl(si/2)+' (Punti Sinistri/2)'+signText(sup,'Supporti');}t1.push(x);setFormulaPreview('affari-faseI-f'+i,50,x,q);setDice('affari-faseI-btn'+i,'[dice=1d50]Riesce se 1-'+effectiveThreshold(x,50)+' ('+q+' = '+x+') — Affari Clandestini, Fase I '+label+', PG'+i+'[/dice]');setDiceButtonLabel('affari-faseI-btn'+i,50,x,i,label);updateTag('affari-faseI-res'+i,'affari-faseI-tag'+i,x,50);}var st1=computeEsito('affari','faseI',n,t1,'atLeastOne',50);var access2=st1.complete&&st1.valid;setPhaseAccess('affari-faseII-card',access2,access2?'':'Completa tutti i tiri della Fase I.');var carry2=access2?(st1.success?3:-3):0;for(i=1;i<=n;i++){var ac2=num('affari-acume'+i),sa2=num('affari-sapArcaica'+i),sup2=num('affari-faseII-b'+i+'-k')+num('affari-faseII-b'+i+'-p')+num('affari-faseII-b'+i+'-obj');var x2=fl(ac2)+fl(sa2/5)+carry2+sup2;t2.push(x2);var q2=ac2+' Acume + '+fl(sa2/5)+' (Sapienza Arcaica/5)'+signText(carry2,'Fase I')+signText(sup2,'Supporti');setFormulaPreview('affari-faseII-f'+i,35,x2,q2);setDice('affari-faseII-btn'+i,'[dice=1d35]Riesce se 1-'+effectiveThreshold(x2,35)+' ('+q2+' = '+x2+') — Affari Clandestini, Fase II, PG'+i+'[/dice]');setDiceButtonLabel('affari-faseII-btn'+i,35,x2,i);updateTag('affari-faseII-res'+i,'affari-faseII-tag'+i,x2,35);}var st2=null;if(access2)st2=computeEsito('affari','faseII',n,t2,'atLeastOne',35);else setBox('affari-faseII-esito','','Fase bloccata.');var access3=!!(st2&&st2.complete&&st2.valid);setPhaseAccess('affari-faseIII-card',access3,access3?'':'Completa tutti i tiri della Fase II.');var carry3=access3?(st2.success?3:-3):0;for(i=1;i<=n;i++){var vo3=num('affari-volonta'+i),di3=num('affari-dialettica'+i),si3=num('affari-sinistri'+i),sap3=g('affari-faseIII-sap'+i).value==='oscura'?num('affari-sapOscura'+i):num('affari-sapMentale'+i),sup3=num('affari-faseIII-b'+i+'-k')+num('affari-faseIII-b'+i+'-p')+num('affari-faseIII-b'+i+'-obj');var x3=fl(vo3)+fl(sap3/5)+di3+fl(si3/2)+carry3+sup3;t3.push(x3);var q3=vo3+' Volontà + '+fl(sap3/5)+' (Sapienza scelta/5) + '+di3+' Dialettica + '+fl(si3/2)+' (Punti Sinistri/2)'+signText(carry3,'Fase II')+signText(sup3,'Supporti');setFormulaPreview('affari-faseIII-f'+i,60,x3,q3);setDice('affari-faseIII-btn'+i,'[dice=1d60]Riesce se 1-'+effectiveThreshold(x3,60)+' ('+q3+' = '+x3+') — Affari Clandestini, Fase III, PG'+i+'[/dice]');setDiceButtonLabel('affari-faseIII-btn'+i,60,x3,i);updateTag('affari-faseIII-res'+i,'affari-faseIII-tag'+i,x3,60);}if(access3)computeEsito('affari','faseIII',n,t3,'atLeastOne',60);else setBox('affari-faseIII-esito','','Fase bloccata.');}
-RENDERERS.affari={render:renderAffari,recompute:recomputeAffari};
+</div>
 
-/* ============ NAV / EVENTI COMPATIBILI FORUMFREE ============ */
-function showCrime(crime){var root=g('rc-crimini'),secs=root.querySelectorAll('.crime-section'),btns=root.querySelectorAll('nav.crime-nav button'),i;for(i=0;i<secs.length;i++)secs[i].classList.remove('active');for(i=0;i<btns.length;i++)btns[i].classList.remove('active');g('section-'+crime).classList.add('active');g('nav-btn-'+crime).classList.add('active');g('section-'+crime).scrollIntoView({behavior:'smooth',block:'start'});}
-var EVT='cli'+'ck';
-document.addEventListener(EVT,function(e){var t=e.target;while(t){if(t.getAttribute){var action=t.getAttribute('data-action');if(action){if(action==='copy-dice'){doCopy(t);return;}if(action==='show-crime'){showCrime(t.getAttribute('data-crime'));return;}if(action==='add-pg'){addPG(t.getAttribute('data-crime'));return;}if(action==='remove-pg'){removePG(t.getAttribute('data-crime'));return;}}}t=t.parentNode;}});
-document.addEventListener('DOMContentLoaded',function(){buildShell();initCrime('furto');initCrime('contrabbando');initCrime('pressione');initCrime('sicario');initCrime('affari');});
-</script>
+<div class="copytoast" id="rm-toast">Copiato nel tuo appunti magico ✎</div>
+
 <script type="text/javascript">
 (function(){
-  var root=document.getElementById('rc-crimini');
-  if(!root)return;
-  var timer=null;
-  function misura(){
-    var rect=root.getBoundingClientRect();
-    return Math.max(200,Math.ceil(rect.bottom+window.pageYOffset+8));
+
+var EVT = 'cli' + 'ck';
+
+/* ================================================================
+   UTILITÀ
+================================================================ */
+function el(tag, attrs, children){
+  var e = document.createElement(tag);
+  var k;
+  if(attrs){
+    for(k in attrs){
+      if(k === 'class'){ e.className = attrs[k]; }
+      else if(k === 'html'){ e.innerHTML = attrs[k]; }
+      else { e.setAttribute(k, attrs[k]); }
+    }
   }
-  function invia(){
-    if(timer)clearTimeout(timer);
-    timer=setTimeout(function(){
-      try{window.parent.postMessage({tipo:'altezzaRicercaCrimini',altezza:misura()},'*');}catch(e){}
-    },20);
+  if(children){
+    children.forEach(function(c){
+      if(typeof c === 'string'){ e.appendChild(document.createTextNode(c)); }
+      else if(c){ e.appendChild(c); }
+    });
   }
-  window.addEventListener('load',invia);
-  window.addEventListener('resize',invia);
-  document.addEventListener('click',function(){setTimeout(invia,30);setTimeout(invia,180);});
-  document.addEventListener('change',invia);
-  document.addEventListener('input',invia);
-  if(window.ResizeObserver){try{new ResizeObserver(invia).observe(root);}catch(e){}}
-  if(window.MutationObserver){try{new MutationObserver(invia).observe(root,{subtree:true,childList:true,attributes:true,characterData:true});}catch(e){}}
-  setTimeout(invia,50);setTimeout(invia,300);setTimeout(invia,1000);
+  return e;
+}
+
+function num(id){
+  var e = document.getElementById(id);
+  if(!e) return 0;
+  var v = parseFloat(e.value);
+  return isNaN(v) ? 0 : v;
+}
+function txt(id){
+  var e = document.getElementById(id);
+  return e ? e.value : '';
+}
+function intInRange(value, min, max){
+  var n = Number(value);
+  return isFinite(n) && Math.floor(n) === n && n >= min && n <= max;
+}
+function floorDiv(v, d){ return Math.floor(Number(v || 0) / d); }
+function clampThreshold(raw, faces){
+  raw = Math.floor(Number(raw || 0));
+  return {raw:raw, effective:Math.max(0, Math.min(faces, raw))};
+}
+function formatPart(p, first){
+  var v = Number(p.val || 0);
+  var label = p.label;
+  if(first) return label + ' (' + v + ')';
+  if(v < 0) return ' − ' + label.replace(/^[-–—]\s*/, '') + ' (' + Math.abs(v) + ')';
+  return ' + ' + label + ' (' + v + ')';
+}
+function partsText(parts){
+  var out = '';
+  for(var i=0;i<parts.length;i++) out += formatPart(parts[i], i===0);
+  return out;
+}
+
+function toast(msg){
+  var t = document.getElementById('rm-toast');
+  if(!t) return;
+  t.textContent = msg;
+  t.className = 'copytoast show';
+  setTimeout(function(){ t.className = 'copytoast'; }, 1400);
+}
+function copyText(value){
+  if(!value) return;
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(value).then(function(){ toast('Codice del tiro copiato'); }, function(){ fallbackCopy(value); });
+  } else fallbackCopy(value);
+}
+function fallbackCopy(value){
+  var ta = document.createElement('textarea');
+  ta.value = value;
+  document.body.appendChild(ta);
+  ta.select();
+  try{ document.execCommand('copy'); }catch(e){}
+  document.body.removeChild(ta);
+  toast('Codice del tiro copiato');
+}
+
+function addOption(sel, value, label){
+  var o = document.createElement('option');
+  o.value = value;
+  o.textContent = label;
+  sel.appendChild(o);
+}
+function makeSelect(id, options){
+  var s = document.createElement('select');
+  s.id = id;
+  for(var i=0;i<options.length;i++) addOption(s, options[i][1], options[i][0]);
+  return s;
+}
+function makeField(label, control){
+  return el('div',{class:'field'},[el('label',{},[label]),control]);
+}
+
+/* ================================================================
+   DATI E BONUS
+================================================================ */
+var STAT_LABELS = {
+  acume:'Acume', percezione:'Percezione',
+  sapOff:'Sapienza Offensiva', sapDif:'Sapienza Difensiva',
+  sapMen:'Sapienza Mentale', sapTras:'Sapienza Trasfigurativa',
+  sapArc:'Sapienza Arcaica', sapDiv:'Sapienza Divinatoria',
+  sapMagiz:'Sapienza Magizoologica', destrezza:'Destrezza',
+  resistenza:'Resistenza', volonta:'Volontà', dialettica:'Dialettica',
+  empatia:'Empatia', fatica:'Fatica', potenza:'Potenza',
+  puntiSinistri:'Punti Sinistri', lvPersuasore:'Lv Persuasore',
+  lvAmicoCreature:'Lv Amico delle Creature'
+};
+
+var K_STD = [['Nessuna',0],['Scolastica (+1)',1],['Extra (+3)',3],['Avanzata (+5)',5]];
+var P_STD = [['Nessuna',0],['Standard (+1)',1],['Oltre Ogni Previsione (+3)',3],['Eccezionale (+5)',5]];
+var K_M1P2 = [['Nessuna',0],['Scolastica (+3)',3],['Extra (+5)',5],['Avanzata (+7)',7]];
+var P_M1P2 = [['Nessuna',0],['Standard (+3)',3],['Oltre Ogni Previsione (+5)',5],['Eccezionale (+7)',7]];
+var K_HI10 = [['Nessuna',0],['Scolastica (+3)',3],['Extra (+5)',5],['Avanzata (+10)',10]];
+var P_HI10 = [['Nessuna',0],['Standard (+3)',3],['Oltre Ogni Previsione (+5)',5],['Eccezionale (+10)',10]];
+var K_TRANSMUTO = [['Nessun Transmuto',0],['Transmuto (+5)',5]];
+var P_POLISUCCO = [['Nessuna Polisucco',0],['Polisucco Standard (+7)',7],['Polisucco Oltre Ogni Previsione (+10)',10],['Polisucco Eccezionale (+15)',15]];
+
+var MISSIONS = [
+  {id:'m1',name:'1. Inseguimento',statKeys:['acume','percezione','sapOff','sapDif','destrezza','fatica','empatia','sapMagiz','lvAmicoCreature'],locFaces:12,
+   luoghi:['Campagne, Montagne e Valli della Gran Bretagna Babbana (a scelta)','Città della Gran Bretagna Babbana (a scelta)','Fogne del Profeta','Foreste Magiche','Foreste Oscure','Londra Babbana','Locande di Notturn Alley (a scelta dei player)','Negozi di Notturn Alley (a scelta dei player)','Stamberga Strillante','Valli di Hogwarts','Vicoli di Notturn Alley','Vie di Diagon Alley'],
+   intro:'Un bersaglio già identificato — criminali in fuga o creature scappate al controllo — deve essere rilevato, inseguito e infine bloccato o catturato.'},
+  {id:'m2',name:'2. Irruzione e Arresto',statKeys:['acume','percezione','sapOff','sapDif','destrezza','resistenza','potenza'],locFaces:8,
+   luoghi:['Case abbandonate di Notturn Alley','Dimore isolate in campagna o montagne (a scelta)','Edifici abbandonati a Londra Babbana (a scelta)','Locali sotterranei o magazzini di Hogsmeade','Magazzini di Diagon Alley','Rifugi di maghi oscuri o gruppi clandestini (a scelta)','Rifugi nascosti nei sotterranei di Londra Babbana','Scantinati di Notturn Alley'],
+   intro:'Irruzione in un luogo sospetto per interrompere attività illecite e procedere all’arresto dei responsabili.'},
+  {id:'m3',name:'3. Scorta e Protezione',statKeys:['destrezza','acume'],locFaces:5,
+   luoghi:['Colline e Montagne di Hogsmeade','Foreste Magiche','Foreste Oscure','Campagne, Montagne e Valli della Gran Bretagna Babbana (luogo esatto a scelta dei Player, Londra esclusa)','Valli di Hogwarts'],
+   intro:'Una persona, un gruppo o un oggetto magico deve essere accompagnato in sicurezza attraverso zone ad alto rischio.'},
+  {id:'m4',name:'4. Sotto Copertura',statKeys:['volonta','dialettica','sapMen','sapTras','puntiSinistri','destrezza'],locFaces:10,
+   luoghi:['Diagon Alley','Campo dei Ghermidori','Antro delle Megere','Notturn Alley','Hogsmeade',"Godric's Hollow",'Londra Babbana','Città della Gran Bretagna Babbana','San Mungo','Ministero della Magia'],
+   intro:'Infiltrazione in un ambiente criminale per raccogliere prove o informazioni, mantenendo una copertura credibile nel tempo.'},
+  {id:'m5',name:'5. Sventare uno Scontro',statKeys:['percezione','acume','sapArc','sapDiv','destrezza','sapDif','resistenza','volonta','lvPersuasore','dialettica','sapMen','sapOff'],locFaces:13,
+   luoghi:['Vie di Diagon Alley','Locande di Diagon Alley (a scelta dei player)','Vicoli di Notturn Alley','Locande di Notturn Alley (a scelta dei player)','High Street (Hogsmeade)','Stazione di Hogsmeade','Locande di Hogsmeade (a scelta dei player)',"Godric's Hollow",'Londra Babbana','Città della Gran Bretagna Babbana (luogo esatto a scelta dei Player, Londra esclusa)','Redazioni Magiche','San Mungo','Ministero della Magia (livello e ufficio a scelta dei Player)'],
+   intro:'Uno scontro magico è già in corso: i PG devono intervenire per contenerlo, arrestare i colpevoli ed evitare vittime.'}
+];
+
+var pgCount = {};
+var pgListEls = {};
+var rollRegistry = {};
+var results = {};
+var state = {
+  m1:{},
+  m2:{targetCount:null,targetDests:[]},
+  m3:{scType:'oggetto',initial:null,transport:null,mainOutcome:null,events:[],destPenalty:0,healthPenalty:0,damage:0,imprevisto:null,imprevistoDestPenalty:0,phase3Penalty:0,faticaPenalty:0},
+  m4:{},
+  m5:{compromised:false}
+};
+
+function missionById(id){
+  for(var i=0;i<MISSIONS.length;i++) if(MISSIONS[i].id===id) return MISSIONS[i];
+  return null;
+}
+function ensureResults(mid,key){
+  if(!results[mid]) results[mid] = {};
+  if(!results[mid][key]) results[mid][key] = {};
+  return results[mid][key];
+}
+function setResult(mid,key,pg,status,meta){
+  ensureResults(mid,key)[pg] = {status:status,meta:meta||{}};
+}
+function getResult(mid,key,pg){
+  return results[mid] && results[mid][key] ? results[mid][key][pg] : null;
+}
+function statuses(mid,key){
+  var a=[];
+  for(var i=0;i<pgCount[mid];i++) a.push(getResult(mid,key,i));
+  return a;
+}
+function allComplete(mid,key){
+  var a=statuses(mid,key);
+  if(!a.length) return false;
+  for(var i=0;i<a.length;i++) if(!a[i]) return false;
+  return true;
+}
+function anySuccess(mid,key){
+  var a=statuses(mid,key);
+  for(var i=0;i<a.length;i++) if(a[i] && (a[i].status==='ok' || a[i].status==='auto-ok')) return true;
+  return false;
+}
+function allSuccess(mid,key){
+  if(!allComplete(mid,key)) return false;
+  var a=statuses(mid,key);
+  for(var i=0;i<a.length;i++) if(!(a[i].status==='ok' || a[i].status==='auto-ok')) return false;
+  return true;
+}
+function allFailed(mid,key){
+  if(!allComplete(mid,key)) return false;
+  return !anySuccess(mid,key);
+}
+
+function registerRoll(mid, entry){
+  if(!rollRegistry[mid]) rollRegistry[mid]=[];
+  rollRegistry[mid].push(entry);
+}
+function statusOrder(mid,id){
+  if(mid==='m3' && id==='m3-transport-outcome') return 1;
+  if(id.indexOf('-f3b')!==-1) return 3.2;
+  if(id.indexOf('-f3a')!==-1) return 3;
+  if(id.indexOf('-f3')!==-1) return 3;
+  if(id.indexOf('-f2')!==-1) return 2;
+  if(id.indexOf('-f1')!==-1) return 1;
+  return 99;
+}
+function clearStatusFrom(mid,order){
+  var panel=document.getElementById('panel-'+mid); if(!panel) return;
+  var boxes=panel.querySelectorAll('.statusbox');
+  for(var i=0;i<boxes.length;i++){
+    if(statusOrder(mid,boxes[i].id)>=order){
+      boxes[i].className='notebox statusbox';
+      boxes[i].innerHTML='Esiti da ricalcolare.';
+    }
+  }
+}
+function resetFrom(mid, order){
+  var reg = rollRegistry[mid] || [];
+  for(var i=0;i<reg.length;i++){
+    if(reg[i].order >= order){
+      if(results[mid] && results[mid][reg[i].key]) delete results[mid][reg[i].key];
+      reg[i].reset();
+    }
+  }
+  clearStatusFrom(mid,order);
+  if(mid==='m3' && order<=2){
+    state.m3.imprevisto=null;
+    state.m3.imprevistoDestPenalty=0;
+    state.m3.phase3Penalty=0;
+    state.m3.faticaPenalty=0;
+    clearM3ImprevistoView();
+  }
+  if(mid==='m5' && order<=2) state.m5.compromised=false;
+  evaluateMission(mid);
+}
+function resetAllProgress(mid){ resetFrom(mid,mid==='m3'?2:1); }
+function invalidateDependents(mid,key,order,pg){
+  if(results[mid] && results[mid][key]) delete results[mid][key][pg];
+  var reg=rollRegistry[mid]||[];
+  for(var i=0;i<reg.length;i++){
+    if(reg[i].order>order){
+      if(results[mid] && results[mid][reg[i].key]) delete results[mid][reg[i].key];
+      reg[i].reset();
+    }
+  }
+  clearStatusFrom(mid,order);
+  if(mid==='m3' && order<=2){
+    state.m3.imprevisto=null; state.m3.imprevistoDestPenalty=0; state.m3.phase3Penalty=0; state.m3.faticaPenalty=0;
+    clearM3ImprevistoView();
+  }
+  if(mid==='m5' && order<=2) state.m5.compromised=false;
+}
+
+/* ================================================================
+   PANNELLO PG
+================================================================ */
+function buildPGPanel(mission){
+  pgCount[mission.id]=1;
+  var panel=el('div',{class:'pgpanel',id:'pgpanel-'+mission.id});
+  panel.appendChild(el('h3',{},['Personaggi partecipanti alla Ricerca']));
+  var list=el('div',{id:'pglist-'+mission.id});
+  pgListEls[mission.id]=list;
+  panel.appendChild(list);
+  var actions=el('div',{class:'pgpanel-actions'});
+  var add=el('button',{class:'btn small',type:'button'},['+ Aggiungi PG']);
+  var rem=el('button',{class:'btn small ghost',type:'button'},['- Rimuovi ultimo PG']);
+  add.addEventListener(EVT,function(){
+    pgCount[mission.id]++;
+    addPGRow(mission,pgCount[mission.id]-1);
+    refreshAllRolls(mission);
+    if(mission.id==='m2') resetM2TargetsForPGChange();
+    if(mission.id==='m3') resetM3TransportForPGChange();
+    resetAllProgress(mission.id);
+  });
+  rem.addEventListener(EVT,function(){
+    if(pgCount[mission.id]<=1) return;
+    var idx=pgCount[mission.id]-1;
+    var r=document.getElementById('pgrow-'+mission.id+'-'+idx);
+    if(r && r.parentNode) r.parentNode.removeChild(r);
+    pgCount[mission.id]--;
+    refreshAllRolls(mission);
+    if(mission.id==='m2') resetM2TargetsForPGChange();
+    if(mission.id==='m3') resetM3TransportForPGChange();
+    resetAllProgress(mission.id);
+  });
+  actions.appendChild(add); actions.appendChild(rem); panel.appendChild(actions);
+  panel.appendChild(el('div',{class:'hint'},['Puoi svolgere la Ricerca anche con un solo PG. Se aggiungi o rimuovi partecipanti dopo aver effettuato dei tiri, gli esiti della missione vengono azzerati.']));
+  addPGRow(mission,0);
+  return panel;
+}
+function addPGRow(mission,idx){
+  var row=el('div',{class:'pgstat-row',id:'pgrow-'+mission.id+'-'+idx});
+  var name=document.createElement('input'); name.type='text'; name.id=mission.id+'-pg'+idx+'-name'; name.value='PG '+(idx+1);
+  row.appendChild(makeField('Nome PG',name));
+  mission.statKeys.forEach(function(k){
+    var i=document.createElement('input'); i.type='number'; i.step='1'; i.id=mission.id+'-pg'+idx+'-'+k; i.value='10';
+    row.appendChild(makeField(STAT_LABELS[k],i));
+    i.addEventListener('change',function(){ resetAllProgress(mission.id); });
+  });
+  name.addEventListener('change',function(){ syncPGNameLabels(mission.id,idx); resetAllProgress(mission.id); });
+  pgListEls[mission.id].appendChild(row);
+}
+function syncPGNameLabels(mid,idx){
+  var newName=txt(mid+'-pg'+idx+'-name') || ('PG '+(idx+1));
+  var reg=rollRegistry[mid]||[];
+  for(var i=0;i<reg.length;i++){
+    if(reg[i].builders && reg[i].builders[idx]){
+      var label=reg[i].builders[idx].row.querySelector('.pgname');
+      if(label) label.textContent=newName;
+    }
+  }
+  if(mid==='m3' && m3TransportChecks && state.m3.events.length) renderM3TransportChecks();
+}
+function getPGStats(mid,idx){
+  var m=missionById(mid), s={};
+  for(var i=0;i<m.statKeys.length;i++) s[m.statKeys[i]]=num(mid+'-pg'+idx+'-'+m.statKeys[i]);
+  s.name=txt(mid+'-pg'+idx+'-name') || ('PG '+(idx+1));
+  return s;
+}
+
+/* ================================================================
+   RIGA DI TIRO GENERICA
+================================================================ */
+function createRollFactory(mission,opts){
+  var wrap=el('div',{class:opts.wrapClass||''});
+  var container=el('div',{});
+  wrap.appendChild(container);
+  var entry={mid:mission.id,key:opts.key,order:opts.order,container:container,builders:[],reset:function(){}};
+  function rebuild(){
+    container.innerHTML='';
+    entry.builders=[];
+    for(var i=0;i<pgCount[mission.id];i++){
+      var built=buildRollRow(mission,i,opts);
+      container.appendChild(built.row);
+      entry.builders.push(built);
+    }
+  }
+  entry.reset=function(){
+    for(var i=0;i<entry.builders.length;i++) entry.builders[i].reset();
+  };
+  entry.rebuild=rebuild;
+  registerRoll(mission.id,entry);
+  rebuild();
+  return wrap;
+}
+function refreshAllRolls(mission){
+  var reg=rollRegistry[mission.id]||[];
+  for(var i=0;i<reg.length;i++) reg[i].rebuild();
+}
+
+function buildRollRow(mission,pgIndex,opts){
+  var uid=mission.id+'-'+opts.key+'-pg'+pgIndex;
+  var row=el('div',{class:'pgrow',id:'row-'+uid});
+  row.appendChild(el('div',{class:'pgname'},[(getPGStats(mission.id,pgIndex)).name]));
+  var ctrls=el('div',{class:'ctrls'});
+  var modeSel=null, kSel=null, pSel=null, oggInput=null;
+  var fieldControls={};
+
+  if(opts.modes){
+    modeSel=makeSelect(uid+'-mode',opts.modes);
+    ctrls.appendChild(makeField(opts.modeLabel||'Approccio',modeSel));
+  }
+  if(opts.knowledge){
+    kSel=makeSelect(uid+'-k',opts.knowledge);
+    ctrls.appendChild(makeField(opts.knowledgeLabel||'Conoscenza',kSel));
+  }
+  if(opts.potion){
+    pSel=makeSelect(uid+'-p',opts.potion);
+    ctrls.appendChild(makeField(opts.potionLabel||'Pozione',pSel));
+  }
+  if(opts.needsOggetti!==false){
+    oggInput=document.createElement('input'); oggInput.type='number'; oggInput.step='1'; oggInput.id=uid+'-ogg'; oggInput.value='0';
+    ctrls.appendChild(makeField('Bonus Oggetti',oggInput));
+  }
+  if(opts.fields){
+    for(var f=0;f<opts.fields.length;f++){
+      var spec=opts.fields[f], c;
+      if(spec.type==='select') c=makeSelect(uid+'-'+spec.key,spec.options);
+      else { c=document.createElement('input'); c.type=spec.type||'number'; c.step=spec.step||'1'; c.value=spec.value!==undefined?spec.value:''; c.id=uid+'-'+spec.key; if(spec.min!==undefined)c.min=spec.min; if(spec.max!==undefined)c.max=spec.max; }
+      fieldControls[spec.key]=c;
+      ctrls.appendChild(makeField(spec.label,c));
+    }
+  }
+  row.appendChild(ctrls);
+
+  var genBtn=el('button',{class:'btn small',type:'button'},['Genera il tiro']);
+  row.appendChild(genBtn);
+  var out=el('div',{class:'out'});
+  var formula=el('div',{class:'formula'});
+  var diceLine=el('div',{class:'diceline'});
+  var diceInput=document.createElement('input'); diceInput.type='text'; diceInput.readOnly=true; diceInput.className='dicecode';
+  var copy=el('button',{class:'btn small',type:'button'},['Copia']);
+  diceLine.appendChild(diceInput); diceLine.appendChild(copy);
+  var resLine=el('div',{class:'resline'});
+  var resultInput=document.createElement('input'); resultInput.type='number'; resultInput.step='1'; resultInput.min='1'; resultInput.max=String(opts.diceFaces); resultInput.placeholder='Risultato';
+  var verify=el('button',{class:'btn small ghost',type:'button'},['Verifica esito']);
+  var badge=el('span',{class:'badge'});
+  resLine.appendChild(resultInput); resLine.appendChild(verify); resLine.appendChild(badge);
+  out.appendChild(formula); out.appendChild(diceLine); out.appendChild(resLine); row.appendChild(out);
+
+  var current=null;
+  function context(){
+    var ctx={
+      mode:modeSel?modeSel.value:null,
+      knowledgeBonus:kSel?Number(kSel.value):0,
+      potionBonus:pSel?Number(pSel.value):0,
+      oggetti:oggInput?Number(oggInput.value||0):0,
+      carry:opts.carryFn?Number(opts.carryFn(pgIndex)||0):0,
+      fields:{}
+    };
+    for(var key in fieldControls){
+      var control=fieldControls[key];
+      ctx.fields[key]=control.type==='number'?Number(control.value):control.value;
+    }
+    return ctx;
+  }
+  function clearView(){
+    current=null;
+    out.className='out';
+    formula.innerHTML=''; diceInput.value=''; resultInput.value='';
+    badge.className='badge'; badge.textContent='';
+    resultInput.disabled=false; verify.disabled=false;
+    row.className='pgrow';
+  }
+  function invalidate(){
+    clearView();
+    invalidateDependents(mission.id,opts.key,opts.order,pgIndex);
+    evaluateMission(mission.id);
+  }
+  function updateMode(){
+    if(opts.onModeChange) opts.onModeChange({modeSel:modeSel,kSel:kSel,pSel:pSel,fields:fieldControls,row:row,pgIndex:pgIndex});
+  }
+  if(modeSel){ modeSel.addEventListener('change',function(){ updateMode(); invalidate(); }); }
+  if(kSel) kSel.addEventListener('change',invalidate);
+  if(pSel) pSel.addEventListener('change',invalidate);
+  if(oggInput) oggInput.addEventListener('change',invalidate);
+  for(var ck in fieldControls) fieldControls[ck].addEventListener('change',invalidate);
+  updateMode();
+
+  genBtn.addEventListener(EVT,function(){
+    clearView();
+    invalidateDependents(mission.id,opts.key,opts.order,pgIndex);
+    evaluateMission(mission.id);
+    var ctx=context();
+    if(opts.skipMode && ctx.mode===opts.skipMode){
+      current={skip:true,ctx:ctx};
+      formula.innerHTML='<b>Nessun tiro:</b> il PG rinuncia al tentativo facoltativo.';
+      diceInput.value='(Nessun tiro necessario)';
+      resultInput.disabled=true; verify.disabled=true;
+      badge.className='badge neutral'; badge.textContent='NON TENTA';
+      out.className='out show';
+      setResult(mission.id,opts.key,pgIndex,'skip',{ctx:ctx});
+      evaluateMission(mission.id);
+      return;
+    }
+    if(opts.preCompute){
+      var pre=opts.preCompute(getPGStats(mission.id,pgIndex),ctx,pgIndex);
+      if(pre && pre.error){
+        out.className='out show'; formula.innerHTML='<b>'+pre.error+'</b>'; diceInput.value='';
+        badge.className='badge invalid'; badge.textContent='DATI DA CORREGGERE';
+        return;
+      }
+      if(pre && pre.forceFail){
+        out.className='out show'; formula.innerHTML='<b>'+pre.forceFail+'</b>'; diceInput.value='(Fallimento automatico)';
+        resultInput.disabled=true; verify.disabled=true;
+        badge.className='badge bad'; badge.textContent='FALLIMENTO AUTOMATICO';
+        setResult(mission.id,opts.key,pgIndex,'auto-bad',{ctx:ctx}); evaluateMission(mission.id); return;
+      }
+    }
+    var calc=opts.computeFn(getPGStats(mission.id,pgIndex),ctx,pgIndex);
+    if(calc && calc.error){
+      out.className='out show'; formula.innerHTML='<b>'+calc.error+'</b>'; badge.className='badge invalid'; badge.textContent='DATI DA CORREGGERE'; return;
+    }
+    var th=clampThreshold(calc.value,opts.diceFaces);
+    current={raw:th.raw,effective:th.effective,ctx:ctx};
+    var ftxt=partsText(calc.parts||[]);
+    formula.innerHTML=ftxt+' = <b>'+th.raw+'</b> possibilità teoriche; soglia effettiva <b>'+th.effective+'/'+opts.diceFaces+'</b>.';
+    out.className='out show'; resultInput.value=''; badge.className='badge'; badge.textContent='';
+    resultInput.disabled=false; verify.disabled=false;
+    var pgLabel=getPGStats(mission.id,pgIndex).name;
+    if(th.raw>=opts.diceFaces){
+      diceInput.value='(Riuscita automatica: soglia '+th.effective+'/'+opts.diceFaces+')';
+      resultInput.disabled=true; verify.disabled=true;
+      badge.className='badge ok'; badge.textContent='SUCCESSO AUTOMATICO';
+      setResult(mission.id,opts.key,pgIndex,'auto-ok',{ctx:ctx,threshold:th});
+      evaluateMission(mission.id); return;
+    }
+    if(th.effective<=0){
+      diceInput.value='(Fallimento automatico: soglia 0/'+opts.diceFaces+')';
+      resultInput.disabled=true; verify.disabled=true;
+      badge.className='badge bad'; badge.textContent='FALLIMENTO AUTOMATICO';
+      setResult(mission.id,opts.key,pgIndex,'auto-bad',{ctx:ctx,threshold:th});
+      evaluateMission(mission.id); return;
+    }
+    var title=opts.diceLabel+' - '+pgLabel+' (Riesce se 1-'+th.effective+' su 1d'+opts.diceFaces+')';
+    diceInput.value='[dice=1d'+opts.diceFaces+']'+title+'[/dice]';
+  });
+  copy.addEventListener(EVT,function(){ copyText(diceInput.value); });
+  verify.addEventListener(EVT,function(){
+    if(!current || current.skip) return;
+    var v=Number(resultInput.value), threshold=current.effective, savedCtx=current.ctx;
+    invalidateDependents(mission.id,opts.key,opts.order,pgIndex);
+    if(!intInRange(v,1,opts.diceFaces)){
+      badge.className='badge invalid';
+      badge.textContent='RISULTATO IMPOSSIBILE: usa un intero da 1 a '+opts.diceFaces;
+      evaluateMission(mission.id); return;
+    }
+    var ok=v<=threshold;
+    badge.className=ok?'badge ok':'badge bad';
+    badge.textContent=ok?('SUCCESSO ('+v+' ≤ '+threshold+')'):('FALLIMENTO ('+v+' > '+threshold+')');
+    setResult(mission.id,opts.key,pgIndex,ok?'ok':'bad',{ctx:savedCtx,roll:v,threshold:threshold});
+    evaluateMission(mission.id);
+  });
+
+  return {row:row,reset:clearView,controls:{mode:modeSel,k:kSel,p:pSel,fields:fieldControls,gen:genBtn}};
+}
+
+function setStepLocked(mid,key,locked,message){
+  var step=document.getElementById('step-'+mid+'-'+key);
+  if(!step) return;
+  step.className=locked?'step locked':'step';
+  var controls=step.querySelectorAll('button,input,select');
+  for(var i=0;i<controls.length;i++){
+    if(locked) controls[i].disabled=true;
+    else controls[i].disabled=controls[i].getAttribute('data-mode-disabled')==='1';
+  }
+  var note=document.getElementById('lock-'+mid+'-'+key);
+  if(note){ note.style.display=locked?'block':'none'; if(message) note.textContent=message; }
+}
+function setOutcome(id,text,type){
+  var e=document.getElementById(id); if(!e) return;
+  e.className='notebox statusbox '+(type||''); e.innerHTML=text;
+}
+function makeStep(mid,key,title){
+  var s=el('div',{class:'step',id:'step-'+mid+'-'+key});
+  s.appendChild(el('div',{class:'step-head'},[el('span',{class:'step-num'}),el('h3',{},[title])]));
+  var b=el('div',{class:'step-body'});
+  var lock=el('div',{class:'notebox lock-note',id:'lock-'+mid+'-'+key}); lock.style.display='none';
+  b.appendChild(lock); s.appendChild(b);
+  return {step:s,body:b};
+}
+
+/* ================================================================
+   DADO SEMPLICE
+================================================================ */
+function simpleDice(faces,label,resolver){
+  var wrap=el('div',{class:'subroll'});
+  var dl=el('div',{class:'diceline'});
+  var code=document.createElement('input'); code.type='text'; code.readOnly=true; code.className='dicecode'; code.value='[dice=1d'+faces+']'+label+'[/dice]';
+  var cp=el('button',{class:'btn small',type:'button'},['Copia']); cp.addEventListener(EVT,function(){copyText(code.value);});
+  dl.appendChild(code); dl.appendChild(cp); wrap.appendChild(dl);
+  var rl=el('div',{class:'resline'}); var inp=document.createElement('input'); inp.type='number'; inp.step='1'; inp.min='1'; inp.max=String(faces); inp.placeholder='Risultato';
+  var out=el('span',{class:'formula'}); rl.appendChild(inp); wrap.appendChild(rl); wrap.appendChild(out);
+  inp.addEventListener('input',function(){
+    var v=Number(inp.value);
+    if(!intInRange(v,1,faces)){ out.textContent=inp.value?'Risultato impossibile: inserisci un intero da 1 a '+faces+'.':''; return; }
+    out.innerHTML=resolver?resolver(v):'';
+  });
+  return wrap;
+}
+
+/* ================================================================
+   INTRO E NAVIGAZIONE
+================================================================ */
+var tabbar=document.getElementById('rm-tabbar');
+var panels=document.getElementById('rm-panels');
+
+function activateMission(mid){
+  var bs=tabbar.querySelectorAll('.tabbtn'), ps=panels.querySelectorAll('.panel'),i;
+  for(i=0;i<bs.length;i++) bs[i].className='tabbtn';
+  for(i=0;i<ps.length;i++) ps[i].className='panel';
+  var btn=document.getElementById('tab-'+mid), panel=document.getElementById('panel-'+mid);
+  if(btn) btn.className='tabbtn active';
+  if(panel) panel.className='panel active';
+}
+
+MISSIONS.forEach(function(m,idx){
+  var tb=el('button',{class:'tabbtn'+(idx===0?' active':''),type:'button',id:'tab-'+m.id},[m.name]);
+  tb.addEventListener(EVT,function(){ activateMission(m.id); });
+  tabbar.appendChild(tb); panels.appendChild(el('div',{class:'panel'+(idx===0?' active':''),id:'panel-'+m.id}));
+});
+
+var missionDiceCopy=document.getElementById('rm-mission-dice-copy');
+var missionDiceResult=document.getElementById('rm-mission-dice-result');
+var missionDiceOutcome=document.getElementById('rm-mission-dice-outcome');
+if(missionDiceCopy){
+  missionDiceCopy.addEventListener(EVT,function(){
+    copyText(document.getElementById('rm-mission-dice-code').value);
+  });
+}
+if(missionDiceResult){
+  missionDiceResult.addEventListener('input',function(){
+    var v=Number(missionDiceResult.value);
+    if(!missionDiceResult.value){
+      missionDiceOutcome.textContent='Inserisci il risultato del 1d5.';
+      return;
+    }
+    if(!intInRange(v,1,5)){
+      missionDiceOutcome.textContent='Risultato impossibile: inserisci un intero da 1 a 5.';
+      return;
+    }
+    var m=MISSIONS[v-1];
+    missionDiceOutcome.innerHTML='Risultato '+v+': <b>'+m.name+'</b>. La scheda è stata aperta automaticamente.';
+    activateMission(m.id);
+  });
+}
+
+function buildIntro(mission){
+  var card=el('div',{class:'introcard'});
+  card.appendChild(el('h2',{},[mission.name])); card.appendChild(el('p',{},[mission.intro]));
+  var rules=el('details',{class:'rules'}); rules.appendChild(el('summary',{},['Regole comuni a questa missione']));
+  rules.appendChild(el('div',{},[
+    el('p',{},['Gli incantesimi o le Conoscenze utilizzate hanno sempre riuscita al 100%.']),
+    el('p',{},['Si può utilizzare al massimo una Conoscenza e una Pozione per post. Se entrambe sono appropriate, possono essere usate insieme e i bonus si sommano.']),
+    el('p',{},['Si possono usare Oggetti o altro dalla Borsa per ottenere i bonus indicati nel Prezzario.']),
+    el('p',{},['Quando una formula prevede una divisione, il risultato viene arrotondato per difetto. Se la soglia raggiunge o supera il massimo del dado, la prova è automaticamente riuscita.'])
+  ]));
+  card.appendChild(rules);
+  card.appendChild(el('p',{},[el('b',{},['Passo 0 — dove si svolge la missione?'])]));
+  card.appendChild(el('p',{},['Scegli liberamente un luogo dalla lista, oppure lascia decidere il caso tirando il dado apposito.']));
+  var grid=el('div',{class:'locgrid'});
+  mission.luoghi.forEach(function(l,i){grid.appendChild(el('div',{},[el('b',{},[(i+1)+'. ']),l]));});
+  card.appendChild(grid);
+  card.appendChild(simpleDice(mission.locFaces,'Luogo della missione - '+mission.name,function(v){return 'Risultato '+v+': <b>'+mission.luoghi[v-1]+'</b>'; }));
+  return card;
+}
+
+/* ================================================================
+   MISSIONE 1 — INSEGUIMENTO
+================================================================ */
+function buildM1(mission){
+  var panel=document.getElementById('panel-'+mission.id);
+  panel.appendChild(buildIntro(mission));
+  var setup=el('div',{class:'introcard'});
+  setup.appendChild(el('h2',{},['Passo 1 — chi stiamo inseguendo?']));
+  setup.appendChild(el('p',{},['Il numero di bersagli è libero e ha impatto narrativo. Per ogni criminale la Destrezza è 10 + 1d8; per le Creature si usa la Destrezza dello specchietto. In Fase III ogni PG inserirà la Destrezza del bersaglio sul quale interviene.']));
+  setup.appendChild(simpleDice(8,'Destrezza Bersaglio (10+1d8) - Inseguimento',function(v){return 'Destrezza totale = 10 + '+v+' = <b>'+(10+v)+'</b>'; }));
+  panel.appendChild(setup);
+  panel.appendChild(buildPGPanel(mission));
+  var steps=el('div',{class:'stepwrap'});
+
+  var a=makeStep('m1','f1','Intercettazione');
+  a.body.appendChild(el('div',{class:'step-desc'},['La Fase riesce se almeno un PG ha successo. Se tutti falliscono, si effettua un secondo tentativo; un secondo fallimento totale conclude la Missione.']));
+  a.body.appendChild(el('div',{class:'formula'},[el('b',{},['Primo tentativo'])]));
+  a.body.appendChild(createRollFactory(mission,{key:'f1a1',order:1,diceFaces:40,diceLabel:'Intercettazione — primo tentativo',knowledge:K_STD,potion:P_STD,
+    computeFn:function(s,c){
+      var p=Math.max(s.acume,s.percezione), sp=floorDiv(Math.max(s.sapOff,s.sapDif),5);
+      return {value:p+sp+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[
+        {label:s.acume>=s.percezione?'Acume':'Percezione',val:p},
+        {label:(s.sapOff>=s.sapDif?'Sapienza Offensiva':'Sapienza Difensiva')+' /5',val:sp},
+        {label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}
+      ]};
+    }}));
+  var second1=el('div',{id:'m1-f1-second'}); second1.style.display='none';
+  second1.appendChild(el('div',{class:'formula'},[el('b',{},['Secondo tentativo'])]));
+  second1.appendChild(createRollFactory(mission,{key:'f1a2',order:1.1,diceFaces:40,diceLabel:'Intercettazione — secondo tentativo',knowledge:K_STD,potion:P_STD,
+    computeFn:function(s,c){
+      var p=Math.max(s.acume,s.percezione), sp=floorDiv(Math.max(s.sapOff,s.sapDif),5);
+      return {value:p+sp+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:s.acume>=s.percezione?'Acume':'Percezione',val:p},{label:(s.sapOff>=s.sapDif?'Sapienza Offensiva':'Sapienza Difensiva')+' /5',val:sp},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};
+    }}));
+  a.body.appendChild(second1);
+  a.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m1-f1'},['Inserisci gli esiti del primo tentativo.']));
+  steps.appendChild(a.step);
+
+  var b=makeStep('m1','f2','Inseguimento Attivo');
+  b.body.appendChild(el('div',{class:'step-desc'},['La Fase riesce se almeno un PG ha successo. In caso di fallimento totale si ripete con -3 possibilità per tutti.']));
+  b.body.appendChild(el('div',{class:'formula'},[el('b',{},['Primo tentativo'])]));
+  b.body.appendChild(createRollFactory(mission,{key:'f2a1',order:2,diceFaces:30,diceLabel:'Inseguimento Attivo — primo tentativo',knowledge:K_M1P2,potion:P_M1P2,
+    computeFn:function(s,c){return {value:s.destrezza+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Destrezza',val:s.destrezza},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}}));
+  var second2=el('div',{id:'m1-f2-second'}); second2.style.display='none';
+  second2.appendChild(el('div',{class:'formula'},[el('b',{},['Secondo tentativo — Malus -3 automatico'])]));
+  second2.appendChild(createRollFactory(mission,{key:'f2a2',order:2.1,diceFaces:30,diceLabel:'Inseguimento Attivo — secondo tentativo',knowledge:K_M1P2,potion:P_M1P2,carryFn:function(){return -3;},
+    computeFn:function(s,c){return {value:s.destrezza+c.carry+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Destrezza',val:s.destrezza},{label:'Malus secondo tentativo',val:c.carry},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}}));
+  b.body.appendChild(second2);
+  b.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m1-f2'},['La Fase II si sblocca dopo aver superato l’Intercettazione.']));
+  steps.appendChild(b.step);
+
+  var c=makeStep('m1','f3','Blocco o Cattura');
+  c.body.appendChild(el('div',{class:'step-desc'},['Ogni PG può intervenire su un bersaglio diverso. Inserisci per ciascuno la Destrezza del bersaglio scelto. Contro un bersaglio umano, indica anche quanta Fatica il PG ha già consumato prima di questo tiro: il sistema la sottrae dalla Fatica inserita nel pannello PG. Basta un successo per completare la Missione.']));
+  c.body.appendChild(createRollFactory(mission,{key:'f3',order:3,diceFaces:30,diceLabel:'Blocco o Cattura',knowledge:K_HI10,potion:P_HI10,
+    modes:[['Bersaglio Umano','umano'],['Bersaglio Creatura','creatura']],modeLabel:'Tipo Bersaglio',
+    fields:[{key:'targetDest',label:'Destrezza Bersaglio',type:'number',value:15,min:0},{key:'faticaSpesa',label:'Fatica consumata prima del tiro',type:'number',value:0,min:0}],
+    onModeChange:function(o){
+      var umano=o.modeSel && o.modeSel.value==='umano';
+      var fs=o.fields && o.fields.faticaSpesa;
+      if(fs && fs.parentNode) fs.parentNode.style.display=umano?'flex':'none';
+      if(fs && !umano) fs.value='0';
+    },
+    computeFn:function(s,x){
+      var d=Number(x.fields.targetDest);
+      if(!isFinite(d) || d<0) return {error:'Inserisci una Destrezza del Bersaglio valida.'};
+      if(x.mode==='creatura'){
+        var sm=floorDiv(s.sapMagiz,5);
+        return {value:s.empatia+sm+s.lvAmicoCreature-d+x.oggetti+x.knowledgeBonus+x.potionBonus,parts:[{label:'Empatia',val:s.empatia},{label:'Sapienza Magizoologica /5',val:sm},{label:'Lv Amico delle Creature',val:s.lvAmicoCreature},{label:'Destrezza Bersaglio',val:-d},{label:'Bonus Oggetti',val:x.oggetti},{label:'Conoscenza',val:x.knowledgeBonus},{label:'Pozione',val:x.potionBonus}]};
+      }
+      var faticaSpesa=Number(x.fields.faticaSpesa);
+      if(!isFinite(faticaSpesa) || faticaSpesa<0) return {error:'Inserisci una Fatica consumata valida.'};
+      if(faticaSpesa>s.fatica) return {error:'La Fatica consumata non può superare la Fatica indicata nel pannello PG.'};
+      var faticaAttuale=s.fatica-faticaSpesa;
+      return {value:s.destrezza+faticaAttuale-d+x.oggetti+x.knowledgeBonus+x.potionBonus,parts:[{label:'Destrezza',val:s.destrezza},{label:'Fatica attuale',val:faticaAttuale},{label:'Destrezza Bersaglio',val:-d},{label:'Bonus Oggetti',val:x.oggetti},{label:'Conoscenza',val:x.knowledgeBonus},{label:'Pozione',val:x.potionBonus}]};
+    }}));
+  c.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m1-f3'},['La Fase III si sblocca dopo aver superato l’Inseguimento Attivo.']));
+  steps.appendChild(c.step);
+  panel.appendChild(steps);
+}
+
+function evaluateM1(){
+  var f1pass=anySuccess('m1','f1a1')||anySuccess('m1','f1a2');
+  var f1fail=allFailed('m1','f1a2');
+  if(anySuccess('m1','f1a1')){
+    document.getElementById('m1-f1-second').style.display='none';
+    setOutcome('outcome-m1-f1','<b>Intercettazione riuscita.</b> Almeno un PG ha avuto successo: si passa alla Fase II.','success');
+  } else if(allFailed('m1','f1a1')){
+    document.getElementById('m1-f1-second').style.display='block';
+    if(f1fail) setOutcome('outcome-m1-f1','<b>Missione fallita.</b> Anche il secondo tentativo di Intercettazione è fallito per tutti.','failure');
+    else if(anySuccess('m1','f1a2')) setOutcome('outcome-m1-f1','<b>Intercettazione riuscita al secondo tentativo.</b> Si passa alla Fase II.','success');
+    else setOutcome('outcome-m1-f1','Primo tentativo fallito per tutti: effettua il <b>secondo tentativo</b>.','warning');
+  } else setOutcome('outcome-m1-f1','Inserisci gli esiti del primo tentativo.','');
+
+  setStepLocked('m1','f2',!f1pass,f1fail?'Missione conclusa: due fallimenti consecutivi in Fase I.':'Completa con successo la Fase I per proseguire.');
+  if(!f1pass){ setStepLocked('m1','f3',true,'Completa prima le Fasi I e II.'); return; }
+
+  var f2pass=anySuccess('m1','f2a1')||anySuccess('m1','f2a2');
+  var f2fail=allFailed('m1','f2a2');
+  if(anySuccess('m1','f2a1')){
+    document.getElementById('m1-f2-second').style.display='none';
+    setOutcome('outcome-m1-f2','<b>Inseguimento riuscito.</b> Si passa alla Fase III.','success');
+  } else if(allFailed('m1','f2a1')){
+    document.getElementById('m1-f2-second').style.display='block';
+    if(f2fail) setOutcome('outcome-m1-f2','<b>Missione fallita.</b> Anche il secondo tentativo, con -3, è fallito per tutti.','failure');
+    else if(anySuccess('m1','f2a2')) setOutcome('outcome-m1-f2','<b>Inseguimento riuscito al secondo tentativo.</b> Si passa alla Fase III.','success');
+    else setOutcome('outcome-m1-f2','Primo tentativo fallito per tutti: effettua il secondo tentativo con <b>-3 automatico</b>.','warning');
+  } else setOutcome('outcome-m1-f2','Inserisci gli esiti del primo tentativo.','');
+  setStepLocked('m1','f3',!f2pass,f2fail?'Missione conclusa: due fallimenti consecutivi in Fase II.':'Completa con successo la Fase II per proseguire.');
+  if(!f2pass) return;
+  if(anySuccess('m1','f3')) setOutcome('outcome-m1-f3','<b>MISSIONE COMPLETATA.</b> Almeno un PG ha bloccato o catturato i bersagli.','success');
+  else if(allFailed('m1','f3')) setOutcome('outcome-m1-f3','<b>MISSIONE FALLITA.</b> Tutti i tentativi di cattura sono falliti.','failure');
+  else setOutcome('outcome-m1-f3','Inserisci almeno un esito di successo, oppure completa tutti i tiri per determinare il fallimento.','');
+}
+
+/* ================================================================
+   MISSIONE 2 — IRRUZIONE E ARRESTO
+================================================================ */
+var m2TargetContainer=null;
+function targetLetter(i){ return String.fromCharCode(65+i); }
+function m2TargetsReady(){
+  if(!state.m2.targetCount || state.m2.targetDests.length!==state.m2.targetCount) return false;
+  for(var i=0;i<state.m2.targetCount;i++) if(!isFinite(state.m2.targetDests[i])) return false;
+  return true;
+}
+function resetM2TargetsForPGChange(){
+  state.m2.targetCount=null; state.m2.targetDests=[];
+  if(m2TargetContainer) renderM2TargetSetup();
+}
+function renderM2TargetSetup(){
+  if(!m2TargetContainer) return;
+  m2TargetContainer.innerHTML='';
+  var n=pgCount.m2||1;
+  var box=el('div',{class:'introcard'});
+  box.appendChild(el('h2',{},['Passo 1 — chi si trova sul posto?']));
+  box.appendChild(el('p',{},['Il tipo di attività criminale può essere scelto liberamente dai player. Il numero dei Criminali è determinato da 1d(numero di PG). La Destrezza di ogni Bersaglio è 10 + 1d8, con un lancio separato.']));
+  var countBox=el('div',{class:'subroll'});
+  var dl=el('div',{class:'diceline'}), code=document.createElement('input'); code.type='text'; code.readOnly=true; code.className='dicecode';
+  var cp=el('button',{class:'btn small',type:'button'},['Copia']);
+  var result=document.createElement('input'); result.type='number'; result.step='1'; result.min='1'; result.max=String(n); result.placeholder='Risultato';
+  var info=el('span',{class:'formula'});
+  if(n===1){
+    code.value='(1 PG: il numero di Bersagli è automaticamente 1)'; result.value='1'; result.disabled=true;
+    state.m2.targetCount=1; if(state.m2.targetDests.length!==1) state.m2.targetDests=[NaN];
+  } else {
+    code.value='[dice=1d'+n+']Numero Bersagli - Irruzione e Arresto[/dice]';
+    if(state.m2.targetCount && intInRange(state.m2.targetCount,1,n)) result.value=String(state.m2.targetCount);
+  }
+  cp.addEventListener(EVT,function(){copyText(code.value);}); dl.appendChild(code); dl.appendChild(cp); countBox.appendChild(dl);
+  var rl=el('div',{class:'resline'}); rl.appendChild(result); rl.appendChild(info); countBox.appendChild(rl); box.appendChild(countBox);
+  result.addEventListener('change',function(){
+    var v=Number(result.value);
+    if(!intInRange(v,1,n)){
+      state.m2.targetCount=null; state.m2.targetDests=[]; resetFrom('m2',3);
+      info.textContent='Risultato impossibile: inserisci un intero da 1 a '+n+'.';
+      if(typeof targets!=='undefined' && targets && targets.parentNode) targets.parentNode.removeChild(targets);
+      evaluateM2(); return;
+    }
+    state.m2.targetCount=v; state.m2.targetDests=[]; for(var q=0;q<v;q++) state.m2.targetDests.push(NaN);
+    resetFrom('m2',3); renderM2TargetSetup();
+  });
+  if(state.m2.targetCount){
+    info.innerHTML='Bersagli determinati: <b>'+state.m2.targetCount+'</b>';
+    var targets=el('div',{});
+    for(var i=0;i<state.m2.targetCount;i++){
+      (function(idx){
+        var t=el('div',{class:'subroll'}); t.appendChild(el('h4',{},['Bersaglio '+targetLetter(idx)]));
+        var d=el('div',{class:'diceline'}); var c=document.createElement('input'); c.type='text'; c.readOnly=true; c.className='dicecode'; c.value='[dice=1d8]Destrezza Bersaglio '+targetLetter(idx)+' (10+1d8) - Irruzione[/dice]';
+        var b=el('button',{class:'btn small',type:'button'},['Copia']); b.addEventListener(EVT,function(){copyText(c.value);}); d.appendChild(c); d.appendChild(b); t.appendChild(d);
+        var rr=el('div',{class:'resline'}); var ri=document.createElement('input'); ri.type='number'; ri.step='1'; ri.min='1'; ri.max='8'; ri.placeholder='1d8';
+        var oo=el('span',{class:'formula'}); if(isFinite(state.m2.targetDests[idx])){ri.value=String(state.m2.targetDests[idx]-10);oo.innerHTML='Destrezza totale: <b>'+state.m2.targetDests[idx]+'</b>';}
+        ri.addEventListener('change',function(){
+          var v=Number(ri.value); if(!intInRange(v,1,8)){
+            state.m2.targetDests[idx]=NaN; resetFrom('m2',3); oo.textContent='Risultato impossibile: 1-8.'; evaluateM2(); return;
+          }
+          state.m2.targetDests[idx]=10+v; oo.innerHTML='Destrezza totale: <b>'+(10+v)+'</b>'; resetFrom('m2',3); evaluateM2();
+        });
+        rr.appendChild(ri); rr.appendChild(oo); t.appendChild(rr); targets.appendChild(t);
+      })(i);
+    }
+    box.appendChild(targets);
+  }
+  m2TargetContainer.appendChild(box);
+  evaluateM2();
+}
+
+function buildM2(mission){
+  var panel=document.getElementById('panel-'+mission.id);
+  panel.appendChild(buildIntro(mission));
+  m2TargetContainer=el('div',{id:'m2-target-setup'}); panel.appendChild(m2TargetContainer);
+  panel.appendChild(buildPGPanel(mission));
+  renderM2TargetSetup();
+  var steps=el('div',{class:'stepwrap'});
+
+  var a=makeStep('m2','f1','Valutazione e Preparazione');
+  a.body.appendChild(el('div',{class:'step-desc'},['Tutti i PG effettuano la prova. Se anche uno fallisce, tutti ricevono -5 nella Fase II.']));
+  a.body.appendChild(createRollFactory(mission,{key:'f1',order:1,diceFaces:40,diceLabel:'Valutazione e Preparazione',knowledge:K_STD,potion:P_STD,
+    computeFn:function(s,c){var p=Math.max(s.acume,s.percezione),sp=floorDiv(Math.max(s.sapOff,s.sapDif),5);return {value:p+sp+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:s.acume>=s.percezione?'Acume':'Percezione',val:p},{label:(s.sapOff>=s.sapDif?'Sapienza Offensiva':'Sapienza Difensiva')+' /5',val:sp},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}}));
+  a.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m2-f1'},['Completa i tiri di tutti i PG.'])); steps.appendChild(a.step);
+
+  var b=makeStep('m2','f2','Irruzione');
+  b.body.appendChild(el('div',{class:'step-desc'},['Ogni PG sceglie se entrare Furtivamente o Sfrontatamente. Il -5 della Fase I, se dovuto, viene applicato automaticamente. Nell’approccio furtivo Conoscenze e Pozioni non forniscono bonus; se viene utilizzato anche un solo incantesimo o una Pozione, il tentativo fallisce automaticamente.']));
+  b.body.appendChild(createRollFactory(mission,{key:'f2',order:2,diceFaces:30,diceLabel:'Irruzione',knowledge:K_STD,potion:P_STD,
+    modes:[['Furtivamente','furtiva'],['Sfrontatamente','sfrontata']],modeLabel:'Metodo di ingresso',carryFn:function(){return allComplete('m2','f1')?(allSuccess('m2','f1')?0:-5):0;},
+    fields:[{key:'furtivaMagic',label:'Incantesimo o Pozione usati?',type:'select',options:[['No','no'],['Sì','si']]}],
+    onModeChange:function(o){
+      var furt=o.modeSel && o.modeSel.value==='furtiva';
+      if(o.kSel){o.kSel.disabled=furt;o.kSel.setAttribute('data-mode-disabled',furt?'1':'0');if(furt)o.kSel.value='0';}
+      if(o.pSel){o.pSel.disabled=furt;o.pSel.setAttribute('data-mode-disabled',furt?'1':'0');if(furt)o.pSel.value='0';}
+      if(o.fields && o.fields.furtivaMagic){
+        var fm=o.fields.furtivaMagic;
+        if(fm.parentNode) fm.parentNode.style.display=furt?'flex':'none';
+        fm.disabled=!furt;
+        fm.setAttribute('data-mode-disabled',furt?'0':'1');
+        if(!furt) fm.value='no';
+      }
+    },
+    preCompute:function(s,c){
+      if(c.mode==='furtiva' && c.fields.furtivaMagic==='si') return {forceFail:'Irruzione furtiva: l’uso di un incantesimo o di una Pozione provoca fallimento automatico.'};
+      return null;
+    },
+    computeFn:function(s,c){
+      if(c.mode==='furtiva') return {value:s.destrezza+c.carry+c.oggetti,parts:[{label:'Destrezza',val:s.destrezza},{label:'Malus Fase I',val:c.carry},{label:'Bonus Oggetti',val:c.oggetti}]};
+      return {value:s.resistenza+c.carry+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Resistenza',val:s.resistenza},{label:'Malus Fase I',val:c.carry},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};
+    }}));
+  b.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m2-f2'},['La Fase II si sblocca dopo la Valutazione.'])); steps.appendChild(b.step);
+
+  var c=makeStep('m2','f3','Confronto e Arresto');
+  c.body.appendChild(el('div',{class:'step-desc'},['Ogni PG indica il numero del Bersaglio che affronta. Più PG possono affrontare lo stesso Bersaglio; ogni Bersaglio è catturato se almeno uno dei PG assegnati riesce. Tutti i Bersagli devono essere catturati.']));
+  c.body.appendChild(createRollFactory(mission,{key:'f3',order:3,diceFaces:40,diceLabel:'Confronto e Arresto',knowledge:K_HI10,potion:P_HI10,
+    fields:[{key:'target',label:'Bersaglio n°',type:'number',value:1,min:1}],
+    carryFn:function(){
+      if(!allComplete('m2','f2')) return 0;
+      if(!allSuccess('m2','f2')) return -5;
+      return allSuccess('m2','f1')?5:0;
+    },
+    computeFn:function(s,x){
+      var target=Math.floor(Number(x.fields.target));
+      if(!state.m2.targetCount || !intInRange(target,1,state.m2.targetCount)) return {error:'Indica un Bersaglio valido da 1 a '+(state.m2.targetCount||'?')+'.'};
+      var d=state.m2.targetDests[target-1]; if(!isFinite(d)) return {error:'Determina prima la Destrezza del Bersaglio '+target+'.'};
+      var sp=Math.max(s.sapOff,s.sapDif);
+      return {value:sp+s.potenza-d+x.oggetti+x.knowledgeBonus+x.potionBonus+x.carry,parts:[{label:s.sapOff>=s.sapDif?'Sapienza Offensiva':'Sapienza Difensiva',val:sp},{label:'Potenza',val:s.potenza},{label:'Destrezza Bersaglio '+target,val:-d},{label:'Bonus/Malus Fase II',val:x.carry},{label:'Bonus Oggetti',val:x.oggetti},{label:'Conoscenza',val:x.knowledgeBonus},{label:'Pozione',val:x.potionBonus}]};
+    }}));
+  c.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m2-f3'},['La Fase III si sblocca dopo l’Irruzione e dopo aver determinato tutti i Bersagli.'])); steps.appendChild(c.step);
+  panel.appendChild(steps);
+}
+
+function evaluateM2(){
+  var f1done=allComplete('m2','f1');
+  if(f1done){
+    if(allSuccess('m2','f1')) setOutcome('outcome-m2-f1','<b>Valutazione riuscita da tutti.</b> La Fase II non riceve penalità.','success');
+    else setOutcome('outcome-m2-f1','<b>Almeno un PG ha fallito.</b> Tutti ricevono <b>-5 automatico</b> nella Fase II.','warning');
+  } else setOutcome('outcome-m2-f1','Completa i tiri di tutti i PG.','');
+  setStepLocked('m2','f2',!f1done,'Completa i tiri di tutti i PG nella Fase I.');
+  if(!f1done){setStepLocked('m2','f3',true,'Completa prima le Fasi I e II.');return;}
+  var f2done=allComplete('m2','f2');
+  if(f2done){
+    if(allSuccess('m2','f2')){
+      if(allSuccess('m2','f1')) setOutcome('outcome-m2-f2','<b>Irruzione riuscita da tutti.</b> Sorpresa totale: <b>+5 automatico</b> nella Fase III.','success');
+      else setOutcome('outcome-m2-f2','<b>Irruzione riuscita da tutti.</b> La Fase I era fallita: nessun bonus o malus nella Fase III.','success');
+    } else setOutcome('outcome-m2-f2','<b>Almeno un PG ha fallito l’Irruzione.</b> Tutti ricevono <b>-5 automatico</b> nella Fase III.','warning');
+  } else setOutcome('outcome-m2-f2','Completa i tiri di tutti i PG.','');
+  var ready=f2done && m2TargetsReady();
+  setStepLocked('m2','f3',!ready,!f2done?'Completa i tiri di tutti i PG nella Fase II.':'Determina numero e Destrezza di tutti i Bersagli al Passo 1.');
+  if(!ready) return;
+  if(!allComplete('m2','f3')){setOutcome('outcome-m2-f3','Assegna ogni PG a un Bersaglio e completa tutti i tiri.','');return;}
+  var captured=[],assigned=[]; for(var t=0;t<state.m2.targetCount;t++){captured[t]=false;assigned[t]=false;}
+  for(var i=0;i<pgCount.m2;i++){
+    var r=getResult('m2','f3',i); if(!r) continue;
+    var trg=Math.floor(Number(r.meta.ctx.fields.target));
+    if(trg>=1 && trg<=state.m2.targetCount){ assigned[trg-1]=true; if(r.status==='ok'||r.status==='auto-ok') captured[trg-1]=true; }
+  }
+  var missing=[]; for(var j=0;j<assigned.length;j++) if(!assigned[j]) missing.push(targetLetter(j));
+  if(missing.length){setOutcome('outcome-m2-f3','<b>Configurazione incompleta:</b> nessun PG è stato assegnato ai Bersagli '+missing.join(', ')+'. Correggi l’assegnazione e ripeti i tiri della Fase III.','warning');return;}
+  var allCap=true; for(var k=0;k<captured.length;k++) if(!captured[k]) allCap=false;
+  if(allCap) setOutcome('outcome-m2-f3','<b>MISSIONE COMPLETATA.</b> Tutti i Bersagli sono stati catturati da almeno un PG.','success');
+  else setOutcome('outcome-m2-f3','<b>MISSIONE FALLITA.</b> Almeno un Bersaglio è riuscito a fuggire.','failure');
+}
+
+/* ================================================================
+   MISSIONE 3 — SCORTA E PROTEZIONE
+================================================================ */
+var m3ScortatoSummary=null, m3TransportChecks=null, m3TransportOutcome=null, m3ImprevistoWrap=null, m3ImprevistoInput=null, m3ImprevistoText=null;
+
+function m3CurrentScortato(){
+  if(!Number.isFinite(state.m3.initial)) return null;
+  return Math.max(0,state.m3.initial-state.m3.damage);
+}
+function updateM3ScortatoSummary(){
+  if(!m3ScortatoSummary) return;
+  if(!Number.isFinite(state.m3.initial)){
+    m3ScortatoSummary.innerHTML='Determina prima il valore iniziale dello Scortato.'; return;
+  }
+  var label=state.m3.scType==='persona'?'Salute':'Resistenza';
+  var soglia=Math.floor(state.m3.initial/2)+1;
+  m3ScortatoSummary.innerHTML='<b>'+label+' iniziale:</b> '+state.m3.initial+' · <b>Danni accumulati:</b> '+state.m3.damage+' · <b>'+label+' attuale:</b> '+m3CurrentScortato()+' · <b>Soglia Missione compromessa:</b> '+soglia+' danni.';
+}
+function resetM3TransportState(){
+  var mezzoEl=document.getElementById('m3-mezzo');
+  var selected=mezzoEl?mezzoEl.value:state.m3.transport;
+  state.m3.transport=selected||null; state.m3.mainOutcome=null; state.m3.events=[]; state.m3.destPenalty=0; state.m3.healthPenalty=0; state.m3.damage=0;
+  state.m3.imprevisto=null; state.m3.imprevistoDestPenalty=0; state.m3.phase3Penalty=0; state.m3.faticaPenalty=0;
+  resetFrom('m3',2); updateM3ScortatoSummary();
+  if(m3TransportChecks) m3TransportChecks.innerHTML='';
+  if(state.m3.transport==='scopa'){
+    state.m3.mainOutcome='success'; initM3Events(); renderM3TransportChecks();
+  }
+  if(m3TransportOutcome && state.m3.transport!=='scopa') m3TransportOutcome.innerHTML='Completa il tiro principale e i controlli del mezzo.';
+  clearM3ImprevistoView();
+}
+function resetM3TransportForPGChange(){
+  if(state.m3.transport){
+    state.m3.mainOutcome=null; state.m3.events=[]; state.m3.destPenalty=0; state.m3.healthPenalty=0; state.m3.damage=0;
+    state.m3.imprevisto=null; state.m3.imprevistoDestPenalty=0; state.m3.phase3Penalty=0; state.m3.faticaPenalty=0;
+    updateM3ScortatoSummary();
+    if(m3TransportChecks) m3TransportChecks.innerHTML='';
+    if(state.m3.transport==='scopa'){
+      state.m3.mainOutcome='success'; initM3Events(); renderM3TransportChecks();
+      if(m3TransportOutcome) m3TransportOutcome.innerHTML='Il numero di PG è cambiato: ripeti i controlli 1d5 della Scopa per tutti i partecipanti.';
+    } else if(m3TransportOutcome) m3TransportOutcome.innerHTML='Il numero di PG è cambiato: ripeti il tiro principale e i controlli del mezzo.';
+  }
+}
+function m3EventConfig(){
+  var count=0, posts=1;
+  if(state.m3.transport==='carrozza') posts=2;
+  else if(state.m3.transport==='scopa') posts=3;
+  count=pgCount.m3*posts;
+  return {count:count,posts:posts};
+}
+function initM3Events(){
+  var cfg=m3EventConfig(); state.m3.events=[];
+  for(var p=0;p<pgCount.m3;p++) for(var post=1;post<=cfg.posts;post++) state.m3.events.push({pg:p,post:post,d5:null,secondary:null,secondary2:null});
+}
+function m3EventEffect(ev){
+  if(!intInRange(ev.d5,1,5)) return {complete:false,trigger:false,dest:0,health:0,damage:0,secondaryFaces:0,secondary2Faces:0,text:'Inserisci il risultato del 1d5.'};
+  var tr=state.m3.transport, outcome=state.m3.mainOutcome, trigger=false, secondaryFaces=0, secondary2Faces=0, dest=0, health=0, damage=0, text='Nessun effetto.';
+  if(tr==='scopa') trigger=ev.d5===1;
+  else if(outcome==='success') trigger=ev.d5===1;
+  else if(outcome==='fail') trigger=ev.d5<=3;
+  if(!trigger) return {complete:true,trigger:false,dest:0,health:0,damage:0,secondaryFaces:0,secondary2Faces:0,text:'Nessun malus attivato.'};
+
+  if(tr==='carrozza'){
+    if(outcome==='success'){
+      dest=3;
+      text='Turbolenza: -3 Destrezza cumulativo a tutti i PG.';
+    } else {
+      secondaryFaces=4;
+      secondary2Faces=4;
+      text='Turbolenza forte: tira due 1d4 separati, uno per la perdita di Salute e uno per la perdita di Destrezza di tutti i PG.';
+    }
+  } else if(tr==='passaporta'){
+    if(outcome==='success'){
+      damage=5;
+      text='Lo Scortato atterra male: -5 '+(state.m3.scType==='persona'?'Salute':'Resistenza')+'. È necessario 1 post a testa per ritrovarlo.';
+    } else {
+      secondaryFaces=5;
+      text='Lo Scortato viene proiettato lontano: tira 1d5 per il danno allo Scortato. È necessario 1 post a testa per il recupero.';
+    }
+  } else if(tr==='smaterializzazione'){
+    if(outcome==='success'){
+      damage=5;
+      text='Effetti negativi della Smaterializzazione: -5 '+(state.m3.scType==='persona'?'Salute':'Resistenza')+'.';
+    } else if(state.m3.scType==='persona'){
+      secondaryFaces=4;
+      text='Smaterializzazione violenta: tira 1d4 per la perdita di Salute dello Scortato. È necessario 1 post per ogni PG per ritrovarlo e sistemarlo con Ferula, pagando la Fatica necessaria.';
+    } else {
+      damage=2;
+      text='Smaterializzazione violenta: -2 Resistenza allo Scortato. È necessario 1 post per ogni PG per ritrovarlo e sistemarlo con Reparo, pagando la Fatica necessaria.';
+    }
+  } else if(tr==='scopa'){
+    dest=3;
+    text='Folata/animale volante: -3 Destrezza cumulativo a tutti i PG.';
+  }
+
+  if(secondaryFaces){
+    if(!intInRange(ev.secondary,1,secondaryFaces)) return {complete:false,trigger:true,dest:0,health:0,damage:0,secondaryFaces:secondaryFaces,secondary2Faces:secondary2Faces,text:text};
+    if(tr==='carrozza') health=ev.secondary;
+    else damage=ev.secondary;
+  }
+  if(secondary2Faces){
+    if(!intInRange(ev.secondary2,1,secondary2Faces)) return {complete:false,trigger:true,dest:0,health:0,damage:0,secondaryFaces:secondaryFaces,secondary2Faces:secondary2Faces,text:text};
+    dest=ev.secondary2;
+  }
+
+  if(tr==='carrozza' && secondaryFaces){
+    text += ' Esiti: -'+health+' Salute e -'+dest+' Destrezza a tutti i PG.';
+  } else if(secondaryFaces){
+    text += ' Esito secondario: '+ev.secondary+'.';
+  }
+  return {complete:true,trigger:true,dest:dest,health:health,damage:damage,secondaryFaces:secondaryFaces,secondary2Faces:secondary2Faces,text:text};
+}
+function recomputeM3TransportEffects(){
+  var dp=0, hp=0, dmg=0;
+  for(var i=0;i<state.m3.events.length;i++){
+    var ef=m3EventEffect(state.m3.events[i]);
+    if(ef.complete){dp+=ef.dest;hp+=ef.health;dmg+=ef.damage;}
+  }
+  state.m3.destPenalty=dp;
+  state.m3.healthPenalty=hp;
+  state.m3.damage=dmg;
+  updateM3ScortatoSummary();
+}
+function m3TransportComplete(){
+  if(!state.m3.transport || !Number.isFinite(state.m3.initial)) return false;
+  if(state.m3.transport!=='scopa' && !state.m3.mainOutcome) return false;
+  if(!state.m3.events.length) return false;
+  for(var i=0;i<state.m3.events.length;i++) if(!m3EventEffect(state.m3.events[i]).complete) return false;
+  return true;
+}
+function renderM3TransportChecks(){
+  if(!m3TransportChecks) return;
+  m3TransportChecks.innerHTML='';
+  if(!state.m3.transport) return;
+  if(state.m3.transport!=='scopa' && !state.m3.mainOutcome){
+    m3TransportChecks.appendChild(el('div',{class:'notebox'},['Inserisci prima l’esito del tiro principale di viaggio.'])); return;
+  }
+  if(!state.m3.events.length) initM3Events();
+  var intro='';
+  if(state.m3.transport==='carrozza') intro='Ogni PG effettua un 1d5 per ciascuno dei 2 post di viaggio.';
+  else if(state.m3.transport==='scopa') intro='Ogni PG effettua un 1d5 per ciascuno dei 3 post di viaggio.';
+  else intro='Ogni PG effettua un solo 1d5.';
+  m3TransportChecks.appendChild(el('div',{class:'notebox'},[intro+' I malus reiterati sono cumulativi.']));
+  for(var i=0;i<state.m3.events.length;i++){
+    (function(idx){
+      var ev=state.m3.events[idx], pg=getPGStats('m3',ev.pg), box=el('div',{class:'subroll'});
+      box.appendChild(el('h4',{},[pg.name+(state.m3.transport==='carrozza'||state.m3.transport==='scopa'?' — post '+ev.post:'')]));
+      var d=el('div',{class:'diceline'}), code=document.createElement('input'); code.type='text';code.readOnly=true;code.className='dicecode';code.value='[dice=1d5]Controllo mezzo - '+pg.name+((state.m3.transport==='carrozza'||state.m3.transport==='scopa')?' - post '+ev.post:'')+'[/dice]';
+      var cp=el('button',{class:'btn small',type:'button'},['Copia']);cp.addEventListener(EVT,function(){copyText(code.value);});d.appendChild(code);d.appendChild(cp);box.appendChild(d);
+      var rl=el('div',{class:'resline'}), inp=document.createElement('input');inp.type='number';inp.step='1';inp.min='1';inp.max='5';inp.placeholder='1d5';if(intInRange(ev.d5,1,5))inp.value=String(ev.d5);
+      var msg=el('span',{class:'formula'});rl.appendChild(inp);rl.appendChild(msg);box.appendChild(rl);
+      inp.addEventListener('change',function(){var v=Number(inp.value);if(!intInRange(v,1,5)){
+        ev.d5=null; ev.secondary=null; ev.secondary2=null; resetFrom('m3',2); recomputeM3TransportEffects();
+        setOutcome('m3-transport-outcome','Completa tutti i controlli del mezzo e gli eventuali dadi secondari.','');
+        msg.textContent='Risultato impossibile: 1-5.'; evaluateM3(); return;
+      }ev.d5=v;ev.secondary=null;ev.secondary2=null;resetFrom('m3',2);renderM3TransportChecks();recomputeM3TransportEffects();evaluateM3();});
+      var effect=m3EventEffect(ev); msg.textContent=effect.text;
+      if(effect.trigger && effect.secondaryFaces){
+        var firstLabel=(state.m3.transport==='carrozza' && state.m3.mainOutcome==='fail')?'Perdita Salute':'Entità del malus';
+        var sdl=el('div',{class:'diceline'}), sc=document.createElement('input');sc.type='text';sc.readOnly=true;sc.className='dicecode';sc.value='[dice=1d'+effect.secondaryFaces+']'+firstLabel+' - '+pg.name+'[/dice]';
+        var scp=el('button',{class:'btn small',type:'button'},['Copia']);scp.addEventListener(EVT,function(){copyText(sc.value);});sdl.appendChild(sc);sdl.appendChild(scp);box.appendChild(sdl);
+        var srl=el('div',{class:'resline'}), sinp=document.createElement('input');sinp.type='number';sinp.step='1';sinp.min='1';sinp.max=String(effect.secondaryFaces);sinp.placeholder='1d'+effect.secondaryFaces;if(intInRange(ev.secondary,1,effect.secondaryFaces))sinp.value=String(ev.secondary);
+        var sm=el('span',{class:'formula'});srl.appendChild(sinp);srl.appendChild(sm);box.appendChild(srl);
+        sinp.addEventListener('change',function(){var v=Number(sinp.value);if(!intInRange(v,1,effect.secondaryFaces)){
+          ev.secondary=null; resetFrom('m3',2); recomputeM3TransportEffects();
+          setOutcome('m3-transport-outcome','Completa tutti i controlli del mezzo e gli eventuali dadi secondari.','');
+          sm.textContent='Risultato impossibile: 1-'+effect.secondaryFaces+'.'; evaluateM3(); return;
+        }ev.secondary=v;resetFrom('m3',2);recomputeM3TransportEffects();renderM3TransportChecks();evaluateM3();});
+        if(intInRange(ev.secondary,1,effect.secondaryFaces)) sm.textContent=firstLabel+': '+ev.secondary+'.';
+      }
+      if(effect.trigger && effect.secondary2Faces){
+        var s2dl=el('div',{class:'diceline'}), s2c=document.createElement('input');s2c.type='text';s2c.readOnly=true;s2c.className='dicecode';s2c.value='[dice=1d'+effect.secondary2Faces+']Perdita Destrezza - '+pg.name+'[/dice]';
+        var s2cp=el('button',{class:'btn small',type:'button'},['Copia']);s2cp.addEventListener(EVT,function(){copyText(s2c.value);});s2dl.appendChild(s2c);s2dl.appendChild(s2cp);box.appendChild(s2dl);
+        var s2rl=el('div',{class:'resline'}), s2inp=document.createElement('input');s2inp.type='number';s2inp.step='1';s2inp.min='1';s2inp.max=String(effect.secondary2Faces);s2inp.placeholder='1d'+effect.secondary2Faces;if(intInRange(ev.secondary2,1,effect.secondary2Faces))s2inp.value=String(ev.secondary2);
+        var s2m=el('span',{class:'formula'});s2rl.appendChild(s2inp);s2rl.appendChild(s2m);box.appendChild(s2rl);
+        s2inp.addEventListener('change',function(){var v=Number(s2inp.value);if(!intInRange(v,1,effect.secondary2Faces)){
+          ev.secondary2=null; resetFrom('m3',2); recomputeM3TransportEffects();
+          setOutcome('m3-transport-outcome','Completa tutti i controlli del mezzo e gli eventuali dadi secondari.','');
+          s2m.textContent='Risultato impossibile: 1-'+effect.secondary2Faces+'.'; evaluateM3(); return;
+        }ev.secondary2=v;resetFrom('m3',2);recomputeM3TransportEffects();renderM3TransportChecks();evaluateM3();});
+        if(intInRange(ev.secondary2,1,effect.secondary2Faces)) s2m.textContent='Perdita Destrezza: '+ev.secondary2+'.';
+      }
+      m3TransportChecks.appendChild(box);
+    })(i);
+  }
+  recomputeM3TransportEffects();
+  if(m3TransportComplete()) setOutcome('m3-transport-outcome','<b>Fase I risolta.</b> Malus Destrezza cumulativo ai PG: <b>-'+state.m3.destPenalty+'</b>. Perdita Salute cumulativa ai PG: <b>-'+state.m3.healthPenalty+'</b>. Danni cumulativi allo Scortato: <b>'+state.m3.damage+'</b>.','success');
+  else setOutcome('m3-transport-outcome','Completa tutti i controlli del mezzo e gli eventuali dadi secondari.','');
+}
+function clearM3ImprevistoView(){
+  if(m3ImprevistoWrap) m3ImprevistoWrap.style.display='none';
+  if(m3ImprevistoInput) m3ImprevistoInput.value='';
+  if(m3ImprevistoText) m3ImprevistoText.innerHTML='';
+}
+function applyM3Imprevisto(v){
+  state.m3.imprevisto=v; state.m3.imprevistoDestPenalty=0; state.m3.phase3Penalty=0; state.m3.faticaPenalty=0;
+  var text='';
+  if(v===1){state.m3.imprevistoDestPenalty=3;text='Distrazione/inciampo: <b>-3 Destrezza</b> a tutti i PG fino a fine role. Lo Scortato non subisce danni.';}
+  if(v===2) text='Lo Scortato viene separato: servono <b>almeno due post di viaggio aggiuntivi</b>.';
+  if(v===3){state.m3.phase3Penalty=-5;text='Osservatore ostile: <b>-5 automatico nella Fase III</b>.';}
+  if(v===4) text='Ostacolo imprevisto: servono <b>almeno due post di viaggio aggiuntivi</b>.';
+  if(v===5){state.m3.faticaPenalty=2;text='Lo Scortato si agita: <b>-2 Fatica</b> a tutti i PG fino a fine role (non entra direttamente nella formula della Fase III).';}
+  if(m3ImprevistoText) m3ImprevistoText.innerHTML=text;
+}
+
+function buildM3(mission){
+  var panel=document.getElementById('panel-'+mission.id); panel.appendChild(buildIntro(mission));
+  var sc=el('div',{class:'introcard'}); sc.appendChild(el('h2',{},['Passo 1 — chi o cosa scortiamo?']));
+  var type=makeSelect('m3-sc-type',[['Persona / Gruppo','persona'],['Oggetto','oggetto']]); type.value='oggetto';
+  sc.appendChild(el('div',{class:'ctrls'},[makeField('Tipo Scortato',type)]));
+  sc.appendChild(el('div',{class:'notebox'},['Persona / Gruppo utilizza la Salute come Parametro di riferimento; Oggetto utilizza la Resistenza.']));
+  type.addEventListener('change',function(){state.m3.scType=type.value;resetM3TransportState();updateM3ScortatoSummary();});
+  var die=el('div',{class:'subroll'}), dl=el('div',{class:'diceline'}), code=document.createElement('input'); code.type='text';code.readOnly=true;code.className='dicecode';code.value='[dice=1d8]Valore iniziale Scortato (10+1d8) - Scorta[/dice]';
+  var cp=el('button',{class:'btn small',type:'button'},['Copia']);cp.addEventListener(EVT,function(){copyText(code.value);});dl.appendChild(code);dl.appendChild(cp);die.appendChild(dl);
+  var rl=el('div',{class:'resline'}), inp=document.createElement('input');inp.type='number';inp.step='1';inp.min='1';inp.max='8';inp.placeholder='1d8';var msg=el('span',{class:'formula'});rl.appendChild(inp);rl.appendChild(msg);die.appendChild(rl);sc.appendChild(die);
+  m3ScortatoSummary=el('div',{class:'notebox'});sc.appendChild(m3ScortatoSummary);panel.appendChild(sc);
+  inp.addEventListener('change',function(){var v=Number(inp.value);if(!intInRange(v,1,8)){
+    state.m3.initial=null; resetM3TransportState(); msg.textContent='Risultato impossibile: 1-8.'; updateM3ScortatoSummary(); evaluateM3(); return;
+  }state.m3.initial=10+v;msg.innerHTML='Valore iniziale: <b>'+state.m3.initial+'</b>';resetM3TransportState();updateM3ScortatoSummary();evaluateM3();});
+  updateM3ScortatoSummary();
+  panel.appendChild(buildPGPanel(mission));
+  var steps=el('div',{class:'stepwrap'});
+
+  var a=makeStep('m3','f1','Inizio del viaggio — scelta del mezzo');
+  a.body.appendChild(el('div',{class:'step-desc'},['Tutti i PG usano lo stesso mezzo. Carrozza, Passaporta e Smaterializzazione richiedono un unico 1d30 per il gruppo; la Scopa non richiede il tiro principale e prevede 3 post per ogni PG. I controlli 1d5 vengono generati in base al mezzo e al numero dei PG. In questa Missione non si applicano i bonus, i malus e i parametri ordinari dei Mezzi di Trasporto: i mezzi sono concessi di base dal Ministero e si applica soltanto quanto indicato in questa guida.']));
+  var mezzo=makeSelect('m3-mezzo',[['Carrozza Volante — 1-25 su 1d30, 2 post/PG','carrozza'],['Passaporta — 1-20 su 1d30','passaporta'],['Smaterializzazione — 1-20 su 1d30','smaterializzazione'],['Scopa Volante — nessun 1d30, 3 post/PG','scopa']]);
+  a.body.appendChild(el('div',{class:'ctrls'},[makeField('Mezzo scelto',mezzo)]));
+  var main=el('div',{class:'subroll',id:'m3-main-roll'}), mdl=el('div',{class:'diceline'}), mcode=document.createElement('input');mcode.type='text';mcode.readOnly=true;mcode.className='dicecode';
+  var mcp=el('button',{class:'btn small',type:'button'},['Copia']);mcp.addEventListener(EVT,function(){copyText(mcode.value);});mdl.appendChild(mcode);mdl.appendChild(mcp);main.appendChild(mdl);
+  var mrl=el('div',{class:'resline'}), minp=document.createElement('input');minp.type='number';minp.step='1';minp.min='1';minp.max='30';minp.placeholder='1d30';var mb=el('span',{class:'badge'});mrl.appendChild(minp);mrl.appendChild(mb);main.appendChild(mrl);a.body.appendChild(main);
+  m3TransportOutcome=el('div',{class:'notebox statusbox',id:'m3-transport-outcome'},['Scegli il mezzo e completa i controlli di viaggio.']);a.body.appendChild(m3TransportOutcome);
+  m3TransportChecks=el('div',{id:'m3-transport-checks'});a.body.appendChild(m3TransportChecks);
+
+  function configureMezzo(){
+    state.m3.transport=mezzo.value; state.m3.events=[]; state.m3.destPenalty=0; state.m3.healthPenalty=0; state.m3.damage=0; state.m3.mainOutcome=null; minp.value=''; mb.className='badge';mb.textContent='';resetFrom('m3',2);clearM3ImprevistoView();
+    if(mezzo.value==='scopa'){
+      main.style.display='none';state.m3.mainOutcome='success';mcode.value='(Scopa Volante: nessun tiro principale)';initM3Events();renderM3TransportChecks();
+    } else {
+      main.style.display='block'; var nome=mezzo.options[mezzo.selectedIndex].text.split(' — ')[0];mcode.value='[dice=1d30]Viaggio con '+nome+' - Scorta[/dice]';m3TransportChecks.innerHTML='';setOutcome('m3-transport-outcome','Inserisci l’esito del tiro principale di viaggio.','');
+    }
+    updateM3ScortatoSummary();evaluateM3();
+  }
+  mezzo.addEventListener('change',configureMezzo);
+  minp.addEventListener('change',function(){
+    state.m3.transport=mezzo.value;var v=Number(minp.value);if(!intInRange(v,1,30)){
+      state.m3.mainOutcome=null; state.m3.events=[]; state.m3.destPenalty=0; state.m3.healthPenalty=0; state.m3.damage=0; resetFrom('m3',2);
+      if(m3TransportChecks) m3TransportChecks.innerHTML=''; updateM3ScortatoSummary();
+      mb.className='badge invalid';mb.textContent='RISULTATO IMPOSSIBILE: 1-30';
+      setOutcome('m3-transport-outcome','Inserisci un risultato valido del tiro principale di viaggio.',''); evaluateM3(); return;
+    }
+    var th=mezzo.value==='carrozza'?25:20;state.m3.mainOutcome=v<=th?'success':'fail';mb.className=v<=th?'badge ok':'badge bad';mb.textContent=v<=th?('SUCCESSO ('+v+' ≤ '+th+')'):('FALLIMENTO ('+v+' > '+th+') — il viaggio riesce comunque');
+    state.m3.events=[];state.m3.destPenalty=0;state.m3.healthPenalty=0;state.m3.damage=0;resetFrom('m3',2);initM3Events();renderM3TransportChecks();evaluateM3();
+  });
+  configureMezzo(); steps.appendChild(a.step);
+
+  var b=makeStep('m3','f2','Tratto intermedio e coordinamento');
+  b.body.appendChild(el('div',{class:'step-desc'},['Il tratto intermedio richiede almeno 1 post a testa. Ogni PG lancia 1d40 su Destrezza attuale + Acume. I malus Destrezza del mezzo sono applicati automaticamente. Se anche un PG fallisce, si determina un unico Imprevisto 1d5.']));
+  b.body.appendChild(createRollFactory(mission,{key:'f2',order:2,diceFaces:40,diceLabel:'Tratto intermedio',needsOggetti:false,
+    computeFn:function(s){var d=s.destrezza-state.m3.destPenalty;return {value:d+s.acume,parts:[{label:'Destrezza attuale',val:d},{label:'Acume',val:s.acume}]};}}));
+  b.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m3-f2'},['La Fase II si sblocca dopo aver risolto il viaggio e tutti i controlli del mezzo.']));
+  m3ImprevistoWrap=el('div',{class:'subroll',id:'m3-imprevisto'});m3ImprevistoWrap.style.display='none';m3ImprevistoWrap.appendChild(el('h4',{},['Imprevisto lungo il percorso']));
+  var idl=el('div',{class:'diceline'}), icode=document.createElement('input');icode.type='text';icode.readOnly=true;icode.className='dicecode';icode.value='[dice=1d5]Imprevisto lungo il percorso - Scorta[/dice]';var icp=el('button',{class:'btn small',type:'button'},['Copia']);icp.addEventListener(EVT,function(){copyText(icode.value);});idl.appendChild(icode);idl.appendChild(icp);m3ImprevistoWrap.appendChild(idl);
+  var irl=el('div',{class:'resline'});m3ImprevistoInput=document.createElement('input');m3ImprevistoInput.type='number';m3ImprevistoInput.step='1';m3ImprevistoInput.min='1';m3ImprevistoInput.max='5';m3ImprevistoInput.placeholder='1d5';m3ImprevistoText=el('span',{class:'formula'});irl.appendChild(m3ImprevistoInput);irl.appendChild(m3ImprevistoText);m3ImprevistoWrap.appendChild(irl);b.body.appendChild(m3ImprevistoWrap);
+  m3ImprevistoInput.addEventListener('change',function(){var v=Number(m3ImprevistoInput.value);if(!intInRange(v,1,5)){
+    state.m3.imprevisto=null; state.m3.imprevistoDestPenalty=0; state.m3.phase3Penalty=0; state.m3.faticaPenalty=0;
+    resetFrom('m3',3); m3ImprevistoText.textContent='Risultato impossibile: 1-5.'; evaluateM3(); return;
+  }applyM3Imprevisto(v);resetFrom('m3',3);evaluateM3();});
+  steps.appendChild(b.step);
+
+  var c=makeStep('m3','f3','Consegna e Conclusione');
+  c.body.appendChild(el('div',{class:'step-desc'},['Ogni PG lancia 1d50 su Destrezza attuale + Acume. Il sistema applica una sola volta i malus ai Parametri e l’eventuale -5 dell’Imprevisto 3. Tutti i PG devono avere successo.']));
+  c.body.appendChild(createRollFactory(mission,{key:'f3',order:3,diceFaces:50,diceLabel:'Consegna e Conclusione',needsOggetti:false,
+    computeFn:function(s){var d=s.destrezza-state.m3.destPenalty-state.m3.imprevistoDestPenalty;return {value:d+s.acume+state.m3.phase3Penalty,parts:[{label:'Destrezza attuale',val:d},{label:'Acume',val:s.acume},{label:'Modificatore diretto Fase III',val:state.m3.phase3Penalty}]};}}));
+  c.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m3-f3'},['La Fase III si sblocca dopo aver completato la Fase II e, se necessario, l’Imprevisto.']));
+  steps.appendChild(c.step); panel.appendChild(steps); evaluateM3();
+}
+
+function evaluateM3(){
+  updateM3ScortatoSummary();
+  var ready=m3TransportComplete();
+  setStepLocked('m3','f2',!ready,'Completa il valore dello Scortato, il viaggio e tutti i controlli del mezzo.');
+  if(!ready){setStepLocked('m3','f3',true,'Completa prima le Fasi I e II.');return;}
+  if(!allComplete('m3','f2')){
+    setOutcome('outcome-m3-f2','Completa i tiri di tutti i PG.','');setStepLocked('m3','f3',true,'Completa la Fase II.');return;
+  }
+  if(allSuccess('m3','f2')){
+    state.m3.imprevisto=null;state.m3.imprevistoDestPenalty=0;state.m3.phase3Penalty=0;state.m3.faticaPenalty=0;clearM3ImprevistoView();
+    setOutcome('outcome-m3-f2','<b>Tratto intermedio riuscito da tutti.</b> Nessun Imprevisto: si passa alla Fase III.','success');
+    setStepLocked('m3','f3',false,'');
+  } else {
+    setOutcome('outcome-m3-f2','<b>Almeno un PG ha fallito.</b> Determina l’Imprevisto 1d5 prima di proseguire.','warning');
+    if(m3ImprevistoWrap) m3ImprevistoWrap.style.display='block';
+    if(!state.m3.imprevisto){setStepLocked('m3','f3',true,'Determina prima l’Imprevisto della Fase II.');return;}
+    setStepLocked('m3','f3',false,'');
+  }
+  if(!allComplete('m3','f3')){setOutcome('outcome-m3-f3','Completa i tiri di tutti i PG.','');return;}
+  if(!allSuccess('m3','f3')){setOutcome('outcome-m3-f3','<b>MISSIONE FALLITA.</b> Almeno un PG ha fallito: lo Scortato viene rapito o rubato.','failure');return;}
+  var soglia=Math.floor(state.m3.initial/2)+1;
+  if(state.m3.damage>=soglia) setOutcome('outcome-m3-f3','<b>MISSIONE COMPLETATA MA COMPROMESSA.</b> Tutti i PG hanno avuto successo, ma lo Scortato ha subito '+state.m3.damage+' danni (soglia: '+soglia+'). Ricompensa: 1 Prestigio FantaWiz “L’Auror” — Livello Difficile.','warning');
+  else setOutcome('outcome-m3-f3','<b>MISSIONE COMPLETATA.</b> Tutti i PG hanno avuto successo e lo Scortato non ha superato la soglia di compromissione.','success');
+}
+
+/* ================================================================
+   MISSIONE 4 — SOTTO COPERTURA
+================================================================ */
+function buildM4(mission){
+  var panel=document.getElementById('panel-'+mission.id);panel.appendChild(buildIntro(mission));panel.appendChild(buildPGPanel(mission));
+  var steps=el('div',{class:'stepwrap'});
+
+  var a=makeStep('m4','f1','Ingresso e Creazione della Copertura');
+  a.body.appendChild(el('div',{class:'step-desc'},['Ogni PG costruisce la propria copertura. Transmuto e Polisucco sono selezionati separatamente e, se entrambi appropriati, i bonus si sommano. ONGame il loro uso avviene continuativamente nel tempo, anche se ai fini di questa prova se ne valuta un solo utilizzo.']));
+  a.body.appendChild(createRollFactory(mission,{key:'f1',order:1,diceFaces:50,diceLabel:'Creazione della Copertura',knowledge:K_TRANSMUTO,potion:P_POLISUCCO,knowledgeLabel:'Transmuto',potionLabel:'Polisucco',
+    computeFn:function(s,c){var sp=floorDiv(Math.max(s.sapMen,s.sapTras),5);return {value:s.volonta+s.dialettica+sp+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Volontà',val:s.volonta},{label:'Dialettica',val:s.dialettica},{label:(s.sapMen>=s.sapTras?'Sapienza Mentale':'Sapienza Trasfigurativa')+' /5',val:sp},{label:'Bonus Oggetti',val:c.oggetti},{label:'Transmuto',val:c.knowledgeBonus},{label:'Polisucco',val:c.potionBonus}]};}}));
+  a.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m4-f1'},['Completa la Fase I per ogni PG. Gli esiti individuali determinano automaticamente +5 o -5 nella Fase II.']));steps.appendChild(a.step);
+
+  var b=makeStep('m4','f2','Permanenza e Integrazione');
+  b.body.appendChild(el('div',{class:'step-desc'},['Ogni PG riceve automaticamente +5 o -5 in base al proprio esito della Fase I.']));
+  b.body.appendChild(createRollFactory(mission,{key:'f2',order:2,diceFaces:40,diceLabel:'Permanenza e Integrazione',knowledge:K_STD,potion:P_STD,carryFn:function(pg){var r=getResult('m4','f1',pg);return r&&(r.status==='ok'||r.status==='auto-ok')?5:-5;},
+    computeFn:function(s,c){var sm=floorDiv(s.sapMen,2);return {value:s.volonta+s.puntiSinistri+sm+s.dialettica+c.carry+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Volontà',val:s.volonta},{label:'Punti Sinistri',val:s.puntiSinistri},{label:'Sapienza Mentale /2',val:sm},{label:'Dialettica',val:s.dialettica},{label:'Bonus/Malus Fase I',val:c.carry},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}}));
+  b.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m4-f2'},['La Fase II si sblocca quando tutti i PG hanno concluso la Fase I.']));steps.appendChild(b.step);
+
+  var c=makeStep('m4','f3','Raccolta e Uscita');
+  c.body.appendChild(el('div',{class:'step-desc'},['Per ogni PG, prima scegli se tentare facoltativamente di rubare le prove. Chi fallisce il furto viene scoperto e non può effettuare la successiva Raccolta di Informazioni.']));
+  c.body.appendChild(el('div',{class:'formula'},[el('b',{},['3a. Rubare le Prove — facoltativo'])]));
+  c.body.appendChild(createRollFactory(mission,{key:'f3a',order:3,diceFaces:30,diceLabel:'Rubare le Prove',knowledge:K_STD,potion:P_STD,modes:[['Non tenta','skip'],['Tenta di rubare','try']],modeLabel:'Scelta',skipMode:'skip',
+    onModeChange:function(o){var skip=o.modeSel&&o.modeSel.value==='skip';if(o.kSel){o.kSel.disabled=skip;o.kSel.setAttribute('data-mode-disabled',skip?'1':'0');if(skip)o.kSel.value='0';}if(o.pSel){o.pSel.disabled=skip;o.pSel.setAttribute('data-mode-disabled',skip?'1':'0');if(skip)o.pSel.value='0';}},
+    computeFn:function(s,c){return {value:s.destrezza+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Destrezza',val:s.destrezza},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}}));
+  c.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m4-f3a'},['Conferma per ogni PG se tenta o meno il furto delle prove.']));
+  c.body.appendChild(el('div',{class:'formula'},[el('b',{},['3b. Raccolta di Informazioni'])]));
+  c.body.appendChild(createRollFactory(mission,{key:'f3b',order:3.2,diceFaces:40,diceLabel:'Raccolta di Informazioni',knowledge:K_STD,potion:P_STD,
+    carryFn:function(pg){var f2=getResult('m4','f2',pg),f3a=getResult('m4','f3a',pg),v=0;if(f2)v+=(f2.status==='ok'||f2.status==='auto-ok')?3:-3;if(f3a&&(f3a.status==='ok'||f3a.status==='auto-ok'))v+=10;return v;},
+    preCompute:function(s,c,pg){var r=getResult('m4','f3a',pg);if(r&&r.status==='bad')return {error:'Questo PG è stato scoperto mentre rubava le prove e non può effettuare la Raccolta di Informazioni.'};if(r&&r.status==='auto-bad')return {error:'Questo PG è stato scoperto mentre rubava le prove e non può effettuare la Raccolta di Informazioni.'};return null;},
+    computeFn:function(s,c){var sm=floorDiv(s.sapMen,5);return {value:s.puntiSinistri+s.volonta+sm+c.carry+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Punti Sinistri',val:s.puntiSinistri},{label:'Volontà',val:s.volonta},{label:'Sapienza Mentale /5',val:sm},{label:'Bonus/Malus Fase II + Prove',val:c.carry},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}}));
+  c.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m4-f3b'},['Basta il successo di un solo PG nella Raccolta di Informazioni per completare la Missione.']));steps.appendChild(c.step);
+  panel.appendChild(steps);
+}
+
+function evaluateM4(){
+  var f1done=allComplete('m4','f1');
+  if(f1done)setOutcome('outcome-m4-f1','<b>Fase I completata.</b> Ogni PG ha ricevuto automaticamente +5 o -5 per la propria Fase II.','success');
+  else setOutcome('outcome-m4-f1','Completa la Fase I per ogni PG. Gli esiti individuali determinano automaticamente +5 o -5 nella Fase II.','');
+  setStepLocked('m4','f2',!f1done,'Completa la Fase I per tutti i PG.');
+  if(!f1done){setStepLocked('m4','f3',true,'Completa prima le Fasi I e II.');return;}
+  var f2done=allComplete('m4','f2');
+  if(f2done)setOutcome('outcome-m4-f2','<b>Fase II completata.</b> Ogni PG ha ricevuto automaticamente +3 o -3 per la Fase III.','success');
+  else setOutcome('outcome-m4-f2','Completa la Fase II per tutti i PG.','');
+  setStepLocked('m4','f3',!f2done,'Completa la Fase II per tutti i PG.');
+  if(!f2done)return;
+  var f3aDone=allComplete('m4','f3a');
+  if(f3aDone)setOutcome('outcome-m4-f3a','Scelte facoltative concluse. I PG che hanno rubato le prove con successo ricevono <b>+10 automatico</b>; chi ha fallito non può raccogliere informazioni.','success');
+  else setOutcome('outcome-m4-f3a','Conferma per ogni PG se tenta o meno il furto delle prove.','');
+  var reg=rollRegistry.m4||[];
+  for(var i=0;i<reg.length;i++){
+    if(reg[i].key==='f3b'){
+      for(var p=0;p<reg[i].builders.length;p++){
+        var rr=getResult('m4','f3a',p), blocked=rr&&(rr.status==='bad'||rr.status==='auto-bad');
+        var row=reg[i].builders[p].row,controls=row.querySelectorAll('button,input,select');
+        for(var z=0;z<controls.length;z++)controls[z].disabled=!f3aDone||blocked;
+        row.className=blocked?'pgrow locked':'pgrow';
+      }
+    }
+  }
+  if(!f3aDone){setOutcome('outcome-m4-f3b','Completa prima le scelte/tentativi facoltativi di tutti i PG.','');return;}
+  if(anySuccess('m4','f3b')){setOutcome('outcome-m4-f3b','<b>MISSIONE COMPLETATA.</b> Almeno un PG ha ottenuto informazioni o prove decisive. I premi OFFGame spettano a tutti i PG coinvolti.','success');return;}
+  var eligible=0,completeEligible=0;
+  for(var j=0;j<pgCount.m4;j++){
+    var fa=getResult('m4','f3a',j), blocked2=fa&&(fa.status==='bad'||fa.status==='auto-bad');
+    if(!blocked2){eligible++;if(getResult('m4','f3b',j))completeEligible++;}
+  }
+  if(eligible===0)setOutcome('outcome-m4-f3b','<b>MISSIONE FALLITA.</b> Tutti i PG sono stati scoperti durante il tentativo di rubare le prove.','failure');
+  else if(completeEligible===eligible)setOutcome('outcome-m4-f3b','<b>MISSIONE FALLITA.</b> Nessun PG ha ottenuto informazioni decisive.','failure');
+  else setOutcome('outcome-m4-f3b','Completa la Raccolta di Informazioni per tutti i PG che possono ancora effettuarla.','');
+}
+
+/* ================================================================
+   MISSIONE 5 — SVENTARE UNO SCONTRO
+================================================================ */
+function m5F1Success(){return anySuccess('m5','f1');}
+function m5F1AllFail(){return allFailed('m5','f1');}
+function m5Adjusted(s,key){
+  if(m5F1AllFail() && (key==='destrezza'||key==='resistenza')) return s[key]-3;
+  return s[key];
+}
+function buildM5(mission){
+  var panel=document.getElementById('panel-'+mission.id);panel.appendChild(buildIntro(mission));panel.appendChild(buildPGPanel(mission));var steps=el('div',{class:'stepwrap'});
+  var a=makeStep('m5','f1','Valutazione Rapida');
+  a.body.appendChild(el('div',{class:'step-desc'},['Basta un successo per ottenere +5 nella Fase II. Solo se tutti falliscono, tutti ricevono -3 Destrezza e -3 Resistenza fino alla fine della Missione.']));
+  a.body.appendChild(createRollFactory(mission,{key:'f1',order:1,diceFaces:40,diceLabel:'Valutazione Rapida',knowledge:K_STD,potion:P_STD,
+    computeFn:function(s,c){var p=Math.max(s.percezione,s.acume),sa=floorDiv(Math.max(s.sapArc,s.sapDiv),5),d=floorDiv(s.destrezza,2);return {value:p+sa+d+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:s.percezione>=s.acume?'Percezione':'Acume',val:p},{label:(s.sapArc>=s.sapDiv?'Sapienza Arcaica':'Sapienza Divinatoria')+' /5',val:sa},{label:'Destrezza /2',val:d},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}}));
+  a.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m5-f1'},['Inserisci gli esiti della Fase I.']));steps.appendChild(a.step);
+
+  var b=makeStep('m5','f2','Contenimento');
+  b.body.appendChild(el('div',{class:'step-desc'},['Ogni PG sceglie il proprio approccio. L’eventuale +5 della Fase I e gli eventuali -3 ai Parametri vengono applicati automaticamente. Tutti devono avere successo per evitare che la Missione risulti compromessa.']));
+  b.body.appendChild(createRollFactory(mission,{key:'f2',order:2,diceFaces:40,diceLabel:'Contenimento',knowledge:K_STD,potion:P_STD,modes:[['Barriere / Difese','difese'],['Approccio Diplomatico','diplomazia'],['Intervento con la Forza','forza']],modeLabel:'Approccio',carryFn:function(){return m5F1Success()?5:0;},
+    computeFn:function(s,c){
+      if(c.mode==='difese'){var sd=floorDiv(s.sapDif,2),r=m5Adjusted(s,'resistenza');return {value:sd+r+c.carry+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Sapienza Difensiva /2',val:sd},{label:'Resistenza attuale',val:r},{label:'Bonus Fase I',val:c.carry},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}
+      if(c.mode==='diplomazia'){var sm=floorDiv(s.sapMen,5);return {value:s.volonta+s.lvPersuasore+s.dialettica+sm+c.carry+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Volontà',val:s.volonta},{label:'Lv Persuasore',val:s.lvPersuasore},{label:'Dialettica',val:s.dialettica},{label:'Sapienza Mentale /5',val:sm},{label:'Bonus Fase I',val:c.carry},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}
+      var so=floorDiv(s.sapOff,2),d=m5Adjusted(s,'destrezza');return {value:so+d+c.carry+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Sapienza Offensiva /2',val:so},{label:'Destrezza attuale',val:d},{label:'Bonus Fase I',val:c.carry},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};
+    }}));
+  b.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m5-f2'},['La Fase II si sblocca dopo aver determinato l’esito collettivo della Fase I.']));steps.appendChild(b.step);
+
+  var c=makeStep('m5','f3','Risoluzione e Arresti');
+  c.body.appendChild(el('div',{class:'step-desc'},['Basta un successo per completare la Missione. Se la Fase II è fallita, il successo finale resta compromesso e assegna soltanto 1 Prestigio.']));
+  c.body.appendChild(createRollFactory(mission,{key:'f3',order:3,diceFaces:50,diceLabel:'Risoluzione e Arresti',knowledge:K_STD,potion:P_STD,
+    computeFn:function(s,x){var sp=floorDiv(Math.max(s.sapOff,s.sapDif),5),d=m5Adjusted(s,'destrezza');return {value:sp+d+s.acume+x.oggetti+x.knowledgeBonus+x.potionBonus,parts:[{label:(s.sapOff>=s.sapDif?'Sapienza Offensiva':'Sapienza Difensiva')+' /5',val:sp},{label:'Destrezza attuale',val:d},{label:'Acume',val:s.acume},{label:'Bonus Oggetti',val:x.oggetti},{label:'Conoscenza',val:x.knowledgeBonus},{label:'Pozione',val:x.potionBonus}]};}}));
+  c.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m5-f3'},['La Fase III si sblocca dopo aver completato il Contenimento.']));steps.appendChild(c.step);panel.appendChild(steps);
+}
+
+function evaluateM5(){
+  var f1known=anySuccess('m5','f1')||allFailed('m5','f1');
+  if(anySuccess('m5','f1'))setOutcome('outcome-m5-f1','<b>Valutazione riuscita.</b> Almeno un PG ha avuto successo: tutti ricevono <b>+5 automatico</b> nella Fase II. Nessuno subisce -3 ai Parametri.','success');
+  else if(allFailed('m5','f1'))setOutcome('outcome-m5-f1','<b>Fallimento totale.</b> Tutti ricevono <b>-3 Destrezza e -3 Resistenza</b> fino alla fine della Missione. Si passa comunque alla Fase II.','warning');
+  else setOutcome('outcome-m5-f1','Inserisci gli esiti: basta un successo per chiudere positivamente la Fase I.','');
+  setStepLocked('m5','f2',!f1known,'Serve almeno un successo oppure il completamento di tutti i tiri con fallimento totale.');
+  if(!f1known){setStepLocked('m5','f3',true,'Completa prima le Fasi I e II.');return;}
+  if(!allComplete('m5','f2')){setOutcome('outcome-m5-f2','Completa i tiri di tutti i PG.','');setStepLocked('m5','f3',true,'Completa la Fase II per tutti i PG.');return;}
+  state.m5.compromised=!allSuccess('m5','f2');
+  if(state.m5.compromised)setOutcome('outcome-m5-f2','<b>Contenimento non pienamente riuscito.</b> Si passa alla Fase III, ma la Missione è compromessa: un eventuale successo finale vale 1 Prestigio.','warning');
+  else setOutcome('outcome-m5-f2','<b>Contenimento riuscito da tutti.</b> Si passa alla Fase III senza compromissioni.','success');
+  setStepLocked('m5','f3',false,'');
+  if(anySuccess('m5','f3')){
+    if(state.m5.compromised)setOutcome('outcome-m5-f3','<b>MISSIONE COMPLETATA MA COMPROMESSA.</b> Almeno un PG ha avuto successo, ma la Fase II era fallita: 1 Prestigio FantaWiz “L’Auror” — Livello Difficile.','warning');
+    else setOutcome('outcome-m5-f3','<b>MISSIONE COMPLETATA.</b> Almeno un PG ha fermato i principali responsabili e raccolto le prove.','success');
+  } else if(allFailed('m5','f3')) setOutcome('outcome-m5-f3','<b>MISSIONE FALLITA.</b> Tutti i PG hanno fallito la Risoluzione: i colpevoli riescono a dileguarsi.','failure');
+  else setOutcome('outcome-m5-f3','Inserisci almeno un successo, oppure completa tutti i tiri per determinare il fallimento.','');
+}
+
+/* ================================================================
+   ROUTING E AVVIO
+================================================================ */
+function evaluateMission(mid){
+  if(mid==='m1')evaluateM1();
+  else if(mid==='m2')evaluateM2();
+  else if(mid==='m3')evaluateM3();
+  else if(mid==='m4')evaluateM4();
+  else if(mid==='m5')evaluateM5();
+}
+
+buildM1(MISSIONS[0]);
+buildM2(MISSIONS[1]);
+buildM3(MISSIONS[2]);
+buildM4(MISSIONS[3]);
+buildM5(MISSIONS[4]);
+
+evaluateM1();evaluateM2();evaluateM3();evaluateM4();evaluateM5();
+
 })();
-</script></div>
+
+</script>
+
+<script type="text/javascript">
+(function () {
+  var ultimoInvio = 0;
+  var timer = null;
+
+  function misuraEInvia() {
+    if (timer) window.clearTimeout(timer);
+    timer = window.setTimeout(function () {
+      var doc = document.documentElement;
+      var body = document.body;
+      var root = document.getElementById('rm-missioni');
+
+      var h = Math.max(
+        root ? root.scrollHeight : 0,
+        root ? root.offsetHeight : 0,
+        body ? body.scrollHeight : 0,
+        body ? body.offsetHeight : 0,
+        doc ? doc.scrollHeight : 0,
+        doc ? doc.offsetHeight : 0
+      );
+
+      h = Math.ceil(h);
+      if (h > 0 && h !== ultimoInvio) {
+        ultimoInvio = h;
+        window.parent.postMessage({
+          tipo: 'altezzaRicercaMissioni',
+          altezza: h
+        }, '*');
+      }
+    }, 30);
+  }
+
+  window.addEventListener('load', misuraEInvia);
+  window.addEventListener('resize', misuraEInvia);
+
+  if (window.ResizeObserver) {
+    var ro = new ResizeObserver(misuraEInvia);
+    if (document.documentElement) ro.observe(document.documentElement);
+    if (document.body) ro.observe(document.body);
+    var root = document.getElementById('rm-missioni');
+    if (root) ro.observe(root);
+  }
+
+  if (window.MutationObserver) {
+    var mo = new MutationObserver(misuraEInvia);
+    var target = document.getElementById('rm-missioni') || document.body;
+    if (target) {
+      mo.observe(target, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        characterData: true
+      });
+    }
+  }
+
+  document.addEventListener('click', misuraEInvia, true);
+  document.addEventListener('change', misuraEInvia, true);
+  document.addEventListener('input', misuraEInvia, true);
+
+  misuraEInvia();
+  window.setTimeout(misuraEInvia, 250);
+  window.setTimeout(misuraEInvia, 1000);
+})();
+</script>
+</div>
