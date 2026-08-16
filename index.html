@@ -937,6 +937,70 @@ margin:12px 0;}
   #rm-missioni .resline input[type=number]{width:88px !important;flex-basis:88px !important;}
 }
 
+/* Tendina iniziale — Ricorda */
+#rm-missioni details.remember-box{
+  margin:24px 0 18px !important;
+  background:var(--panel) !important;
+  border:1px solid var(--line) !important;
+  border-radius:10px !important;
+  overflow:hidden !important;
+  box-shadow:0 1px 0 rgba(199,154,37,.06) !important;
+}
+#rm-missioni details.remember-box summary{
+  cursor:pointer !important;
+  list-style:none !important;
+  padding:16px 20px !important;
+  font-family:var(--serif) !important;
+  font-size:1.08em !important;
+  font-weight:600 !important;
+  color:var(--gold) !important;
+  background:var(--panel2) !important;
+  user-select:none !important;
+  position:relative !important;
+  padding-right:52px !important;
+}
+#rm-missioni details.remember-box summary::-webkit-details-marker{display:none !important;}
+#rm-missioni details.remember-box summary::after{
+  content:'+' !important;
+  position:absolute !important;
+  right:20px !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  width:28px !important;
+  height:28px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border:1px solid var(--gold-soft) !important;
+  border-radius:999px !important;
+  color:var(--gold) !important;
+  background:var(--bg0) !important;
+  font-family:var(--sans) !important;
+  font-size:18px !important;
+  line-height:1 !important;
+}
+#rm-missioni details.remember-box[open] summary{
+  border-bottom:1px solid var(--line) !important;
+}
+#rm-missioni details.remember-box[open] summary::after{content:'−' !important;}
+#rm-missioni .remember-content{
+  padding:18px 22px 20px !important;
+  color:var(--ink-dim) !important;
+  font-size:15px !important;
+  line-height:1.7 !important;
+}
+#rm-missioni .remember-content p{margin:.55em 0 !important;}
+#rm-missioni .remember-content p:first-child{margin-top:0 !important;}
+#rm-missioni .remember-content p:last-child{margin-bottom:0 !important;}
+#rm-missioni .remember-content b{
+  color:var(--gold) !important;
+  font-family:var(--serif) !important;
+}
+@media(max-width:760px){
+  #rm-missioni details.remember-box summary{padding:15px 50px 15px 16px !important;}
+  #rm-missioni .remember-content{padding:16px !important;}
+}
+
 </style>
 <div class="masthead">
 <svg class="sigil" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -950,12 +1014,15 @@ margin:12px 0;}
 
 <div class="wrap" style="width:100% !important;max-width:1120px !important;margin:0 auto !important;padding:0 24px !important;box-sizing:border-box !important;">
 
-<div class="legend">
+<details class="remember-box">
+<summary>Ricorda:</summary>
+<div class="remember-content">
 <p><b>Come funziona questa pagina.</b> Ogni missione è divisa in fasi. Per ogni fase trovi le formule dei tiri richiesti: seleziona separatamente i bonus di Conoscenza e Pozione (cumulabili quando entrambi appropriati) e gli eventuali Bonus Oggetti, genera il codice del tiro (già pronto per essere incollato nel forum), copialo, tiralo nella tua giocata e infine inserisci qui il risultato ottenuto per vedere subito se hai avuto successo.</p>
 <p><b>Prima di iniziare:</b> determina innanzitutto quale Missione viene assegnata lanciando 1d5, salvo che si tratti di una Missione collegata a una precedente completata con successo. Solo dopo aver individuato la Missione, apri la relativa scheda e compila il pannello dei Personaggi Giocanti (PG) con i parametri richiesti. Puoi aggiungere più PG con l'apposito tasto, poiché la Ricerca Missioni può essere svolta in gruppo.</p>
 <p><b>Regole generali:</b> i PG vengono sempre coinvolti in una Missione. Il tipo si determina con 1d5; è possibile rinunciare e tentare una nuova Missione fino a 3 volte per role, ruolando ogni rinuncia ONGame. Si può svolgere una sola Missione per role e non esiste un limite generale di post, salvo specifiche. Una Missione può essere collegata direttamente a una precedente, senza nuovo 1d5, solo se la precedente è stata completata con successo.</p>
 <p><b>Ambito e partecipanti:</b> le Role di Ricerca Missioni sono free-role e possono essere svolte da PG Auror o PG Numen, anche non Auror. La Ricerca si svolge sempre in Gran Bretagna, magica o non magica. La parte narrativa è autogestita dai player, ma ciò che i PG comprendono, individuano o ottengono deve rispettare gli esiti dei tiri previsti dalla Missione.</p>
 </div>
+</details>
 
 <div class="introcard" id="rm-mission-picker">
 <h2>Passo 1 — determina la Missione assegnata</h2>
