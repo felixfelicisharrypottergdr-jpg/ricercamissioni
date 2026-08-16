@@ -1701,4 +1701,70 @@ evaluateM1();evaluateM2();evaluateM3();evaluateM4();evaluateM5();
 })();
 
 </script>
+
+<script type="text/javascript">
+(function () {
+  var ultimoInvio = 0;
+  var timer = null;
+
+  function misuraEInvia() {
+    if (timer) window.clearTimeout(timer);
+    timer = window.setTimeout(function () {
+      var doc = document.documentElement;
+      var body = document.body;
+      var root = document.getElementById('rm-missioni');
+
+      var h = Math.max(
+        root ? root.scrollHeight : 0,
+        root ? root.offsetHeight : 0,
+        body ? body.scrollHeight : 0,
+        body ? body.offsetHeight : 0,
+        doc ? doc.scrollHeight : 0,
+        doc ? doc.offsetHeight : 0
+      );
+
+      h = Math.ceil(h);
+      if (h > 0 && h !== ultimoInvio) {
+        ultimoInvio = h;
+        window.parent.postMessage({
+          tipo: 'altezzaRicercaMissioni',
+          altezza: h
+        }, '*');
+      }
+    }, 30);
+  }
+
+  window.addEventListener('load', misuraEInvia);
+  window.addEventListener('resize', misuraEInvia);
+
+  if (window.ResizeObserver) {
+    var ro = new ResizeObserver(misuraEInvia);
+    if (document.documentElement) ro.observe(document.documentElement);
+    if (document.body) ro.observe(document.body);
+    var root = document.getElementById('rm-missioni');
+    if (root) ro.observe(root);
+  }
+
+  if (window.MutationObserver) {
+    var mo = new MutationObserver(misuraEInvia);
+    var target = document.getElementById('rm-missioni') || document.body;
+    if (target) {
+      mo.observe(target, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        characterData: true
+      });
+    }
+  }
+
+  document.addEventListener('click', misuraEInvia, true);
+  document.addEventListener('change', misuraEInvia, true);
+  document.addEventListener('input', misuraEInvia, true);
+
+  misuraEInvia();
+  window.setTimeout(misuraEInvia, 250);
+  window.setTimeout(misuraEInvia, 1000);
+})();
+</script>
 </div>
