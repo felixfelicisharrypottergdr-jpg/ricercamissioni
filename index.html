@@ -349,6 +349,594 @@ margin:12px 0;}
 #rm-missioni .statusbox.failure{border-left:4px solid var(--bad);background:var(--bad-bg)}
 #rm-missioni .statusbox.warning{border-left:4px solid var(--gold);background:#FFF6D8}
 #rm-missioni .field select:disabled, #rm-missioni .field input:disabled, #rm-missioni .btn:disabled, #rm-missioni .resline input:disabled{opacity:.58;cursor:not-allowed}
+
+/* ================================================================
+   RESTYLING GRAFICO — coerente con "Ricerca Maledizioni"
+   Solo presentazione: nessuna regola, formula o logica viene alterata.
+================================================================ */
+#rm-missioni{
+  --bg:#fffdf7;
+  --bg2:#fff0bd;
+  --panel:#fff8df;
+  --panel2:#fff0bd;
+  --line:#d9bd67;
+  --ink:#4a3a16;
+  --ink-dim:#78663a;
+  --gold:#c79a25;
+  --gold-soft:#e0c56d;
+  --ok:#66834f;
+  --ok-bg:#f1f6e9;
+  --bad:#a45d49;
+  --bad-bg:#fbefea;
+  --accent:#a97d19;
+  --serif:"Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:"Avenir Next",Segoe UI,Helvetica,Arial,sans-serif;
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+  padding:0 0 80px 0 !important;
+  background:
+    radial-gradient(1200px 700px at 15% -10%,#fff0b8 0%,transparent 60%),
+    radial-gradient(1000px 600px at 110% 10%,#fff8dc 0%,transparent 55%),
+    var(--bg) !important;
+  color:var(--ink) !important;
+  font-family:var(--sans) !important;
+  font-size:16px !important;
+  line-height:1.5 !important;
+  overflow:visible !important;
+}
+#rm-missioni, #rm-missioni *{box-sizing:border-box !important;}
+#rm-missioni .wrap{
+  width:100% !important;
+  max-width:1120px !important;
+  margin:0 auto !important;
+  padding:0 24px !important;
+}
+
+/* Testata */
+#rm-missioni .masthead{
+  padding:48px 20px 32px !important;
+  text-align:center !important;
+  border-bottom:1px solid var(--line) !important;
+  background:linear-gradient(180deg,rgba(199,154,37,.16),rgba(255,248,223,.55) 72%,transparent) !important;
+}
+#rm-missioni .sigil{
+  width:46px !important;
+  height:46px !important;
+  margin:0 auto 14px !important;
+  opacity:.78 !important;
+  filter:none !important;
+}
+#rm-missioni .eyebrow{
+  color:var(--gold) !important;
+  font-family:var(--sans) !important;
+  font-size:.72em !important;
+  letter-spacing:.14em !important;
+  text-transform:uppercase !important;
+}
+#rm-missioni .masthead h1{
+  margin:6px 0 8px !important;
+  color:var(--ink) !important;
+  font-family:var(--serif) !important;
+  font-size:2.6em !important;
+  font-weight:600 !important;
+  letter-spacing:.03em !important;
+  text-shadow:0 0 24px rgba(199,154,37,.18) !important;
+}
+#rm-missioni .masthead .sub{
+  max-width:640px !important;
+  margin:0 auto !important;
+  color:var(--ink-dim) !important;
+  font-family:var(--sans) !important;
+  font-size:.98em !important;
+  font-style:normal !important;
+}
+
+/* Colori tipografici */
+#rm-missioni p,
+#rm-missioni li,
+#rm-missioni div,
+#rm-missioni span,
+#rm-missioni label{color:var(--ink);}
+#rm-missioni h1,
+#rm-missioni h2,
+#rm-missioni h3,
+#rm-missioni h4{
+  font-family:var(--serif) !important;
+}
+#rm-missioni .introcard p,
+#rm-missioni .step-desc,
+#rm-missioni .formula,
+#rm-missioni .hint,
+#rm-missioni .legend,
+#rm-missioni .notebox,
+#rm-missioni .field label,
+#rm-missioni .locgrid,
+#rm-missioni .oc-box,
+#rm-missioni details.rules summary{
+  color:var(--ink-dim) !important;
+}
+
+/* Schede introduttive / pannelli */
+#rm-missioni .legend,
+#rm-missioni .introcard,
+#rm-missioni .pgpanel{
+  background:var(--panel) !important;
+  border:1px solid var(--line) !important;
+  border-radius:10px !important;
+  box-shadow:0 1px 0 rgba(199,154,37,.08) !important;
+}
+#rm-missioni .legend{
+  padding:22px 24px !important;
+  margin:32px 0 24px !important;
+  font-size:16px !important;
+  line-height:1.7 !important;
+}
+#rm-missioni .legend p{color:var(--ink-dim) !important;}
+#rm-missioni .legend b{color:var(--gold) !important;}
+#rm-missioni .introcard{
+  padding:24px 26px !important;
+  margin:24px 0 !important;
+  border-left:1px solid var(--line) !important;
+}
+#rm-missioni .introcard h2{
+  margin:0 0 10px !important;
+  color:var(--ink) !important;
+  font-size:1.5em !important;
+  font-weight:600 !important;
+}
+#rm-missioni .introcard p{
+  margin:.5em 0 !important;
+  line-height:1.7 !important;
+}
+#rm-missioni .pgpanel{
+  padding:22px 24px !important;
+  margin:24px 0 30px !important;
+}
+#rm-missioni .pgpanel h3{
+  margin:0 0 16px !important;
+  color:var(--gold) !important;
+  font-size:1.35em !important;
+}
+
+/* Scheda elenco 1d5 */
+#rm-missioni .locgrid{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr)) !important;
+  gap:10px !important;
+  margin:14px 0 18px !important;
+  font-size:.9em !important;
+}
+#rm-missioni .locgrid div{
+  min-width:0 !important;
+  padding:12px 14px !important;
+  background:var(--bg2) !important;
+  border:1px solid var(--line) !important;
+  border-radius:8px !important;
+  color:var(--ink) !important;
+}
+#rm-missioni .locgrid div b{
+  color:var(--gold-soft) !important;
+  font-family:var(--serif) !important;
+  font-size:1.15em !important;
+}
+
+/* Tabs */
+#rm-missioni .tabbar{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:8px !important;
+  margin:28px 0 18px !important;
+  padding:12px 0 !important;
+  position:sticky !important;
+  top:0 !important;
+  z-index:5 !important;
+  background:var(--bg) !important;
+  border-bottom:1px solid var(--line) !important;
+}
+#rm-missioni .tabbtn{
+  flex:1 1 150px !important;
+  min-height:44px !important;
+  padding:10px 12px !important;
+  background:var(--panel) !important;
+  border:1px solid var(--line) !important;
+  border-radius:8px !important;
+  color:var(--ink-dim) !important;
+  font-family:var(--sans) !important;
+  font-size:.86em !important;
+  cursor:pointer !important;
+  transition:all .15s ease !important;
+}
+#rm-missioni .tabbtn:hover{
+  background:var(--panel2) !important;
+  border-color:var(--gold) !important;
+  color:var(--ink) !important;
+}
+#rm-missioni .tabbtn.active{
+  background:#ffe79a !important;
+  border-color:var(--accent) !important;
+  color:#543d0c !important;
+}
+#rm-missioni .panel{padding-top:8px !important;}
+
+/* Regole richiudibili */
+#rm-missioni details.rules{
+  margin:12px 0 !important;
+  padding:2px 16px !important;
+  background:var(--bg2) !important;
+  border:1px solid var(--line) !important;
+  border-radius:8px !important;
+}
+#rm-missioni details.rules summary{
+  padding:12px 0 !important;
+  color:var(--accent) !important;
+  font-family:var(--serif) !important;
+  font-size:.98em !important;
+}
+#rm-missioni details.rules[open] summary{
+  margin-bottom:10px !important;
+  border-bottom:1px solid rgba(199,154,37,.22) !important;
+}
+
+/* Fasi */
+#rm-missioni .step{
+  margin:0 0 26px !important;
+  overflow:hidden !important;
+  background:var(--panel) !important;
+  border:1px solid var(--line) !important;
+  border-radius:12px !important;
+  box-shadow:0 1px 0 rgba(199,154,37,.08) !important;
+}
+#rm-missioni .step-head{
+  display:flex !important;
+  align-items:center !important;
+  gap:14px !important;
+  padding:18px 22px 12px !important;
+  background:transparent !important;
+  border-bottom:1px solid rgba(199,154,37,.22) !important;
+}
+#rm-missioni .step-num{
+  min-width:auto !important;
+  padding:6px 12px !important;
+  border:1px solid var(--gold) !important;
+  border-radius:999px !important;
+  background:var(--panel2) !important;
+  color:var(--gold) !important;
+  font-family:var(--serif) !important;
+  font-size:15px !important;
+  line-height:1 !important;
+}
+#rm-missioni .step-head h3{
+  margin:0 !important;
+  color:var(--ink) !important;
+  font-family:var(--serif) !important;
+  font-size:1.42em !important;
+  font-weight:600 !important;
+}
+#rm-missioni .step-body{
+  padding:18px 22px 22px !important;
+}
+#rm-missioni .step-desc{
+  margin:0 0 18px !important;
+  color:var(--ink-dim) !important;
+  font-size:17px !important;
+  line-height:1.7 !important;
+}
+#rm-missioni .step-desc i.sc{
+  color:var(--gold-soft) !important;
+}
+
+/* Sottoblocchi e PG */
+#rm-missioni .subroll,
+#rm-missioni .pgrow,
+#rm-missioni .pgstat-row,
+#rm-missioni .notebox{
+  background:var(--bg2) !important;
+  border:1px solid var(--line) !important;
+  border-radius:10px !important;
+}
+#rm-missioni .subroll{
+  padding:18px !important;
+  margin:16px 0 20px !important;
+}
+#rm-missioni .subroll h4{
+  margin:0 0 10px !important;
+  color:var(--gold) !important;
+  font-size:1.08em !important;
+}
+#rm-missioni .pgrow{
+  padding:18px 18px 16px !important;
+  margin:16px 0 20px !important;
+}
+#rm-missioni .pgrow .pgname{
+  margin:0 0 14px !important;
+  padding:0 0 10px !important;
+  border-bottom:1px dashed rgba(199,154,37,.32) !important;
+  color:var(--ink) !important;
+  font-family:var(--serif) !important;
+  font-size:1.22em !important;
+}
+#rm-missioni .pgstat-row{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr)) !important;
+  gap:16px 18px !important;
+  align-items:end !important;
+  padding:18px !important;
+  margin-bottom:14px !important;
+}
+#rm-missioni .notebox{
+  padding:13px 15px !important;
+  margin:14px 0 !important;
+  border-style:solid !important;
+  color:var(--ink-dim) !important;
+  font-size:15px !important;
+  line-height:1.6 !important;
+}
+
+/* Campi e controlli */
+#rm-missioni .ctrls,
+#rm-missioni .diceline,
+#rm-missioni .resline,
+#rm-missioni .pgpanel-actions{
+  width:100% !important;
+  min-width:0 !important;
+  gap:12px !important;
+}
+#rm-missioni .ctrls{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr)) !important;
+  align-items:end !important;
+  margin:8px 0 10px !important;
+}
+#rm-missioni .field{
+  min-width:0 !important;
+  width:100% !important;
+  gap:7px !important;
+}
+#rm-missioni .field label{
+  display:block !important;
+  margin:0 !important;
+  color:var(--ink-dim) !important;
+  font-family:var(--serif) !important;
+  font-size:14px !important;
+  line-height:1.35 !important;
+  text-transform:none !important;
+  letter-spacing:0 !important;
+}
+#rm-missioni .field select,
+#rm-missioni .field input[type=number],
+#rm-missioni .field input[type=text],
+#rm-missioni .resline input[type=number]{
+  width:100% !important;
+  max-width:none !important;
+  min-width:0 !important;
+  min-height:48px !important;
+  padding:11px 14px !important;
+  background:var(--bg) !important;
+  border:1px solid var(--line) !important;
+  border-radius:8px !important;
+  color:var(--ink) !important;
+  font-family:var(--sans) !important;
+  font-size:17px !important;
+  line-height:1.2 !important;
+  outline:none !important;
+}
+#rm-missioni .field select:focus,
+#rm-missioni .field input:focus,
+#rm-missioni .resline input:focus{
+  border-color:var(--gold) !important;
+  box-shadow:0 0 0 2px rgba(199,154,37,.15) !important;
+}
+#rm-missioni .field select option{
+  background:var(--bg) !important;
+  color:var(--ink) !important;
+}
+#rm-missioni .resline input[type=number]{
+  width:100px !important;
+  flex:0 0 100px !important;
+  font-family:Consolas,"Courier New",monospace !important;
+  font-size:19px !important;
+  text-align:center !important;
+}
+
+/* Codice dado */
+#rm-missioni .diceline{
+  display:flex !important;
+  align-items:center !important;
+  flex-wrap:wrap !important;
+  margin:14px 0 10px !important;
+}
+#rm-missioni .dicecode{
+  flex:1 1 420px !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  min-height:46px !important;
+  padding:11px 14px !important;
+  background:#fffefa !important;
+  border:1px solid var(--gold) !important;
+  border-radius:8px !important;
+  color:#79570d !important;
+  font-family:Consolas,"Courier New",monospace !important;
+  font-size:16px !important;
+  line-height:1.25 !important;
+}
+#rm-missioni .resline{
+  display:flex !important;
+  align-items:center !important;
+  flex-wrap:wrap !important;
+  margin-top:12px !important;
+}
+#rm-missioni .formula{
+  margin:0 !important;
+  font-size:15px !important;
+  line-height:1.6 !important;
+}
+#rm-missioni .formula b{color:var(--gold-soft) !important;}
+
+/* Pulsanti */
+#rm-missioni .btn,
+#rm-missioni .btn.small,
+#rm-missioni .btn.ghost{
+  min-height:46px !important;
+  padding:0 16px !important;
+  background:linear-gradient(180deg,#fff1b8,#f4d77c) !important;
+  border:1px solid var(--gold) !important;
+  border-radius:8px !important;
+  color:#725311 !important;
+  font-family:var(--sans) !important;
+  font-size:15px !important;
+  white-space:nowrap !important;
+  cursor:pointer !important;
+  transition:all .15s ease !important;
+}
+#rm-missioni .btn:hover,
+#rm-missioni .btn.small:hover,
+#rm-missioni .btn.ghost:hover{
+  background:#ffe79a !important;
+  border-color:var(--accent) !important;
+  color:#543d0c !important;
+}
+#rm-missioni .btn:disabled,
+#rm-missioni .field select:disabled,
+#rm-missioni .field input:disabled,
+#rm-missioni .resline input:disabled{
+  opacity:.45 !important;
+  cursor:not-allowed !important;
+}
+
+/* Esiti */
+#rm-missioni .out{
+  margin-top:14px !important;
+  padding-top:14px !important;
+  border-top:1px dashed rgba(199,154,37,.32) !important;
+}
+#rm-missioni .badge{
+  display:none;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:42px !important;
+  padding:8px 16px !important;
+  border-radius:999px !important;
+  font-size:15px !important;
+  font-weight:700 !important;
+  letter-spacing:0 !important;
+}
+#rm-missioni .badge.ok{
+  display:inline-flex !important;
+  background:var(--ok-bg) !important;
+  border:1px solid var(--ok) !important;
+  color:var(--ok) !important;
+}
+#rm-missioni .badge.bad{
+  display:inline-flex !important;
+  background:var(--bad-bg) !important;
+  border:1px solid var(--bad) !important;
+  color:var(--bad) !important;
+}
+#rm-missioni .badge.invalid,
+#rm-missioni .badge.neutral{
+  display:inline-flex !important;
+  background:var(--panel2) !important;
+  border:1px solid var(--line) !important;
+  color:var(--ink-dim) !important;
+}
+#rm-missioni .outcome{
+  margin-top:16px !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:12px !important;
+}
+#rm-missioni .oc-box{
+  padding:13px 16px !important;
+  background:var(--bg2) !important;
+  border:1px solid var(--line) !important;
+  border-radius:8px !important;
+  font-size:15px !important;
+  line-height:1.55 !important;
+}
+#rm-missioni .oc-box.succ{
+  border-left:3px solid var(--ok) !important;
+  color:var(--ink-dim) !important;
+}
+#rm-missioni .oc-box.fail{
+  border-left:3px solid var(--bad) !important;
+  color:var(--ink-dim) !important;
+}
+#rm-missioni .oc-box b{
+  color:var(--gold-soft) !important;
+  font-family:var(--serif) !important;
+  text-transform:none !important;
+  letter-spacing:0 !important;
+}
+#rm-missioni .statusbox{
+  margin-top:12px !important;
+  padding:13px 16px !important;
+  border:1px solid var(--line) !important;
+  border-radius:8px !important;
+  color:var(--ink) !important;
+  line-height:1.55 !important;
+}
+#rm-missioni .statusbox.success{
+  border-left:4px solid var(--ok) !important;
+  background:var(--ok-bg) !important;
+}
+#rm-missioni .statusbox.failure{
+  border-left:4px solid var(--bad) !important;
+  background:var(--bad-bg) !important;
+}
+#rm-missioni .statusbox.warning{
+  border-left:4px solid var(--gold) !important;
+  background:var(--panel2) !important;
+}
+
+/* Elementi secondari */
+#rm-missioni .divider{
+  margin:30px 0 !important;
+  color:var(--gold) !important;
+  font-size:.78em !important;
+  letter-spacing:.3em !important;
+}
+#rm-missioni .hint{
+  margin-top:10px !important;
+  font-size:15px !important;
+  line-height:1.6 !important;
+}
+#rm-missioni .copytoast{
+  bottom:24px !important;
+  padding:9px 18px !important;
+  background:var(--panel2) !important;
+  border:1px solid var(--gold) !important;
+  border-radius:999px !important;
+  color:var(--gold-soft) !important;
+  font-family:var(--sans) !important;
+  font-size:.85em !important;
+  font-weight:700 !important;
+  box-shadow:0 8px 28px rgba(0,0,0,.28) !important;
+}
+#rm-missioni .step.locked,
+#rm-missioni .pgrow.locked{
+  opacity:.58 !important;
+  filter:none !important;
+}
+#rm-missioni .step.locked .step-head,
+#rm-missioni .pgrow.locked{
+  background:#F7EECF !important;
+}
+
+@media(max-width:760px){
+  #rm-missioni .wrap{padding:0 14px !important;}
+  #rm-missioni .masthead h1{font-size:2em !important;}
+  #rm-missioni .locgrid,
+  #rm-missioni .pgstat-row,
+  #rm-missioni .ctrls{grid-template-columns:1fr !important;gap:14px !important;}
+  #rm-missioni .introcard,
+  #rm-missioni .legend,
+  #rm-missioni .pgpanel,
+  #rm-missioni .step-body{padding-left:16px !important;padding-right:16px !important;}
+  #rm-missioni .step-head{align-items:flex-start !important;}
+  #rm-missioni .outcome{grid-template-columns:1fr !important;}
+  #rm-missioni .resline input[type=number]{width:88px !important;flex-basis:88px !important;}
+}
+
 </style>
 <div class="masthead">
 <svg class="sigil" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -360,7 +948,7 @@ margin:12px 0;}
 <div class="sub">Assistente interattivo passo per passo: genera i tiri, copiali nel forum con [dice], registra i risultati e segui l'esito della missione.</div>
 </div>
 
-<div class="wrap" style="width:100% !important;max-width:none !important;margin:0 !important;padding:0 20px !important;box-sizing:border-box !important;">
+<div class="wrap" style="width:100% !important;max-width:1120px !important;margin:0 auto !important;padding:0 24px !important;box-sizing:border-box !important;">
 
 <div class="legend">
 <p><b>Come funziona questa pagina.</b> Ogni missione è divisa in fasi. Per ogni fase trovi le formule dei tiri richiesti: seleziona separatamente i bonus di Conoscenza e Pozione (cumulabili quando entrambi appropriati) e gli eventuali Bonus Oggetti, genera il codice del tiro (già pronto per essere incollato nel forum), copialo, tiralo nella tua giocata e infine inserisci qui il risultato ottenuto per vedere subito se hai avuto successo.</p>
