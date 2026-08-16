@@ -364,9 +364,34 @@ margin:12px 0;}
 
 <div class="legend">
 <p><b>Come funziona questa pagina.</b> Ogni missione è divisa in fasi. Per ogni fase trovi le formule dei tiri richiesti: seleziona separatamente i bonus di Conoscenza e Pozione (cumulabili quando entrambi appropriati) e gli eventuali Bonus Oggetti, genera il codice del tiro (già pronto per essere incollato nel forum), copialo, tiralo nella tua giocata e infine inserisci qui il risultato ottenuto per vedere subito se hai avuto successo.</p>
-<p><b>Prima di iniziare:</b> compila il pannello dei Personaggi Giocanti (PG) nella scheda della missione scelta con i parametri di chi partecipa alla Ricerca. Puoi aggiungere più PG con l'apposito tasto, poiché la Ricerca Missioni può essere svolta in gruppo.</p>
+<p><b>Prima di iniziare:</b> determina innanzitutto quale Missione viene assegnata lanciando 1d5, salvo che si tratti di una Missione collegata a una precedente completata con successo. Solo dopo aver individuato la Missione, apri la relativa scheda e compila il pannello dei Personaggi Giocanti (PG) con i parametri richiesti. Puoi aggiungere più PG con l'apposito tasto, poiché la Ricerca Missioni può essere svolta in gruppo.</p>
 <p><b>Regole generali:</b> i PG vengono sempre coinvolti in una Missione. Il tipo si determina con 1d5; è possibile rinunciare e tentare una nuova Missione fino a 3 volte per role, ruolando ogni rinuncia ONGame. Si può svolgere una sola Missione per role e non esiste un limite generale di post, salvo specifiche. Una Missione può essere collegata direttamente a una precedente, senza nuovo 1d5, solo se la precedente è stata completata con successo.</p>
 <p><b>Ambito e partecipanti:</b> le Role di Ricerca Missioni sono free-role e possono essere svolte da PG Auror o PG Numen, anche non Auror. La Ricerca si svolge sempre in Gran Bretagna, magica o non magica. La parte narrativa è autogestita dai player, ma ciò che i PG comprendono, individuano o ottengono deve rispettare gli esiti dei tiri previsti dalla Missione.</p>
+</div>
+
+<div class="introcard" id="rm-mission-picker">
+<h2>Passo 1 — determina la Missione assegnata</h2>
+<p>I PG lanciano <b>1d5</b> per stabilire quale Missione viene assegnata. Se la Missione è collegata direttamente a una precedente completata con successo, non effettuare questo tiro e seleziona manualmente la scheda corretta.</p>
+<div class="locgrid">
+<div><b>1.</b> Inseguimento</div>
+<div><b>2.</b> Irruzione e Arresto</div>
+<div><b>3.</b> Scorta e Protezione</div>
+<div><b>4.</b> Sotto Copertura</div>
+<div><b>5.</b> Sventare uno Scontro</div>
+</div>
+<div class="diceline">
+<input type="text" class="dicecode" id="rm-mission-dice-code" readonly value="[dice=1d5]Determinazione della Missione - Ricerca Missioni[/dice]">
+<button class="btn small" type="button" id="rm-mission-dice-copy">Copia 1d5</button>
+</div>
+<div class="resline">
+<input type="number" id="rm-mission-dice-result" min="1" max="5" step="1" placeholder="1d5">
+<span class="formula" id="rm-mission-dice-outcome">Inserisci il risultato del 1d5.</span>
+</div>
+</div>
+
+<div class="introcard">
+<h2>Passo 2 — apri la scheda e inserisci i Parametri dei PG</h2>
+<p>Dopo il risultato del 1d5, la scheda della Missione corrispondente viene aperta automaticamente. Compila quindi i Parametri richiesti nelle caselle presenti all'interno di quella scheda e prosegui con i passaggi specifici della Missione. Per una Missione collegata, puoi scegliere direttamente la scheda dai pulsanti qui sotto.</p>
 </div>
 
 <div class="tabbar" id="rm-tabbar"></div>
@@ -944,16 +969,46 @@ function simpleDice(faces,label,resolver){
 ================================================================ */
 var tabbar=document.getElementById('rm-tabbar');
 var panels=document.getElementById('rm-panels');
+
+function activateMission(mid){
+  var bs=tabbar.querySelectorAll('.tabbtn'), ps=panels.querySelectorAll('.panel'),i;
+  for(i=0;i<bs.length;i++) bs[i].className='tabbtn';
+  for(i=0;i<ps.length;i++) ps[i].className='panel';
+  var btn=document.getElementById('tab-'+mid), panel=document.getElementById('panel-'+mid);
+  if(btn) btn.className='tabbtn active';
+  if(panel) panel.className='panel active';
+}
+
 MISSIONS.forEach(function(m,idx){
-  var tb=el('button',{class:'tabbtn'+(idx===0?' active':''),type:'button'},[m.name]);
-  tb.addEventListener(EVT,function(){
-    var bs=tabbar.querySelectorAll('.tabbtn'), ps=panels.querySelectorAll('.panel'),i;
-    for(i=0;i<bs.length;i++) bs[i].className='tabbtn';
-    for(i=0;i<ps.length;i++) ps[i].className='panel';
-    tb.className='tabbtn active'; document.getElementById('panel-'+m.id).className='panel active';
-  });
+  var tb=el('button',{class:'tabbtn'+(idx===0?' active':''),type:'button',id:'tab-'+m.id},[m.name]);
+  tb.addEventListener(EVT,function(){ activateMission(m.id); });
   tabbar.appendChild(tb); panels.appendChild(el('div',{class:'panel'+(idx===0?' active':''),id:'panel-'+m.id}));
 });
+
+var missionDiceCopy=document.getElementById('rm-mission-dice-copy');
+var missionDiceResult=document.getElementById('rm-mission-dice-result');
+var missionDiceOutcome=document.getElementById('rm-mission-dice-outcome');
+if(missionDiceCopy){
+  missionDiceCopy.addEventListener(EVT,function(){
+    copyText(document.getElementById('rm-mission-dice-code').value);
+  });
+}
+if(missionDiceResult){
+  missionDiceResult.addEventListener('input',function(){
+    var v=Number(missionDiceResult.value);
+    if(!missionDiceResult.value){
+      missionDiceOutcome.textContent='Inserisci il risultato del 1d5.';
+      return;
+    }
+    if(!intInRange(v,1,5)){
+      missionDiceOutcome.textContent='Risultato impossibile: inserisci un intero da 1 a 5.';
+      return;
+    }
+    var m=MISSIONS[v-1];
+    missionDiceOutcome.innerHTML='Risultato '+v+': <b>'+m.name+'</b>. La scheda è stata aperta automaticamente.';
+    activateMission(m.id);
+  });
+}
 
 function buildIntro(mission){
   var card=el('div',{class:'introcard'});
