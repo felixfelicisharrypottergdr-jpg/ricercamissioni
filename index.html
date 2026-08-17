@@ -1,7 +1,15 @@
 <div id="rm-missioni" class="foglio" style="width:100% !important;max-width:none !important;margin:0 !important;padding:0 !important;">
 <style>
-#rm-missioni{--ink:#3c2f12;
---ink-dim:#5f4f29;
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
+@font-face {
+  font-family:'magic';
+  src:url('https://dl.dropboxusercontent.com/scl/fi/nbzmrri4qyvc3tzx96911/HarryBeastDisplay-Regular.woff2?rlkey=he290voe32k33gowug23c1osc&st=nj9fgly1') format('woff2');
+  font-weight:normal;
+  font-style:normal;
+  font-display:swap;
+}
+#rm-missioni{--ink:#4a3a16;
+--ink-dim:#78663a;
 --bg0:#fffdf7;
 --bg1:#fff8df;
 --bg2:#fff0bd;
@@ -36,7 +44,7 @@ text-transform:uppercase;
 font-size:.72rem;
 color:var(--gold);
 font-family:Georgia,serif;}
-#rm-missioni .masthead h1{font-family:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
+#rm-missioni .masthead h1{font-family:'magic',"Cormorant Garamond","Iowan Old Style",Georgia,serif;
 font-weight:600;
 font-size:2.7rem;
 margin:.35em 0 .2em 0;
@@ -339,673 +347,16 @@ margin:12px 0;}
 @media (max-width:760px){#rm-missioni .pgstat-row{grid-template-columns:repeat(auto-fit,minmax(150px,1fr)) !important;}
 #rm-missioni .locgrid{grid-template-columns:1fr !important;}}
 /* Stati interattivi e validazione — revisione regolamento */
-#rm-missioni .step.locked{opacity:.84;filter:grayscale(.05)}
+#rm-missioni .step.locked{opacity:.62;filter:grayscale(.12)}
 #rm-missioni .step.locked .step-head{background:rgba(120,102,58,.06)}
 #rm-missioni .lock-note{display:none;margin-top:0}
-#rm-missioni .pgrow.locked{opacity:.82;background:#F7EECF}
+#rm-missioni .pgrow.locked{opacity:.58;background:#F7EECF}
 #rm-missioni .badge.invalid{display:inline-block;background:#FFF4D8;color:#8A6617;border:1px solid #C79A25}
 #rm-missioni .badge.neutral{display:inline-block;background:#F7F1DF;color:#78663A;border:1px solid #CBB77A}
 #rm-missioni .statusbox.success{border-left:4px solid var(--ok);background:var(--ok-bg)}
 #rm-missioni .statusbox.failure{border-left:4px solid var(--bad);background:var(--bad-bg)}
 #rm-missioni .statusbox.warning{border-left:4px solid var(--gold);background:#FFF6D8}
-#rm-missioni .field select:disabled, #rm-missioni .field input:disabled, #rm-missioni .btn:disabled, #rm-missioni .resline input:disabled{opacity:.82;cursor:not-allowed;color:var(--ink)}
-
-/* ================================================================
-   RESTYLING GRAFICO — coerente con "Ricerca Maledizioni"
-   Solo presentazione: nessuna regola, formula o logica viene alterata.
-================================================================ */
-#rm-missioni{
-  --bg:#fffdf7;
-  --bg2:#fff0bd;
-  --panel:#fff8df;
-  --panel2:#fff0bd;
-  --line:#d9bd67;
-  --ink:#3c2f12;
-  --ink-dim:#5f4f29;
-  --gold:#c79a25;
-  --gold-soft:#e0c56d;
-  --ok:#66834f;
-  --ok-bg:#f1f6e9;
-  --bad:#a45d49;
-  --bad-bg:#fbefea;
-  --accent:#a97d19;
-  --serif:"Iowan Old Style","Palatino Linotype",Georgia,serif;
-  --sans:"Avenir Next",Segoe UI,Helvetica,Arial,sans-serif;
-  width:100% !important;
-  max-width:none !important;
-  margin:0 !important;
-  padding:0 0 80px 0 !important;
-  background:
-    radial-gradient(1200px 700px at 15% -10%,#fff0b8 0%,transparent 60%),
-    radial-gradient(1000px 600px at 110% 10%,#fff8dc 0%,transparent 55%),
-    var(--bg) !important;
-  color:var(--ink) !important;
-  font-family:var(--sans) !important;
-  font-size:16px !important;
-  line-height:1.5 !important;
-  overflow:visible !important;
-}
-#rm-missioni, #rm-missioni *{box-sizing:border-box !important;}
-#rm-missioni .wrap{
-  width:100% !important;
-  max-width:1120px !important;
-  margin:0 auto !important;
-  padding:0 24px !important;
-}
-
-/* Testata */
-#rm-missioni .masthead{
-  padding:48px 20px 32px !important;
-  text-align:center !important;
-  border-bottom:1px solid var(--line) !important;
-  background:linear-gradient(180deg,rgba(199,154,37,.16),rgba(255,248,223,.55) 72%,transparent) !important;
-}
-#rm-missioni .sigil{
-  width:46px !important;
-  height:46px !important;
-  margin:0 auto 14px !important;
-  opacity:.78 !important;
-  filter:none !important;
-}
-#rm-missioni .eyebrow{
-  color:var(--gold) !important;
-  font-family:var(--sans) !important;
-  font-size:.72em !important;
-  letter-spacing:.14em !important;
-  text-transform:uppercase !important;
-}
-#rm-missioni .masthead h1{
-  margin:6px 0 8px !important;
-  color:var(--ink) !important;
-  font-family:var(--serif) !important;
-  font-size:2.6em !important;
-  font-weight:600 !important;
-  letter-spacing:.03em !important;
-  text-shadow:0 0 24px rgba(199,154,37,.18) !important;
-}
-#rm-missioni .masthead .sub{
-  max-width:640px !important;
-  margin:0 auto !important;
-  color:var(--ink-dim) !important;
-  font-family:var(--sans) !important;
-  font-size:.98em !important;
-  font-style:normal !important;
-}
-
-/* Colori tipografici */
-#rm-missioni p,
-#rm-missioni li,
-#rm-missioni div,
-#rm-missioni span,
-#rm-missioni label{color:var(--ink);}
-#rm-missioni h1,
-#rm-missioni h2,
-#rm-missioni h3,
-#rm-missioni h4{
-  font-family:var(--serif) !important;
-}
-#rm-missioni .introcard p,
-#rm-missioni .step-desc,
-#rm-missioni .formula,
-#rm-missioni .hint,
-#rm-missioni .legend,
-#rm-missioni .notebox,
-#rm-missioni .field label,
-#rm-missioni .locgrid,
-#rm-missioni .oc-box,
-#rm-missioni details.rules summary{
-  color:var(--ink-dim) !important;
-}
-
-/* Schede introduttive / pannelli */
-#rm-missioni .legend,
-#rm-missioni .introcard,
-#rm-missioni .pgpanel{
-  background:var(--panel) !important;
-  border:1px solid var(--line) !important;
-  border-radius:10px !important;
-  box-shadow:0 1px 0 rgba(199,154,37,.08) !important;
-}
-#rm-missioni .legend{
-  padding:22px 24px !important;
-  margin:32px 0 24px !important;
-  font-size:16px !important;
-  line-height:1.7 !important;
-}
-#rm-missioni .legend p{color:var(--ink-dim) !important;}
-#rm-missioni .legend b{color:var(--gold) !important;}
-#rm-missioni .introcard{
-  padding:24px 26px !important;
-  margin:24px 0 !important;
-  border-left:1px solid var(--line) !important;
-}
-#rm-missioni .introcard h2{
-  margin:0 0 10px !important;
-  color:var(--ink) !important;
-  font-size:1.5em !important;
-  font-weight:600 !important;
-}
-#rm-missioni .introcard p{
-  margin:.5em 0 !important;
-  line-height:1.7 !important;
-}
-#rm-missioni .pgpanel{
-  padding:22px 24px !important;
-  margin:24px 0 30px !important;
-}
-#rm-missioni .pgpanel h3{
-  margin:0 0 16px !important;
-  color:var(--gold) !important;
-  font-size:1.35em !important;
-}
-
-/* Scheda elenco 1d5 */
-#rm-missioni .locgrid{
-  display:grid !important;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr)) !important;
-  gap:10px !important;
-  margin:14px 0 18px !important;
-  font-size:.9em !important;
-}
-#rm-missioni .locgrid div{
-  min-width:0 !important;
-  padding:12px 14px !important;
-  background:var(--bg2) !important;
-  border:1px solid var(--line) !important;
-  border-radius:8px !important;
-  color:var(--ink) !important;
-}
-#rm-missioni .locgrid div b{
-  color:var(--gold-soft) !important;
-  font-family:var(--serif) !important;
-  font-size:1.15em !important;
-}
-
-/* Tabs */
-#rm-missioni .tabbar{
-  display:flex !important;
-  flex-wrap:wrap !important;
-  gap:8px !important;
-  margin:28px 0 18px !important;
-  padding:12px 0 !important;
-  position:sticky !important;
-  top:0 !important;
-  z-index:5 !important;
-  background:var(--bg) !important;
-  border-bottom:1px solid var(--line) !important;
-}
-#rm-missioni .tabbtn{
-  flex:1 1 150px !important;
-  min-height:44px !important;
-  padding:10px 12px !important;
-  background:var(--panel) !important;
-  border:1px solid var(--line) !important;
-  border-radius:8px !important;
-  color:var(--ink-dim) !important;
-  font-family:var(--sans) !important;
-  font-size:.86em !important;
-  cursor:pointer !important;
-  transition:all .15s ease !important;
-}
-#rm-missioni .tabbtn:hover{
-  background:var(--panel2) !important;
-  border-color:var(--gold) !important;
-  color:var(--ink) !important;
-}
-#rm-missioni .tabbtn.active{
-  background:#ffe79a !important;
-  border-color:var(--accent) !important;
-  color:#543d0c !important;
-}
-#rm-missioni .panel{padding-top:8px !important;}
-
-/* Regole richiudibili */
-#rm-missioni details.rules{
-  margin:12px 0 !important;
-  padding:2px 16px !important;
-  background:var(--bg2) !important;
-  border:1px solid var(--line) !important;
-  border-radius:8px !important;
-}
-#rm-missioni details.rules summary{
-  padding:12px 0 !important;
-  color:var(--accent) !important;
-  font-family:var(--serif) !important;
-  font-size:.98em !important;
-}
-#rm-missioni details.rules[open] summary{
-  margin-bottom:10px !important;
-  border-bottom:1px solid rgba(199,154,37,.22) !important;
-}
-
-/* Fasi */
-#rm-missioni .step{
-  margin:0 0 26px !important;
-  overflow:hidden !important;
-  background:var(--panel) !important;
-  border:1px solid var(--line) !important;
-  border-radius:12px !important;
-  box-shadow:0 1px 0 rgba(199,154,37,.08) !important;
-}
-#rm-missioni .step-head{
-  display:flex !important;
-  align-items:center !important;
-  gap:14px !important;
-  padding:18px 22px 12px !important;
-  background:transparent !important;
-  border-bottom:1px solid rgba(199,154,37,.22) !important;
-}
-#rm-missioni .step-num{
-  min-width:auto !important;
-  padding:6px 12px !important;
-  border:1px solid var(--gold) !important;
-  border-radius:999px !important;
-  background:var(--panel2) !important;
-  color:var(--gold) !important;
-  font-family:var(--serif) !important;
-  font-size:15px !important;
-  line-height:1 !important;
-}
-#rm-missioni .step-head h3{
-  margin:0 !important;
-  color:var(--ink) !important;
-  font-family:var(--serif) !important;
-  font-size:1.42em !important;
-  font-weight:600 !important;
-}
-#rm-missioni .step-body{
-  padding:18px 22px 22px !important;
-}
-#rm-missioni .step-desc{
-  margin:0 0 18px !important;
-  color:var(--ink-dim) !important;
-  font-size:17px !important;
-  line-height:1.7 !important;
-}
-#rm-missioni .step-desc i.sc{
-  color:var(--gold-soft) !important;
-}
-
-/* Sottoblocchi e PG */
-#rm-missioni .subroll,
-#rm-missioni .pgrow,
-#rm-missioni .pgstat-row,
-#rm-missioni .notebox{
-  background:var(--bg2) !important;
-  border:1px solid var(--line) !important;
-  border-radius:10px !important;
-}
-#rm-missioni .subroll{
-  padding:18px !important;
-  margin:16px 0 20px !important;
-}
-#rm-missioni .subroll h4{
-  margin:0 0 10px !important;
-  color:var(--gold) !important;
-  font-size:1.08em !important;
-}
-#rm-missioni .pgrow{
-  padding:18px 18px 16px !important;
-  margin:16px 0 20px !important;
-}
-#rm-missioni .pgrow .pgname{
-  margin:0 0 14px !important;
-  padding:0 0 10px !important;
-  border-bottom:1px dashed rgba(199,154,37,.32) !important;
-  color:var(--ink) !important;
-  font-family:var(--serif) !important;
-  font-size:1.22em !important;
-}
-#rm-missioni .pgstat-row{
-  display:grid !important;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr)) !important;
-  gap:16px 18px !important;
-  align-items:end !important;
-  padding:18px !important;
-  margin-bottom:14px !important;
-}
-#rm-missioni .notebox{
-  padding:13px 15px !important;
-  margin:14px 0 !important;
-  border-style:solid !important;
-  color:var(--ink-dim) !important;
-  font-size:15px !important;
-  line-height:1.6 !important;
-}
-
-/* Campi e controlli */
-#rm-missioni .ctrls,
-#rm-missioni .diceline,
-#rm-missioni .resline,
-#rm-missioni .pgpanel-actions{
-  width:100% !important;
-  min-width:0 !important;
-  gap:12px !important;
-}
-#rm-missioni .ctrls{
-  display:grid !important;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr)) !important;
-  align-items:end !important;
-  margin:8px 0 10px !important;
-}
-#rm-missioni .field{
-  min-width:0 !important;
-  width:100% !important;
-  gap:7px !important;
-}
-#rm-missioni .field label{
-  display:block !important;
-  margin:0 !important;
-  color:var(--ink-dim) !important;
-  font-family:var(--serif) !important;
-  font-size:14px !important;
-  line-height:1.35 !important;
-  text-transform:none !important;
-  letter-spacing:0 !important;
-}
-#rm-missioni .field select,
-#rm-missioni .field input[type=number],
-#rm-missioni .field input[type=text],
-#rm-missioni .resline input[type=number]{
-  width:100% !important;
-  max-width:none !important;
-  min-width:0 !important;
-  min-height:48px !important;
-  padding:11px 14px !important;
-  background:var(--bg) !important;
-  border:1px solid var(--line) !important;
-  border-radius:8px !important;
-  color:var(--ink) !important;
-  font-family:var(--sans) !important;
-  font-size:17px !important;
-  line-height:1.2 !important;
-  outline:none !important;
-}
-#rm-missioni .field select:focus,
-#rm-missioni .field input:focus,
-#rm-missioni .resline input:focus{
-  border-color:var(--gold) !important;
-  box-shadow:0 0 0 2px rgba(199,154,37,.15) !important;
-}
-#rm-missioni .field select option{
-  background:var(--bg) !important;
-  color:var(--ink) !important;
-}
-#rm-missioni .resline input[type=number]{
-  width:100px !important;
-  flex:0 0 100px !important;
-  font-family:Consolas,"Courier New",monospace !important;
-  font-size:19px !important;
-  text-align:center !important;
-}
-
-/* Codice dado */
-#rm-missioni .diceline{
-  display:flex !important;
-  align-items:center !important;
-  flex-wrap:wrap !important;
-  margin:14px 0 10px !important;
-}
-#rm-missioni .dicecode{
-  flex:1 1 420px !important;
-  min-width:0 !important;
-  max-width:100% !important;
-  min-height:46px !important;
-  padding:11px 14px !important;
-  background:#fffefa !important;
-  border:1px solid var(--gold) !important;
-  border-radius:8px !important;
-  color:#79570d !important;
-  font-family:Consolas,"Courier New",monospace !important;
-  font-size:16px !important;
-  line-height:1.25 !important;
-}
-#rm-missioni .resline{
-  display:flex !important;
-  align-items:center !important;
-  flex-wrap:wrap !important;
-  margin-top:12px !important;
-}
-#rm-missioni .formula{
-  margin:0 !important;
-  font-size:15px !important;
-  line-height:1.6 !important;
-}
-#rm-missioni .formula b{color:var(--gold-soft) !important;}
-
-/* Pulsanti */
-#rm-missioni .btn,
-#rm-missioni .btn.small,
-#rm-missioni .btn.ghost{
-  min-height:46px !important;
-  padding:0 16px !important;
-  background:linear-gradient(180deg,#fff1b8,#f4d77c) !important;
-  border:1px solid var(--gold) !important;
-  border-radius:8px !important;
-  color:#725311 !important;
-  font-family:var(--sans) !important;
-  font-size:15px !important;
-  white-space:nowrap !important;
-  cursor:pointer !important;
-  transition:all .15s ease !important;
-}
-#rm-missioni .btn:hover,
-#rm-missioni .btn.small:hover,
-#rm-missioni .btn.ghost:hover{
-  background:#ffe79a !important;
-  border-color:var(--accent) !important;
-  color:#543d0c !important;
-}
-#rm-missioni .btn:disabled,
-#rm-missioni .field select:disabled,
-#rm-missioni .field input:disabled,
-#rm-missioni .resline input:disabled{
-  opacity:.45 !important;
-  cursor:not-allowed !important;
-}
-
-/* Esiti */
-#rm-missioni .out{
-  margin-top:14px !important;
-  padding-top:14px !important;
-  border-top:1px dashed rgba(199,154,37,.32) !important;
-}
-#rm-missioni .badge{
-  display:none;
-  align-items:center !important;
-  justify-content:center !important;
-  min-height:42px !important;
-  padding:8px 16px !important;
-  border-radius:999px !important;
-  font-size:15px !important;
-  font-weight:700 !important;
-  letter-spacing:0 !important;
-}
-#rm-missioni .badge.ok{
-  display:inline-flex !important;
-  background:var(--ok-bg) !important;
-  border:1px solid var(--ok) !important;
-  color:var(--ok) !important;
-}
-#rm-missioni .badge.bad{
-  display:inline-flex !important;
-  background:var(--bad-bg) !important;
-  border:1px solid var(--bad) !important;
-  color:var(--bad) !important;
-}
-#rm-missioni .badge.invalid,
-#rm-missioni .badge.neutral{
-  display:inline-flex !important;
-  background:var(--panel2) !important;
-  border:1px solid var(--line) !important;
-  color:var(--ink-dim) !important;
-}
-#rm-missioni .outcome{
-  margin-top:16px !important;
-  grid-template-columns:1fr 1fr !important;
-  gap:12px !important;
-}
-#rm-missioni .oc-box{
-  padding:13px 16px !important;
-  background:var(--bg2) !important;
-  border:1px solid var(--line) !important;
-  border-radius:8px !important;
-  font-size:15px !important;
-  line-height:1.55 !important;
-}
-#rm-missioni .oc-box.succ{
-  border-left:3px solid var(--ok) !important;
-  color:var(--ink-dim) !important;
-}
-#rm-missioni .oc-box.fail{
-  border-left:3px solid var(--bad) !important;
-  color:var(--ink-dim) !important;
-}
-#rm-missioni .oc-box b{
-  color:var(--gold-soft) !important;
-  font-family:var(--serif) !important;
-  text-transform:none !important;
-  letter-spacing:0 !important;
-}
-#rm-missioni .statusbox{
-  margin-top:12px !important;
-  padding:13px 16px !important;
-  border:1px solid var(--line) !important;
-  border-radius:8px !important;
-  color:var(--ink) !important;
-  line-height:1.55 !important;
-}
-#rm-missioni .statusbox.success{
-  border-left:4px solid var(--ok) !important;
-  background:var(--ok-bg) !important;
-}
-#rm-missioni .statusbox.failure{
-  border-left:4px solid var(--bad) !important;
-  background:var(--bad-bg) !important;
-}
-#rm-missioni .statusbox.warning{
-  border-left:4px solid var(--gold) !important;
-  background:var(--panel2) !important;
-}
-
-/* Elementi secondari */
-#rm-missioni .divider{
-  margin:30px 0 !important;
-  color:var(--gold) !important;
-  font-size:.78em !important;
-  letter-spacing:.3em !important;
-}
-#rm-missioni .hint{
-  margin-top:10px !important;
-  font-size:15px !important;
-  line-height:1.6 !important;
-}
-#rm-missioni .copytoast{
-  bottom:24px !important;
-  padding:9px 18px !important;
-  background:var(--panel2) !important;
-  border:1px solid var(--gold) !important;
-  border-radius:999px !important;
-  color:var(--gold-soft) !important;
-  font-family:var(--sans) !important;
-  font-size:.85em !important;
-  font-weight:700 !important;
-  box-shadow:0 8px 28px rgba(0,0,0,.28) !important;
-}
-#rm-missioni .step.locked,
-#rm-missioni .pgrow.locked{
-  opacity:.58 !important;
-  filter:none !important;
-}
-#rm-missioni .step.locked .step-head,
-#rm-missioni .pgrow.locked{
-  background:#F7EECF !important;
-}
-
-@media(max-width:760px){
-  #rm-missioni .wrap{padding:0 14px !important;}
-  #rm-missioni .masthead h1{font-size:2em !important;}
-  #rm-missioni .locgrid,
-  #rm-missioni .pgstat-row,
-  #rm-missioni .ctrls{grid-template-columns:1fr !important;gap:14px !important;}
-  #rm-missioni .introcard,
-  #rm-missioni .legend,
-  #rm-missioni .pgpanel,
-  #rm-missioni .step-body{padding-left:16px !important;padding-right:16px !important;}
-  #rm-missioni .step-head{align-items:flex-start !important;}
-  #rm-missioni .outcome{grid-template-columns:1fr !important;}
-  #rm-missioni .resline input[type=number]{width:88px !important;flex-basis:88px !important;}
-}
-
-/* Tendina iniziale — Ricorda */
-#rm-missioni details.remember-box{
-  margin:24px 0 18px !important;
-  background:var(--panel) !important;
-  border:1px solid var(--line) !important;
-  border-radius:10px !important;
-  overflow:hidden !important;
-  box-shadow:0 1px 0 rgba(199,154,37,.06) !important;
-}
-#rm-missioni details.remember-box summary{
-  cursor:pointer !important;
-  list-style:none !important;
-  padding:16px 20px !important;
-  font-family:var(--serif) !important;
-  font-size:1.08em !important;
-  font-weight:600 !important;
-  color:var(--gold) !important;
-  background:var(--panel2) !important;
-  user-select:none !important;
-  position:relative !important;
-  padding-right:52px !important;
-}
-#rm-missioni details.remember-box summary::-webkit-details-marker{display:none !important;}
-#rm-missioni details.remember-box summary::after{
-  content:'+' !important;
-  position:absolute !important;
-  right:20px !important;
-  top:50% !important;
-  transform:translateY(-50%) !important;
-  width:28px !important;
-  height:28px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  border:1px solid var(--gold-soft) !important;
-  border-radius:999px !important;
-  color:var(--gold) !important;
-  background:var(--bg0) !important;
-  font-family:var(--sans) !important;
-  font-size:18px !important;
-  line-height:1 !important;
-}
-#rm-missioni details.remember-box[open] summary{
-  border-bottom:1px solid var(--line) !important;
-}
-#rm-missioni details.remember-box[open] summary::after{content:'−' !important;}
-#rm-missioni .remember-content{
-  padding:18px 22px 20px !important;
-  color:var(--ink-dim) !important;
-  font-size:15px !important;
-  line-height:1.7 !important;
-}
-#rm-missioni .remember-content p{margin:.55em 0 !important;}
-#rm-missioni .remember-content p:first-child{margin-top:0 !important;}
-#rm-missioni .remember-content p:last-child{margin-bottom:0 !important;}
-#rm-missioni .remember-content b{
-  color:var(--gold) !important;
-  font-family:var(--serif) !important;
-}
-@media(max-width:760px){
-  #rm-missioni details.remember-box summary{padding:15px 50px 15px 16px !important;}
-  #rm-missioni .remember-content{padding:16px !important;}
-}
-
-
-#rm-missioni .formula, #rm-missioni .hint, #rm-missioni .legend, #rm-missioni .notebox, #rm-missioni .step-desc, #rm-missioni .introcard p, #rm-missioni .masthead .sub, #rm-missioni .field label, #rm-missioni .locgrid, #rm-missioni .oc-box, #rm-missioni details.rules summary{color:var(--ink-dim);} 
-#rm-missioni .lock-note, #rm-missioni .statusbox, #rm-missioni .badge.neutral, #rm-missioni .badge.invalid{color:var(--ink);} 
-#rm-missioni input::placeholder, #rm-missioni select, #rm-missioni input[type=text], #rm-missioni input[type=number]{color:var(--ink);} 
-#rm-missioni .btn{font-weight:600;}
+#rm-missioni .field select:disabled, #rm-missioni .field input:disabled, #rm-missioni .btn:disabled, #rm-missioni .resline input:disabled{opacity:.58;cursor:not-allowed}
 </style>
 <div class="masthead">
 <svg class="sigil" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -1017,21 +368,18 @@ margin:12px 0;}
 <div class="sub">Assistente interattivo passo per passo: genera i tiri, copiali nel forum con [dice], registra i risultati e segui l'esito della missione.</div>
 </div>
 
-<div class="wrap" style="width:100% !important;max-width:1120px !important;margin:0 auto !important;padding:0 24px !important;box-sizing:border-box !important;">
+<div class="wrap" style="width:100% !important;max-width:none !important;margin:0 !important;padding:0 20px !important;box-sizing:border-box !important;">
 
-<details class="remember-box">
-<summary>Ricorda:</summary>
-<div class="remember-content">
+<div class="legend">
 <p><b>Come funziona questa pagina.</b> Ogni missione è divisa in fasi. Per ogni fase trovi le formule dei tiri richiesti: seleziona separatamente i bonus di Conoscenza e Pozione (cumulabili quando entrambi appropriati) e gli eventuali Bonus Oggetti, genera il codice del tiro (già pronto per essere incollato nel forum), copialo, tiralo nella tua giocata e infine inserisci qui il risultato ottenuto per vedere subito se hai avuto successo.</p>
 <p><b>Prima di iniziare:</b> determina innanzitutto quale Missione viene assegnata lanciando 1d5, salvo che si tratti di una Missione collegata a una precedente completata con successo. Solo dopo aver individuato la Missione, apri la relativa scheda e compila il pannello dei Personaggi Giocanti (PG) con i parametri richiesti. Puoi aggiungere più PG con l'apposito tasto, poiché la Ricerca Missioni può essere svolta in gruppo.</p>
 <p><b>Regole generali:</b> i PG vengono sempre coinvolti in una Missione. Il tipo si determina con 1d5; è possibile rinunciare e tentare una nuova Missione fino a 3 volte per role, ruolando ogni rinuncia ONGame. Si può svolgere una sola Missione per role e non esiste un limite generale di post, salvo specifiche. Una Missione può essere collegata direttamente a una precedente, senza nuovo 1d5, solo se la precedente è stata completata con successo.</p>
 <p><b>Ambito e partecipanti:</b> le Role di Ricerca Missioni sono free-role e possono essere svolte da PG Auror o PG Numen, anche non Auror. La Ricerca si svolge sempre in Gran Bretagna, magica o non magica. La parte narrativa è autogestita dai player, ma ciò che i PG comprendono, individuano o ottengono deve rispettare gli esiti dei tiri previsti dalla Missione.</p>
 </div>
-</details>
 
 <div class="introcard" id="rm-mission-picker">
 <h2>Passo 1 — determina la Missione assegnata</h2>
-<p>I PG lanciano <b>1d5</b> per stabilire quale Missione viene assegnata. Se la Missione è collegata direttamente a una precedente completata con successo, non effettuare questo tiro e seleziona manualmente la scheda corretta.</p>
+<p>I PG lanciano <b>1d5</b> per stabilire quale Missione viene assegnata. Dopo un risultato valido, il sistema apre e blocca la scheda corrispondente. È possibile rinunciare alla Missione ricevuta e ritirare fino a <b>3 volte per role</b>, ruolando ogni rinuncia ONGame.</p>
 <div class="locgrid">
 <div><b>1.</b> Inseguimento</div>
 <div><b>2.</b> Irruzione e Arresto</div>
@@ -1047,11 +395,21 @@ margin:12px 0;}
 <input type="number" id="rm-mission-dice-result" min="1" max="5" step="1" placeholder="1d5">
 <span class="formula" id="rm-mission-dice-outcome">Inserisci il risultato del 1d5.</span>
 </div>
+<div class="ctrls" style="margin-top:14px">
+<div class="field"><label>Missione collegata</label><select id="rm-linked-mode"><option value="no">No — uso il 1d5</option><option value="si">Sì — precedente Missione completata con successo</option></select></div>
+<div class="field"><label>Missione collegata da aprire</label><select id="rm-linked-select" disabled><option value="">— Seleziona la Missione —</option><option value="m1">1. Inseguimento</option><option value="m2">2. Irruzione e Arresto</option><option value="m3">3. Scorta e Protezione</option><option value="m4">4. Sotto Copertura</option><option value="m5">5. Sventare uno Scontro</option></select></div>
+<button class="btn small" type="button" id="rm-linked-confirm" disabled>Apri Missione collegata</button>
+</div>
+<div class="notebox">Usa la modalità <b>Missione collegata</b> soltanto se la Missione precedente è stata completata con successo; in questo caso non si lancia il nuovo 1d5.</div>
+<div class="resline">
+<span class="formula" id="rm-renounce-status"><b>Rinunce disponibili:</b> 3</span>
+<button class="btn small ghost" type="button" id="rm-renounce" disabled>Rinuncia e tira di nuovo</button>
+</div>
 </div>
 
 <div class="introcard">
 <h2>Passo 2 — apri la scheda e inserisci i Parametri dei PG</h2>
-<p>Dopo il risultato del 1d5, la scheda della Missione corrispondente viene aperta automaticamente. Compila quindi i Parametri richiesti nelle caselle presenti all'interno di quella scheda e prosegui con i passaggi specifici della Missione. Per una Missione collegata, puoi scegliere direttamente la scheda dai pulsanti qui sotto.</p>
+<p>La scheda resta bloccata finché non viene assegnata una Missione con il 1d5 oppure confermata una Missione collegata. I Parametri dei PG partono vuoti: inserisci soltanto i valori reali richiesti dalla prova. Lo <b>0</b> è valido solo se scritto esplicitamente.</p>
 </div>
 
 <div class="tabbar" id="rm-tabbar"></div>
@@ -1094,6 +452,15 @@ function num(id){
   if(!e) return 0;
   var v = parseFloat(e.value);
   return isNaN(v) ? 0 : v;
+}
+function statNumber(id){
+  var e=document.getElementById(id);
+  if(!e || String(e.value).trim()==='') return null;
+  var n=Number(e.value);
+  return isFinite(n)?n:NaN;
+}
+function validStat(v){
+  return typeof v==='number' && isFinite(v) && Math.floor(v)===v && v>=0;
 }
 function txt(id){
   var e = document.getElementById(id);
@@ -1150,9 +517,10 @@ function addOption(sel, value, label){
   o.textContent = label;
   sel.appendChild(o);
 }
-function makeSelect(id, options){
+function makeSelect(id, options, placeholder){
   var s = document.createElement('select');
   s.id = id;
+  if(placeholder!==undefined && placeholder!==null) addOption(s,'',placeholder);
   for(var i=0;i<options.length;i++) addOption(s, options[i][1], options[i][0]);
   return s;
 }
@@ -1209,7 +577,7 @@ var results = {};
 var state = {
   m1:{},
   m2:{targetCount:null,targetDests:[]},
-  m3:{scType:'oggetto',initial:null,transport:null,mainOutcome:null,events:[],destPenalty:0,healthPenalty:0,damage:0,imprevisto:null,imprevistoDestPenalty:0,phase3Penalty:0,faticaPenalty:0},
+  m3:{scType:null,initial:null,transport:null,mainOutcome:null,events:[],destPenalty:0,healthPenalty:0,damage:0,imprevisto:null,imprevistoDestPenalty:0,phase3Penalty:0,faticaPenalty:0},
   m4:{},
   m5:{compromised:false}
 };
@@ -1319,6 +687,16 @@ function invalidateDependents(mid,key,order,pg){
 /* ================================================================
    PANNELLO PG
 ================================================================ */
+function statResetOrder(mid,key){
+  var map={
+    m1:{acume:1,percezione:1,sapOff:1,sapDif:1,destrezza:2,fatica:3,empatia:3,sapMagiz:3,lvAmicoCreature:3},
+    m2:{acume:1,percezione:1,sapOff:1,sapDif:1,destrezza:2,resistenza:2,potenza:3},
+    m3:{destrezza:2,acume:2},
+    m4:{volonta:1,dialettica:1,sapMen:1,sapTras:1,puntiSinistri:2,destrezza:3},
+    m5:{percezione:1,acume:1,sapArc:1,sapDiv:1,destrezza:1,sapDif:2,resistenza:2,volonta:2,lvPersuasore:2,dialettica:2,sapMen:2,sapOff:2}
+  };
+  return map[mid] && map[mid][key] ? map[mid][key] : 1;
+}
 function buildPGPanel(mission){
   pgCount[mission.id]=1;
   var panel=el('div',{class:'pgpanel',id:'pgpanel-'+mission.id});
@@ -1349,7 +727,7 @@ function buildPGPanel(mission){
     resetAllProgress(mission.id);
   });
   actions.appendChild(add); actions.appendChild(rem); panel.appendChild(actions);
-  panel.appendChild(el('div',{class:'hint'},['Puoi svolgere la Ricerca anche con un solo PG. Se aggiungi o rimuovi partecipanti dopo aver effettuato dei tiri, gli esiti della missione vengono azzerati.']));
+  panel.appendChild(el('div',{class:'hint'},['Puoi svolgere la Ricerca anche con un solo PG. I Parametri devono essere interi e non negativi; un campo vuoto è considerato mancante, mentre 0 è valido se inserito esplicitamente. Se aggiungi o rimuovi partecipanti dopo aver effettuato dei tiri, gli esiti della missione vengono azzerati.']));
   addPGRow(mission,0);
   return panel;
 }
@@ -1358,11 +736,11 @@ function addPGRow(mission,idx){
   var name=document.createElement('input'); name.type='text'; name.id=mission.id+'-pg'+idx+'-name'; name.value='PG '+(idx+1);
   row.appendChild(makeField('Nome PG',name));
   mission.statKeys.forEach(function(k){
-    var i=document.createElement('input'); i.type='number'; i.step='1'; i.id=mission.id+'-pg'+idx+'-'+k; i.value='10';
+    var i=document.createElement('input'); i.type='number'; i.step='1'; i.min='0'; i.id=mission.id+'-pg'+idx+'-'+k; i.value=''; i.placeholder='Inserisci valore';
     row.appendChild(makeField(STAT_LABELS[k],i));
-    i.addEventListener('change',function(){ resetAllProgress(mission.id); });
+    i.addEventListener('change',function(){ resetFrom(mission.id,statResetOrder(mission.id,k)); });
   });
-  name.addEventListener('change',function(){ syncPGNameLabels(mission.id,idx); resetAllProgress(mission.id); });
+  name.addEventListener('change',function(){ syncPGNameLabels(mission.id,idx); });
   pgListEls[mission.id].appendChild(row);
 }
 function syncPGNameLabels(mid,idx){
@@ -1378,7 +756,7 @@ function syncPGNameLabels(mid,idx){
 }
 function getPGStats(mid,idx){
   var m=missionById(mid), s={};
-  for(var i=0;i<m.statKeys.length;i++) s[m.statKeys[i]]=num(mid+'-pg'+idx+'-'+m.statKeys[i]);
+  for(var i=0;i<m.statKeys.length;i++) s[m.statKeys[i]]=statNumber(mid+'-pg'+idx+'-'+m.statKeys[i]);
   s.name=txt(mid+'-pg'+idx+'-name') || ('PG '+(idx+1));
   return s;
 }
@@ -1419,10 +797,10 @@ function buildRollRow(mission,pgIndex,opts){
   row.appendChild(el('div',{class:'pgname'},[(getPGStats(mission.id,pgIndex)).name]));
   var ctrls=el('div',{class:'ctrls'});
   var modeSel=null, kSel=null, pSel=null, oggInput=null;
-  var fieldControls={};
+  var fieldControls={}, fieldSpecs={};
 
   if(opts.modes){
-    modeSel=makeSelect(uid+'-mode',opts.modes);
+    modeSel=makeSelect(uid+'-mode',opts.modes,opts.modePlaceholder||'— Seleziona —');
     ctrls.appendChild(makeField(opts.modeLabel||'Approccio',modeSel));
   }
   if(opts.knowledge){
@@ -1434,15 +812,15 @@ function buildRollRow(mission,pgIndex,opts){
     ctrls.appendChild(makeField(opts.potionLabel||'Pozione',pSel));
   }
   if(opts.needsOggetti!==false){
-    oggInput=document.createElement('input'); oggInput.type='number'; oggInput.step='1'; oggInput.id=uid+'-ogg'; oggInput.value='0';
+    oggInput=document.createElement('input'); oggInput.type='number'; oggInput.step='1'; oggInput.min='0'; oggInput.id=uid+'-ogg'; oggInput.value='0';
     ctrls.appendChild(makeField('Bonus Oggetti',oggInput));
   }
   if(opts.fields){
     for(var f=0;f<opts.fields.length;f++){
       var spec=opts.fields[f], c;
-      if(spec.type==='select') c=makeSelect(uid+'-'+spec.key,spec.options);
+      if(spec.type==='select') c=makeSelect(uid+'-'+spec.key,spec.options,spec.placeholder);
       else { c=document.createElement('input'); c.type=spec.type||'number'; c.step=spec.step||'1'; c.value=spec.value!==undefined?spec.value:''; c.id=uid+'-'+spec.key; if(spec.min!==undefined)c.min=spec.min; if(spec.max!==undefined)c.max=spec.max; }
-      fieldControls[spec.key]=c;
+      fieldControls[spec.key]=c; fieldSpecs[spec.key]=spec;
       ctrls.appendChild(makeField(spec.label,c));
     }
   }
@@ -1475,7 +853,7 @@ function buildRollRow(mission,pgIndex,opts){
     };
     for(var key in fieldControls){
       var control=fieldControls[key];
-      ctx.fields[key]=control.type==='number'?Number(control.value):control.value;
+      ctx.fields[key]=control.type==='number'?(String(control.value).trim()===''?null:Number(control.value)):control.value;
     }
     return ctx;
   }
@@ -1507,6 +885,35 @@ function buildRollRow(mission,pgIndex,opts){
     invalidateDependents(mission.id,opts.key,opts.order,pgIndex);
     evaluateMission(mission.id);
     var ctx=context();
+    if(modeSel && !ctx.mode){
+      out.className='out show'; formula.innerHTML='<b>Seleziona prima '+(opts.modeLabel||'l’approccio')+'.</b>'; diceInput.value=''; badge.className='badge invalid'; badge.textContent='SCELTA MANCANTE'; return;
+    }
+    var stats=getPGStats(mission.id,pgIndex);
+    var req=(typeof opts.requiredStats==='function')?opts.requiredStats(ctx):(opts.requiredStats||[]);
+    var missingStats=[], invalidStats=[];
+    for(var rs=0;rs<req.length;rs++){
+      var rv=stats[req[rs]];
+      if(rv===null) missingStats.push(STAT_LABELS[req[rs]]||req[rs]);
+      else if(!validStat(rv)) invalidStats.push(STAT_LABELS[req[rs]]||req[rs]);
+    }
+    if(missingStats.length || invalidStats.length){
+      var msgs=[];
+      if(missingStats.length) msgs.push('Mancano: '+missingStats.join(', '));
+      if(invalidStats.length) msgs.push('Devono essere interi e non negativi: '+invalidStats.join(', '));
+      out.className='out show'; formula.innerHTML='<b>Completa i Parametri richiesti.</b> '+msgs.join('. ')+'. Lo 0 è valido solo se inserito esplicitamente.'; diceInput.value=''; badge.className='badge invalid'; badge.textContent='DATI DA CORREGGERE'; return;
+    }
+    if(oggInput){
+      var ov=String(oggInput.value).trim()===''?0:Number(oggInput.value);
+      if(!isFinite(ov) || Math.floor(ov)!==ov || ov<0){out.className='out show'; formula.innerHTML='<b>Bonus Oggetti non valido.</b> Inserisci un intero non negativo.'; badge.className='badge invalid'; badge.textContent='DATI DA CORREGGERE'; return;}
+    }
+    for(var fk in fieldControls){
+      var fspec=fieldSpecs[fk]||{}, fv=ctx.fields[fk];
+      if(fspec.type==='select' && fspec.requiredChoice && !fv){out.className='out show'; formula.innerHTML='<b>Completa la scelta: '+fspec.label+'.</b>'; badge.className='badge invalid'; badge.textContent='SCELTA MANCANTE'; return;}
+      if((fspec.type||'number')==='number' && fspec.requiredValue && fv===null){out.className='out show'; formula.innerHTML='<b>Completa il campo: '+fspec.label+'.</b>'; badge.className='badge invalid'; badge.textContent='DATO MANCANTE'; return;}
+      if((fspec.type||'number')==='number' && fv!==null){
+        if(!isFinite(fv) || Math.floor(fv)!==fv || (fspec.min!==undefined && fv<Number(fspec.min)) || (fspec.max!==undefined && fv>Number(fspec.max))){out.className='out show'; formula.innerHTML='<b>'+fspec.label+' non valido.</b> Inserisci un numero intero'+(fspec.min!==undefined?' ≥ '+fspec.min:'')+(fspec.max!==undefined?' e ≤ '+fspec.max:'')+'.'; badge.className='badge invalid'; badge.textContent='DATI DA CORREGGERE'; return;}
+      }
+    }
     if(opts.skipMode && ctx.mode===opts.skipMode){
       current={skip:true,ctx:ctx};
       formula.innerHTML='<b>Nessun tiro:</b> il PG rinuncia al tentativo facoltativo.';
@@ -1519,7 +926,7 @@ function buildRollRow(mission,pgIndex,opts){
       return;
     }
     if(opts.preCompute){
-      var pre=opts.preCompute(getPGStats(mission.id,pgIndex),ctx,pgIndex);
+      var pre=opts.preCompute(stats,ctx,pgIndex);
       if(pre && pre.error){
         out.className='out show'; formula.innerHTML='<b>'+pre.error+'</b>'; diceInput.value='';
         badge.className='badge invalid'; badge.textContent='DATI DA CORREGGERE';
@@ -1532,7 +939,7 @@ function buildRollRow(mission,pgIndex,opts){
         setResult(mission.id,opts.key,pgIndex,'auto-bad',{ctx:ctx}); evaluateMission(mission.id); return;
       }
     }
-    var calc=opts.computeFn(getPGStats(mission.id,pgIndex),ctx,pgIndex);
+    var calc=opts.computeFn(stats,ctx,pgIndex);
     if(calc && calc.error){
       out.className='out show'; formula.innerHTML='<b>'+calc.error+'</b>'; badge.className='badge invalid'; badge.textContent='DATI DA CORREGGERE'; return;
     }
@@ -1630,7 +1037,28 @@ function simpleDice(faces,label,resolver){
 var tabbar=document.getElementById('rm-tabbar');
 var panels=document.getElementById('rm-panels');
 
+var selectedMissionId=null, assignmentMode=null, renouncesLeft=3;
+function updateRenounceUI(){
+  var st=document.getElementById('rm-renounce-status'), rb=document.getElementById('rm-renounce');
+  if(st) st.innerHTML='<b>Rinunce disponibili:</b> '+renouncesLeft;
+  if(rb) rb.disabled=!(selectedMissionId && assignmentMode==='dice' && renouncesLeft>0);
+}
+function setTabAccess(mid){
+  var bs=tabbar.querySelectorAll('.tabbtn');
+  for(var i=0;i<bs.length;i++){
+    var allowed=!!mid && bs[i].id==='tab-'+mid;
+    bs[i].disabled=!allowed;
+    if(!allowed) bs[i].className='tabbtn';
+  }
+}
+function hideAllMissions(){
+  var ps=panels.querySelectorAll('.panel');
+  for(var i=0;i<ps.length;i++) ps[i].className='panel';
+  var bs=tabbar.querySelectorAll('.tabbtn');
+  for(var j=0;j<bs.length;j++) bs[j].className='tabbtn';
+}
 function activateMission(mid){
+  if(selectedMissionId!==mid) return;
   var bs=tabbar.querySelectorAll('.tabbtn'), ps=panels.querySelectorAll('.panel'),i;
   for(i=0;i<bs.length;i++) bs[i].className='tabbtn';
   for(i=0;i<ps.length;i++) ps[i].className='panel';
@@ -1638,37 +1066,81 @@ function activateMission(mid){
   if(btn) btn.className='tabbtn active';
   if(panel) panel.className='panel active';
 }
+function lockAssignmentControls(){
+  var lm=document.getElementById('rm-linked-mode'), ls=document.getElementById('rm-linked-select'), lc=document.getElementById('rm-linked-confirm');
+  if(lm) lm.disabled=!!selectedMissionId;
+  if(ls) ls.disabled=!!selectedMissionId || !lm || lm.value!=='si';
+  if(lc) lc.disabled=!!selectedMissionId || !lm || lm.value!=='si';
+  if(missionDiceResult) missionDiceResult.disabled=!!selectedMissionId || (lm && lm.value==='si');
+  if(missionDiceCopy) missionDiceCopy.disabled=!!selectedMissionId || (lm && lm.value==='si');
+  updateRenounceUI();
+}
+function selectMission(mid,mode){
+  selectedMissionId=mid; assignmentMode=mode;
+  setTabAccess(mid); activateMission(mid); lockAssignmentControls();
+}
+function clearMissionSelection(){
+  if(selectedMissionId) resetAllProgress(selectedMissionId);
+  selectedMissionId=null; assignmentMode=null; hideAllMissions(); setTabAccess(null); lockAssignmentControls();
+}
 
-MISSIONS.forEach(function(m,idx){
-  var tb=el('button',{class:'tabbtn'+(idx===0?' active':''),type:'button',id:'tab-'+m.id},[m.name]);
+MISSIONS.forEach(function(m){
+  var tb=el('button',{class:'tabbtn',type:'button',id:'tab-'+m.id},[m.name]);
+  tb.disabled=true;
   tb.addEventListener(EVT,function(){ activateMission(m.id); });
-  tabbar.appendChild(tb); panels.appendChild(el('div',{class:'panel'+(idx===0?' active':''),id:'panel-'+m.id}));
+  tabbar.appendChild(tb); panels.appendChild(el('div',{class:'panel',id:'panel-'+m.id}));
 });
 
 var missionDiceCopy=document.getElementById('rm-mission-dice-copy');
 var missionDiceResult=document.getElementById('rm-mission-dice-result');
 var missionDiceOutcome=document.getElementById('rm-mission-dice-outcome');
+var linkedMode=document.getElementById('rm-linked-mode');
+var linkedSelect=document.getElementById('rm-linked-select');
+var linkedConfirm=document.getElementById('rm-linked-confirm');
+var renounceBtn=document.getElementById('rm-renounce');
 if(missionDiceCopy){
-  missionDiceCopy.addEventListener(EVT,function(){
-    copyText(document.getElementById('rm-mission-dice-code').value);
-  });
+  missionDiceCopy.addEventListener(EVT,function(){ copyText(document.getElementById('rm-mission-dice-code').value); });
 }
 if(missionDiceResult){
   missionDiceResult.addEventListener('input',function(){
+    if(selectedMissionId) return;
     var v=Number(missionDiceResult.value);
-    if(!missionDiceResult.value){
-      missionDiceOutcome.textContent='Inserisci il risultato del 1d5.';
-      return;
-    }
-    if(!intInRange(v,1,5)){
-      missionDiceOutcome.textContent='Risultato impossibile: inserisci un intero da 1 a 5.';
-      return;
-    }
+    if(!missionDiceResult.value){missionDiceOutcome.textContent='Inserisci il risultato del 1d5.';return;}
+    if(!intInRange(v,1,5)){missionDiceOutcome.textContent='Risultato impossibile: inserisci un intero da 1 a 5.';return;}
     var m=MISSIONS[v-1];
-    missionDiceOutcome.innerHTML='Risultato '+v+': <b>'+m.name+'</b>. La scheda è stata aperta automaticamente.';
-    activateMission(m.id);
+    missionDiceOutcome.innerHTML='Risultato '+v+': <b>'+m.name+'</b>. Missione assegnata e scheda bloccata su questo risultato.';
+    selectMission(m.id,'dice');
   });
 }
+if(linkedMode){
+  linkedMode.addEventListener('change',function(){
+    if(selectedMissionId) return;
+    var linked=linkedMode.value==='si';
+    linkedSelect.disabled=!linked; linkedConfirm.disabled=!linked;
+    missionDiceResult.disabled=linked; missionDiceCopy.disabled=linked;
+    if(linked){missionDiceResult.value='';missionDiceOutcome.textContent='Missione collegata: seleziona la scheda da aprire senza lanciare 1d5.';}
+    else missionDiceOutcome.textContent='Inserisci il risultato del 1d5.';
+  });
+}
+if(linkedConfirm){
+  linkedConfirm.addEventListener(EVT,function(){
+    if(selectedMissionId || !linkedSelect.value) return;
+    var m=missionById(linkedSelect.value); if(!m) return;
+    missionDiceOutcome.innerHTML='<b>Missione collegata:</b> '+m.name+'. Nessun 1d5 richiesto perché la Missione precedente è stata completata con successo.';
+    selectMission(m.id,'linked');
+  });
+}
+if(renounceBtn){
+  renounceBtn.addEventListener(EVT,function(){
+    if(!selectedMissionId || assignmentMode!=='dice' || renouncesLeft<=0) return;
+    renouncesLeft--;
+    clearMissionSelection();
+    missionDiceResult.value='';
+    missionDiceOutcome.innerHTML=renouncesLeft>0?'Rinuncia registrata ONGame. Tira nuovamente 1d5.':'Terza rinuncia registrata. Effettua l’ultimo nuovo 1d5: dopo l’assegnazione non saranno disponibili altre rinunce.';
+    lockAssignmentControls();
+  });
+}
+setTabAccess(null); hideAllMissions(); lockAssignmentControls();
 
 function buildIntro(mission){
   var card=el('div',{class:'introcard'});
@@ -1707,7 +1179,7 @@ function buildM1(mission){
   var a=makeStep('m1','f1','Intercettazione');
   a.body.appendChild(el('div',{class:'step-desc'},['La Fase riesce se almeno un PG ha successo. Se tutti falliscono, si effettua un secondo tentativo; un secondo fallimento totale conclude la Missione.']));
   a.body.appendChild(el('div',{class:'formula'},[el('b',{},['Primo tentativo'])]));
-  a.body.appendChild(createRollFactory(mission,{key:'f1a1',order:1,diceFaces:40,diceLabel:'Intercettazione — primo tentativo',knowledge:K_STD,potion:P_STD,
+  a.body.appendChild(createRollFactory(mission,{key:'f1a1',order:1,diceFaces:40,diceLabel:'Intercettazione — primo tentativo',knowledge:K_STD,potion:P_STD,requiredStats:['acume','percezione','sapOff','sapDif'],
     computeFn:function(s,c){
       var p=Math.max(s.acume,s.percezione), sp=floorDiv(Math.max(s.sapOff,s.sapDif),5);
       return {value:p+sp+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[
@@ -1718,7 +1190,7 @@ function buildM1(mission){
     }}));
   var second1=el('div',{id:'m1-f1-second'}); second1.style.display='none';
   second1.appendChild(el('div',{class:'formula'},[el('b',{},['Secondo tentativo'])]));
-  second1.appendChild(createRollFactory(mission,{key:'f1a2',order:1.1,diceFaces:40,diceLabel:'Intercettazione — secondo tentativo',knowledge:K_STD,potion:P_STD,
+  second1.appendChild(createRollFactory(mission,{key:'f1a2',order:1.1,diceFaces:40,diceLabel:'Intercettazione — secondo tentativo',knowledge:K_STD,potion:P_STD,requiredStats:['acume','percezione','sapOff','sapDif'],
     computeFn:function(s,c){
       var p=Math.max(s.acume,s.percezione), sp=floorDiv(Math.max(s.sapOff,s.sapDif),5);
       return {value:p+sp+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:s.acume>=s.percezione?'Acume':'Percezione',val:p},{label:(s.sapOff>=s.sapDif?'Sapienza Offensiva':'Sapienza Difensiva')+' /5',val:sp},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};
@@ -1730,11 +1202,11 @@ function buildM1(mission){
   var b=makeStep('m1','f2','Inseguimento Attivo');
   b.body.appendChild(el('div',{class:'step-desc'},['La Fase riesce se almeno un PG ha successo. In caso di fallimento totale si ripete con -3 possibilità per tutti.']));
   b.body.appendChild(el('div',{class:'formula'},[el('b',{},['Primo tentativo'])]));
-  b.body.appendChild(createRollFactory(mission,{key:'f2a1',order:2,diceFaces:30,diceLabel:'Inseguimento Attivo — primo tentativo',knowledge:K_M1P2,potion:P_M1P2,
+  b.body.appendChild(createRollFactory(mission,{key:'f2a1',order:2,diceFaces:30,diceLabel:'Inseguimento Attivo — primo tentativo',knowledge:K_M1P2,potion:P_M1P2,requiredStats:['destrezza'],
     computeFn:function(s,c){return {value:s.destrezza+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Destrezza',val:s.destrezza},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}}));
   var second2=el('div',{id:'m1-f2-second'}); second2.style.display='none';
   second2.appendChild(el('div',{class:'formula'},[el('b',{},['Secondo tentativo — Malus -3 automatico'])]));
-  second2.appendChild(createRollFactory(mission,{key:'f2a2',order:2.1,diceFaces:30,diceLabel:'Inseguimento Attivo — secondo tentativo',knowledge:K_M1P2,potion:P_M1P2,carryFn:function(){return -3;},
+  second2.appendChild(createRollFactory(mission,{key:'f2a2',order:2.1,diceFaces:30,diceLabel:'Inseguimento Attivo — secondo tentativo',knowledge:K_M1P2,potion:P_M1P2,requiredStats:['destrezza'],carryFn:function(){return -3;},
     computeFn:function(s,c){return {value:s.destrezza+c.carry+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Destrezza',val:s.destrezza},{label:'Malus secondo tentativo',val:c.carry},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}}));
   b.body.appendChild(second2);
   b.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m1-f2'},['La Fase II si sblocca dopo aver superato l’Intercettazione.']));
@@ -1742,9 +1214,9 @@ function buildM1(mission){
 
   var c=makeStep('m1','f3','Blocco o Cattura');
   c.body.appendChild(el('div',{class:'step-desc'},['Ogni PG può intervenire su un bersaglio diverso. Inserisci per ciascuno la Destrezza del bersaglio scelto. Contro un bersaglio umano, indica anche quanta Fatica il PG ha già consumato prima di questo tiro: il sistema la sottrae dalla Fatica inserita nel pannello PG. Basta un successo per completare la Missione.']));
-  c.body.appendChild(createRollFactory(mission,{key:'f3',order:3,diceFaces:30,diceLabel:'Blocco o Cattura',knowledge:K_HI10,potion:P_HI10,
+  c.body.appendChild(createRollFactory(mission,{key:'f3',order:3,diceFaces:30,diceLabel:'Blocco o Cattura',knowledge:K_HI10,potion:P_HI10,requiredStats:function(c){return c.mode==='creatura'?['empatia','sapMagiz','lvAmicoCreature']:['destrezza','fatica'];},
     modes:[['Bersaglio Umano','umano'],['Bersaglio Creatura','creatura']],modeLabel:'Tipo Bersaglio',
-    fields:[{key:'targetDest',label:'Destrezza Bersaglio',type:'number',value:15,min:0},{key:'faticaSpesa',label:'Fatica consumata prima del tiro',type:'number',value:0,min:0}],
+    fields:[{key:'targetDest',label:'Destrezza Bersaglio',type:'number',value:'',min:0,requiredValue:true},{key:'faticaSpesa',label:'Fatica consumata prima del tiro',type:'number',value:0,min:0}],
     onModeChange:function(o){
       var umano=o.modeSel && o.modeSel.value==='umano';
       var fs=o.fields && o.fields.faticaSpesa;
@@ -1884,15 +1356,15 @@ function buildM2(mission){
 
   var a=makeStep('m2','f1','Valutazione e Preparazione');
   a.body.appendChild(el('div',{class:'step-desc'},['Tutti i PG effettuano la prova. Se anche uno fallisce, tutti ricevono -5 nella Fase II.']));
-  a.body.appendChild(createRollFactory(mission,{key:'f1',order:1,diceFaces:40,diceLabel:'Valutazione e Preparazione',knowledge:K_STD,potion:P_STD,
+  a.body.appendChild(createRollFactory(mission,{key:'f1',order:1,diceFaces:40,diceLabel:'Valutazione e Preparazione',knowledge:K_STD,potion:P_STD,requiredStats:['acume','percezione','sapOff','sapDif'],
     computeFn:function(s,c){var p=Math.max(s.acume,s.percezione),sp=floorDiv(Math.max(s.sapOff,s.sapDif),5);return {value:p+sp+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:s.acume>=s.percezione?'Acume':'Percezione',val:p},{label:(s.sapOff>=s.sapDif?'Sapienza Offensiva':'Sapienza Difensiva')+' /5',val:sp},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}}));
   a.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m2-f1'},['Completa i tiri di tutti i PG.'])); steps.appendChild(a.step);
 
   var b=makeStep('m2','f2','Irruzione');
   b.body.appendChild(el('div',{class:'step-desc'},['Ogni PG sceglie se entrare Furtivamente o Sfrontatamente. Il -5 della Fase I, se dovuto, viene applicato automaticamente. Nell’approccio furtivo Conoscenze e Pozioni non forniscono bonus; se viene utilizzato anche un solo incantesimo o una Pozione, il tentativo fallisce automaticamente.']));
-  b.body.appendChild(createRollFactory(mission,{key:'f2',order:2,diceFaces:30,diceLabel:'Irruzione',knowledge:K_STD,potion:P_STD,
+  b.body.appendChild(createRollFactory(mission,{key:'f2',order:2,diceFaces:30,diceLabel:'Irruzione',knowledge:K_STD,potion:P_STD,requiredStats:function(c){return c.mode==='furtiva'?['destrezza']:['resistenza'];},
     modes:[['Furtivamente','furtiva'],['Sfrontatamente','sfrontata']],modeLabel:'Metodo di ingresso',carryFn:function(){return allComplete('m2','f1')?(allSuccess('m2','f1')?0:-5):0;},
-    fields:[{key:'furtivaMagic',label:'Incantesimo o Pozione usati?',type:'select',options:[['No','no'],['Sì','si']]}],
+    fields:[{key:'furtivaMagic',label:'Incantesimo o Pozione usati?',type:'select',options:[['No','no'],['Sì','si']],placeholder:'— Seleziona —',requiredChoice:true}],
     onModeChange:function(o){
       var furt=o.modeSel && o.modeSel.value==='furtiva';
       if(o.kSel){o.kSel.disabled=furt;o.kSel.setAttribute('data-mode-disabled',furt?'1':'0');if(furt)o.kSel.value='0';}
@@ -1902,7 +1374,7 @@ function buildM2(mission){
         if(fm.parentNode) fm.parentNode.style.display=furt?'flex':'none';
         fm.disabled=!furt;
         fm.setAttribute('data-mode-disabled',furt?'0':'1');
-        if(!furt) fm.value='no';
+        if(furt) fm.value=''; else fm.value='no';
       }
     },
     preCompute:function(s,c){
@@ -1917,8 +1389,8 @@ function buildM2(mission){
 
   var c=makeStep('m2','f3','Confronto e Arresto');
   c.body.appendChild(el('div',{class:'step-desc'},['Ogni PG indica il numero del Bersaglio che affronta. Più PG possono affrontare lo stesso Bersaglio; ogni Bersaglio è catturato se almeno uno dei PG assegnati riesce. Tutti i Bersagli devono essere catturati.']));
-  c.body.appendChild(createRollFactory(mission,{key:'f3',order:3,diceFaces:40,diceLabel:'Confronto e Arresto',knowledge:K_HI10,potion:P_HI10,
-    fields:[{key:'target',label:'Bersaglio n°',type:'number',value:1,min:1}],
+  c.body.appendChild(createRollFactory(mission,{key:'f3',order:3,diceFaces:40,diceLabel:'Confronto e Arresto',knowledge:K_HI10,potion:P_HI10,requiredStats:['sapOff','sapDif','potenza'],
+    fields:[{key:'target',label:'Bersaglio n°',type:'number',value:'',min:1,requiredValue:true}],
     carryFn:function(){
       if(!allComplete('m2','f2')) return 0;
       if(!allSuccess('m2','f2')) return -5;
@@ -1978,6 +1450,7 @@ function m3CurrentScortato(){
 }
 function updateM3ScortatoSummary(){
   if(!m3ScortatoSummary) return;
+  if(!state.m3.scType){m3ScortatoSummary.innerHTML='Seleziona prima se lo Scortato è una Persona/Gruppo oppure un Oggetto.';return;}
   if(!Number.isFinite(state.m3.initial)){
     m3ScortatoSummary.innerHTML='Determina prima il valore iniziale dello Scortato.'; return;
   }
@@ -2091,7 +1564,7 @@ function recomputeM3TransportEffects(){
   updateM3ScortatoSummary();
 }
 function m3TransportComplete(){
-  if(!state.m3.transport || !Number.isFinite(state.m3.initial)) return false;
+  if(!state.m3.scType || !state.m3.transport || !Number.isFinite(state.m3.initial)) return false;
   if(state.m3.transport!=='scopa' && !state.m3.mainOutcome) return false;
   if(!state.m3.events.length) return false;
   for(var i=0;i<state.m3.events.length;i++) if(!m3EventEffect(state.m3.events[i]).complete) return false;
@@ -2175,13 +1648,13 @@ function applyM3Imprevisto(v){
 function buildM3(mission){
   var panel=document.getElementById('panel-'+mission.id); panel.appendChild(buildIntro(mission));
   var sc=el('div',{class:'introcard'}); sc.appendChild(el('h2',{},['Passo 1 — chi o cosa scortiamo?']));
-  var type=makeSelect('m3-sc-type',[['Persona / Gruppo','persona'],['Oggetto','oggetto']]); type.value='oggetto';
+  var type=makeSelect('m3-sc-type',[['Persona / Gruppo','persona'],['Oggetto','oggetto']],'— Seleziona il tipo —');
   sc.appendChild(el('div',{class:'ctrls'},[makeField('Tipo Scortato',type)]));
   sc.appendChild(el('div',{class:'notebox'},['Persona / Gruppo utilizza la Salute come Parametro di riferimento; Oggetto utilizza la Resistenza.']));
-  type.addEventListener('change',function(){state.m3.scType=type.value;resetM3TransportState();updateM3ScortatoSummary();});
+  type.addEventListener('change',function(){state.m3.scType=type.value||null;inp.disabled=!state.m3.scType;if(!state.m3.scType){state.m3.initial=null;inp.value='';msg.textContent='';}resetM3TransportState();updateM3ScortatoSummary();evaluateM3();});
   var die=el('div',{class:'subroll'}), dl=el('div',{class:'diceline'}), code=document.createElement('input'); code.type='text';code.readOnly=true;code.className='dicecode';code.value='[dice=1d8]Valore iniziale Scortato (10+1d8) - Scorta[/dice]';
   var cp=el('button',{class:'btn small',type:'button'},['Copia']);cp.addEventListener(EVT,function(){copyText(code.value);});dl.appendChild(code);dl.appendChild(cp);die.appendChild(dl);
-  var rl=el('div',{class:'resline'}), inp=document.createElement('input');inp.type='number';inp.step='1';inp.min='1';inp.max='8';inp.placeholder='1d8';var msg=el('span',{class:'formula'});rl.appendChild(inp);rl.appendChild(msg);die.appendChild(rl);sc.appendChild(die);
+  var rl=el('div',{class:'resline'}), inp=document.createElement('input');inp.type='number';inp.step='1';inp.min='1';inp.max='8';inp.placeholder='1d8';inp.disabled=true;var msg=el('span',{class:'formula'});rl.appendChild(inp);rl.appendChild(msg);die.appendChild(rl);sc.appendChild(die);
   m3ScortatoSummary=el('div',{class:'notebox'});sc.appendChild(m3ScortatoSummary);panel.appendChild(sc);
   inp.addEventListener('change',function(){var v=Number(inp.value);if(!intInRange(v,1,8)){
     state.m3.initial=null; resetM3TransportState(); msg.textContent='Risultato impossibile: 1-8.'; updateM3ScortatoSummary(); evaluateM3(); return;
@@ -2192,7 +1665,7 @@ function buildM3(mission){
 
   var a=makeStep('m3','f1','Inizio del viaggio — scelta del mezzo');
   a.body.appendChild(el('div',{class:'step-desc'},['Tutti i PG usano lo stesso mezzo. Carrozza, Passaporta e Smaterializzazione richiedono un unico 1d30 per il gruppo; la Scopa non richiede il tiro principale e prevede 3 post per ogni PG. I controlli 1d5 vengono generati in base al mezzo e al numero dei PG. In questa Missione non si applicano i bonus, i malus e i parametri ordinari dei Mezzi di Trasporto: i mezzi sono concessi di base dal Ministero e si applica soltanto quanto indicato in questa guida.']));
-  var mezzo=makeSelect('m3-mezzo',[['Carrozza Volante — 1-25 su 1d30, 2 post/PG','carrozza'],['Passaporta — 1-20 su 1d30','passaporta'],['Smaterializzazione — 1-20 su 1d30','smaterializzazione'],['Scopa Volante — nessun 1d30, 3 post/PG','scopa']]);
+  var mezzo=makeSelect('m3-mezzo',[['Carrozza Volante — 1-25 su 1d30, 2 post/PG','carrozza'],['Passaporta — 1-20 su 1d30','passaporta'],['Smaterializzazione — 1-20 su 1d30','smaterializzazione'],['Scopa Volante — nessun 1d30, 3 post/PG','scopa']],'— Seleziona il mezzo —');
   a.body.appendChild(el('div',{class:'ctrls'},[makeField('Mezzo scelto',mezzo)]));
   var main=el('div',{class:'subroll',id:'m3-main-roll'}), mdl=el('div',{class:'diceline'}), mcode=document.createElement('input');mcode.type='text';mcode.readOnly=true;mcode.className='dicecode';
   var mcp=el('button',{class:'btn small',type:'button'},['Copia']);mcp.addEventListener(EVT,function(){copyText(mcode.value);});mdl.appendChild(mcode);mdl.appendChild(mcp);main.appendChild(mdl);
@@ -2201,7 +1674,8 @@ function buildM3(mission){
   m3TransportChecks=el('div',{id:'m3-transport-checks'});a.body.appendChild(m3TransportChecks);
 
   function configureMezzo(){
-    state.m3.transport=mezzo.value; state.m3.events=[]; state.m3.destPenalty=0; state.m3.healthPenalty=0; state.m3.damage=0; state.m3.mainOutcome=null; minp.value=''; mb.className='badge';mb.textContent='';resetFrom('m3',2);clearM3ImprevistoView();
+    state.m3.transport=mezzo.value||null; state.m3.events=[]; state.m3.destPenalty=0; state.m3.healthPenalty=0; state.m3.damage=0; state.m3.mainOutcome=null; minp.value=''; mb.className='badge';mb.textContent='';resetFrom('m3',2);clearM3ImprevistoView();
+    if(!state.m3.transport){main.style.display='none';mcode.value='';m3TransportChecks.innerHTML='';setOutcome('m3-transport-outcome','Scegli prima il mezzo di trasporto.','');updateM3ScortatoSummary();evaluateM3();return;}
     if(mezzo.value==='scopa'){
       main.style.display='none';state.m3.mainOutcome='success';mcode.value='(Scopa Volante: nessun tiro principale)';initM3Events();renderM3TransportChecks();
     } else {
@@ -2211,7 +1685,7 @@ function buildM3(mission){
   }
   mezzo.addEventListener('change',configureMezzo);
   minp.addEventListener('change',function(){
-    state.m3.transport=mezzo.value;var v=Number(minp.value);if(!intInRange(v,1,30)){
+    state.m3.transport=mezzo.value||null;if(!state.m3.transport){mb.className='badge invalid';mb.textContent='SCEGLI IL MEZZO';return;}var v=Number(minp.value);if(!intInRange(v,1,30)){
       state.m3.mainOutcome=null; state.m3.events=[]; state.m3.destPenalty=0; state.m3.healthPenalty=0; state.m3.damage=0; resetFrom('m3',2);
       if(m3TransportChecks) m3TransportChecks.innerHTML=''; updateM3ScortatoSummary();
       mb.className='badge invalid';mb.textContent='RISULTATO IMPOSSIBILE: 1-30';
@@ -2224,7 +1698,7 @@ function buildM3(mission){
 
   var b=makeStep('m3','f2','Tratto intermedio e coordinamento');
   b.body.appendChild(el('div',{class:'step-desc'},['Il tratto intermedio richiede almeno 1 post a testa. Ogni PG lancia 1d40 su Destrezza attuale + Acume. I malus Destrezza del mezzo sono applicati automaticamente. Se anche un PG fallisce, si determina un unico Imprevisto 1d5.']));
-  b.body.appendChild(createRollFactory(mission,{key:'f2',order:2,diceFaces:40,diceLabel:'Tratto intermedio',needsOggetti:false,
+  b.body.appendChild(createRollFactory(mission,{key:'f2',order:2,diceFaces:40,diceLabel:'Tratto intermedio',needsOggetti:false,requiredStats:['destrezza','acume'],
     computeFn:function(s){var d=s.destrezza-state.m3.destPenalty;return {value:d+s.acume,parts:[{label:'Destrezza attuale',val:d},{label:'Acume',val:s.acume}]};}}));
   b.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m3-f2'},['La Fase II si sblocca dopo aver risolto il viaggio e tutti i controlli del mezzo.']));
   m3ImprevistoWrap=el('div',{class:'subroll',id:'m3-imprevisto'});m3ImprevistoWrap.style.display='none';m3ImprevistoWrap.appendChild(el('h4',{},['Imprevisto lungo il percorso']));
@@ -2238,7 +1712,7 @@ function buildM3(mission){
 
   var c=makeStep('m3','f3','Consegna e Conclusione');
   c.body.appendChild(el('div',{class:'step-desc'},['Ogni PG lancia 1d50 su Destrezza attuale + Acume. Il sistema applica una sola volta i malus ai Parametri e l’eventuale -5 dell’Imprevisto 3. Tutti i PG devono avere successo.']));
-  c.body.appendChild(createRollFactory(mission,{key:'f3',order:3,diceFaces:50,diceLabel:'Consegna e Conclusione',needsOggetti:false,
+  c.body.appendChild(createRollFactory(mission,{key:'f3',order:3,diceFaces:50,diceLabel:'Consegna e Conclusione',needsOggetti:false,requiredStats:['destrezza','acume'],
     computeFn:function(s){var d=s.destrezza-state.m3.destPenalty-state.m3.imprevistoDestPenalty;return {value:d+s.acume+state.m3.phase3Penalty,parts:[{label:'Destrezza attuale',val:d},{label:'Acume',val:s.acume},{label:'Modificatore diretto Fase III',val:state.m3.phase3Penalty}]};}}));
   c.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m3-f3'},['La Fase III si sblocca dopo aver completato la Fase II e, se necessario, l’Imprevisto.']));
   steps.appendChild(c.step); panel.appendChild(steps); evaluateM3();
@@ -2278,25 +1752,25 @@ function buildM4(mission){
 
   var a=makeStep('m4','f1','Ingresso e Creazione della Copertura');
   a.body.appendChild(el('div',{class:'step-desc'},['Ogni PG costruisce la propria copertura. Transmuto e Polisucco sono selezionati separatamente e, se entrambi appropriati, i bonus si sommano. ONGame il loro uso avviene continuativamente nel tempo, anche se ai fini di questa prova se ne valuta un solo utilizzo.']));
-  a.body.appendChild(createRollFactory(mission,{key:'f1',order:1,diceFaces:50,diceLabel:'Creazione della Copertura',knowledge:K_TRANSMUTO,potion:P_POLISUCCO,knowledgeLabel:'Transmuto',potionLabel:'Polisucco',
+  a.body.appendChild(createRollFactory(mission,{key:'f1',order:1,diceFaces:50,diceLabel:'Creazione della Copertura',knowledge:K_TRANSMUTO,potion:P_POLISUCCO,knowledgeLabel:'Transmuto',potionLabel:'Polisucco',requiredStats:['volonta','dialettica','sapMen','sapTras'],
     computeFn:function(s,c){var sp=floorDiv(Math.max(s.sapMen,s.sapTras),5);return {value:s.volonta+s.dialettica+sp+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Volontà',val:s.volonta},{label:'Dialettica',val:s.dialettica},{label:(s.sapMen>=s.sapTras?'Sapienza Mentale':'Sapienza Trasfigurativa')+' /5',val:sp},{label:'Bonus Oggetti',val:c.oggetti},{label:'Transmuto',val:c.knowledgeBonus},{label:'Polisucco',val:c.potionBonus}]};}}));
   a.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m4-f1'},['Completa la Fase I per ogni PG. Gli esiti individuali determinano automaticamente +5 o -5 nella Fase II.']));steps.appendChild(a.step);
 
   var b=makeStep('m4','f2','Permanenza e Integrazione');
   b.body.appendChild(el('div',{class:'step-desc'},['Ogni PG riceve automaticamente +5 o -5 in base al proprio esito della Fase I.']));
-  b.body.appendChild(createRollFactory(mission,{key:'f2',order:2,diceFaces:40,diceLabel:'Permanenza e Integrazione',knowledge:K_STD,potion:P_STD,carryFn:function(pg){var r=getResult('m4','f1',pg);return r&&(r.status==='ok'||r.status==='auto-ok')?5:-5;},
+  b.body.appendChild(createRollFactory(mission,{key:'f2',order:2,diceFaces:40,diceLabel:'Permanenza e Integrazione',knowledge:K_STD,potion:P_STD,requiredStats:['volonta','puntiSinistri','sapMen','dialettica'],carryFn:function(pg){var r=getResult('m4','f1',pg);return r&&(r.status==='ok'||r.status==='auto-ok')?5:-5;},
     computeFn:function(s,c){var sm=floorDiv(s.sapMen,2);return {value:s.volonta+s.puntiSinistri+sm+s.dialettica+c.carry+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Volontà',val:s.volonta},{label:'Punti Sinistri',val:s.puntiSinistri},{label:'Sapienza Mentale /2',val:sm},{label:'Dialettica',val:s.dialettica},{label:'Bonus/Malus Fase I',val:c.carry},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}}));
   b.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m4-f2'},['La Fase II si sblocca quando tutti i PG hanno concluso la Fase I.']));steps.appendChild(b.step);
 
   var c=makeStep('m4','f3','Raccolta e Uscita');
   c.body.appendChild(el('div',{class:'step-desc'},['Per ogni PG, prima scegli se tentare facoltativamente di rubare le prove. Chi fallisce il furto viene scoperto e non può effettuare la successiva Raccolta di Informazioni.']));
   c.body.appendChild(el('div',{class:'formula'},[el('b',{},['3a. Rubare le Prove — facoltativo'])]));
-  c.body.appendChild(createRollFactory(mission,{key:'f3a',order:3,diceFaces:30,diceLabel:'Rubare le Prove',knowledge:K_STD,potion:P_STD,modes:[['Non tenta','skip'],['Tenta di rubare','try']],modeLabel:'Scelta',skipMode:'skip',
+  c.body.appendChild(createRollFactory(mission,{key:'f3a',order:3,diceFaces:30,diceLabel:'Rubare le Prove',knowledge:K_STD,potion:P_STD,requiredStats:function(c){return c.mode==='try'?['destrezza']:[];},modes:[['Non tenta','skip'],['Tenta di rubare','try']],modeLabel:'Scelta',skipMode:'skip',
     onModeChange:function(o){var skip=o.modeSel&&o.modeSel.value==='skip';if(o.kSel){o.kSel.disabled=skip;o.kSel.setAttribute('data-mode-disabled',skip?'1':'0');if(skip)o.kSel.value='0';}if(o.pSel){o.pSel.disabled=skip;o.pSel.setAttribute('data-mode-disabled',skip?'1':'0');if(skip)o.pSel.value='0';}},
     computeFn:function(s,c){return {value:s.destrezza+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Destrezza',val:s.destrezza},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}}));
   c.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m4-f3a'},['Conferma per ogni PG se tenta o meno il furto delle prove.']));
   c.body.appendChild(el('div',{class:'formula'},[el('b',{},['3b. Raccolta di Informazioni'])]));
-  c.body.appendChild(createRollFactory(mission,{key:'f3b',order:3.2,diceFaces:40,diceLabel:'Raccolta di Informazioni',knowledge:K_STD,potion:P_STD,
+  c.body.appendChild(createRollFactory(mission,{key:'f3b',order:3.2,diceFaces:40,diceLabel:'Raccolta di Informazioni',knowledge:K_STD,potion:P_STD,requiredStats:['puntiSinistri','volonta','sapMen'],
     carryFn:function(pg){var f2=getResult('m4','f2',pg),f3a=getResult('m4','f3a',pg),v=0;if(f2)v+=(f2.status==='ok'||f2.status==='auto-ok')?3:-3;if(f3a&&(f3a.status==='ok'||f3a.status==='auto-ok'))v+=10;return v;},
     preCompute:function(s,c,pg){var r=getResult('m4','f3a',pg);if(r&&r.status==='bad')return {error:'Questo PG è stato scoperto mentre rubava le prove e non può effettuare la Raccolta di Informazioni.'};if(r&&r.status==='auto-bad')return {error:'Questo PG è stato scoperto mentre rubava le prove e non può effettuare la Raccolta di Informazioni.'};return null;},
     computeFn:function(s,c){var sm=floorDiv(s.sapMen,5);return {value:s.puntiSinistri+s.volonta+sm+c.carry+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Punti Sinistri',val:s.puntiSinistri},{label:'Volontà',val:s.volonta},{label:'Sapienza Mentale /5',val:sm},{label:'Bonus/Malus Fase II + Prove',val:c.carry},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}}));
@@ -2354,13 +1828,13 @@ function buildM5(mission){
   var panel=document.getElementById('panel-'+mission.id);panel.appendChild(buildIntro(mission));panel.appendChild(buildPGPanel(mission));var steps=el('div',{class:'stepwrap'});
   var a=makeStep('m5','f1','Valutazione Rapida');
   a.body.appendChild(el('div',{class:'step-desc'},['Basta un successo per ottenere +5 nella Fase II. Solo se tutti falliscono, tutti ricevono -3 Destrezza e -3 Resistenza fino alla fine della Missione.']));
-  a.body.appendChild(createRollFactory(mission,{key:'f1',order:1,diceFaces:40,diceLabel:'Valutazione Rapida',knowledge:K_STD,potion:P_STD,
+  a.body.appendChild(createRollFactory(mission,{key:'f1',order:1,diceFaces:40,diceLabel:'Valutazione Rapida',knowledge:K_STD,potion:P_STD,requiredStats:['percezione','acume','sapArc','sapDiv','destrezza'],
     computeFn:function(s,c){var p=Math.max(s.percezione,s.acume),sa=floorDiv(Math.max(s.sapArc,s.sapDiv),5),d=floorDiv(s.destrezza,2);return {value:p+sa+d+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:s.percezione>=s.acume?'Percezione':'Acume',val:p},{label:(s.sapArc>=s.sapDiv?'Sapienza Arcaica':'Sapienza Divinatoria')+' /5',val:sa},{label:'Destrezza /2',val:d},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}}));
   a.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m5-f1'},['Inserisci gli esiti della Fase I.']));steps.appendChild(a.step);
 
   var b=makeStep('m5','f2','Contenimento');
   b.body.appendChild(el('div',{class:'step-desc'},['Ogni PG sceglie il proprio approccio. L’eventuale +5 della Fase I e gli eventuali -3 ai Parametri vengono applicati automaticamente. Tutti devono avere successo per evitare che la Missione risulti compromessa.']));
-  b.body.appendChild(createRollFactory(mission,{key:'f2',order:2,diceFaces:40,diceLabel:'Contenimento',knowledge:K_STD,potion:P_STD,modes:[['Barriere / Difese','difese'],['Approccio Diplomatico','diplomazia'],['Intervento con la Forza','forza']],modeLabel:'Approccio',carryFn:function(){return m5F1Success()?5:0;},
+  b.body.appendChild(createRollFactory(mission,{key:'f2',order:2,diceFaces:40,diceLabel:'Contenimento',knowledge:K_STD,potion:P_STD,requiredStats:function(c){if(c.mode==='difese')return ['sapDif','resistenza'];if(c.mode==='diplomazia')return ['volonta','lvPersuasore','dialettica','sapMen'];return ['sapOff','destrezza'];},modes:[['Barriere / Difese','difese'],['Approccio Diplomatico','diplomazia'],['Intervento con la Forza','forza']],modeLabel:'Approccio',carryFn:function(){return m5F1Success()?5:0;},
     computeFn:function(s,c){
       if(c.mode==='difese'){var sd=floorDiv(s.sapDif,2),r=m5Adjusted(s,'resistenza');return {value:sd+r+c.carry+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Sapienza Difensiva /2',val:sd},{label:'Resistenza attuale',val:r},{label:'Bonus Fase I',val:c.carry},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}
       if(c.mode==='diplomazia'){var sm=floorDiv(s.sapMen,5);return {value:s.volonta+s.lvPersuasore+s.dialettica+sm+c.carry+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Volontà',val:s.volonta},{label:'Lv Persuasore',val:s.lvPersuasore},{label:'Dialettica',val:s.dialettica},{label:'Sapienza Mentale /5',val:sm},{label:'Bonus Fase I',val:c.carry},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}
@@ -2370,7 +1844,7 @@ function buildM5(mission){
 
   var c=makeStep('m5','f3','Risoluzione e Arresti');
   c.body.appendChild(el('div',{class:'step-desc'},['Basta un successo per completare la Missione. Se la Fase II è fallita, il successo finale resta compromesso e assegna soltanto 1 Prestigio.']));
-  c.body.appendChild(createRollFactory(mission,{key:'f3',order:3,diceFaces:50,diceLabel:'Risoluzione e Arresti',knowledge:K_STD,potion:P_STD,
+  c.body.appendChild(createRollFactory(mission,{key:'f3',order:3,diceFaces:50,diceLabel:'Risoluzione e Arresti',knowledge:K_STD,potion:P_STD,requiredStats:['sapOff','sapDif','destrezza','acume'],
     computeFn:function(s,x){var sp=floorDiv(Math.max(s.sapOff,s.sapDif),5),d=m5Adjusted(s,'destrezza');return {value:sp+d+s.acume+x.oggetti+x.knowledgeBonus+x.potionBonus,parts:[{label:(s.sapOff>=s.sapDif?'Sapienza Offensiva':'Sapienza Difensiva')+' /5',val:sp},{label:'Destrezza attuale',val:d},{label:'Acume',val:s.acume},{label:'Bonus Oggetti',val:x.oggetti},{label:'Conoscenza',val:x.knowledgeBonus},{label:'Pozione',val:x.potionBonus}]};}}));
   c.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m5-f3'},['La Fase III si sblocca dopo aver completato il Contenimento.']));steps.appendChild(c.step);panel.appendChild(steps);
 }
