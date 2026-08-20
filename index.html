@@ -1,4 +1,6 @@
+<!-- Revisione v5: anche la scelta facoltativa Rubare le Prove richiede una decisione esplicita; nessun ramo di gioco viene preselezionato -->
 <div id="rm-missioni" class="foglio" style="width:100% !important;max-width:none !important;margin:0 !important;padding:0 !important;">
+<!-- Revisione funzionale v4: valori PG obbligatori; nessun Bersaglio preassegnato; invalidazione dei valori legati al tipo di Bersaglio/Scortato; formule allineate al regolamento -->
 <style>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css');
 @font-face {
@@ -1401,7 +1403,7 @@ function addPGRow(mission,idx){
   var name=document.createElement('input'); name.type='text'; name.id=mission.id+'-pg'+idx+'-name'; name.value='PG '+(idx+1);
   row.appendChild(makeField('Nome PG',name));
   mission.statKeys.forEach(function(k){
-    var i=document.createElement('input'); i.type='number'; i.step='1'; i.id=mission.id+'-pg'+idx+'-'+k; i.value='10';
+    var i=document.createElement('input'); i.type='number'; i.step='1'; i.min='0'; i.id=mission.id+'-pg'+idx+'-'+k; i.value=''; i.placeholder='Inserisci';
     row.appendChild(makeField(STAT_LABELS[k],i));
     i.addEventListener('change',function(){ resetAllProgress(mission.id); });
   });
@@ -1424,6 +1426,20 @@ function getPGStats(mid,idx){
   for(var i=0;i<m.statKeys.length;i++) s[m.statKeys[i]]=num(mid+'-pg'+idx+'-'+m.statKeys[i]);
   s.name=txt(mid+'-pg'+idx+'-name') || ('PG '+(idx+1));
   return s;
+}
+
+function pgStatsIssue(mid,idx){
+  var m=missionById(mid), missing=[], invalid=[];
+  for(var i=0;i<m.statKeys.length;i++){
+    var k=m.statKeys[i], e=document.getElementById(mid+'-pg'+idx+'-'+k);
+    var raw=e?String(e.value).trim():'';
+    if(raw===''){ missing.push(STAT_LABELS[k]); continue; }
+    var v=Number(raw);
+    if(!isFinite(v) || Math.floor(v)!==v || v<0) invalid.push(STAT_LABELS[k]);
+  }
+  if(missing.length) return 'Compila prima tutti i valori richiesti del PG. Mancano: '+missing.join(', ')+'. Inserisci 0 quando una Sapienza o un Livello non è posseduto.';
+  if(invalid.length) return 'Correggi questi valori del PG: '+invalid.join(', ')+'. Sono ammessi soltanto numeri interi maggiori o uguali a 0.';
+  return '';
 }
 
 /* ================================================================
@@ -1549,6 +1565,15 @@ function buildRollRow(mission,pgIndex,opts){
     clearView();
     invalidateDependents(mission.id,opts.key,opts.order,pgIndex);
     evaluateMission(mission.id);
+    var statsIssue=pgStatsIssue(mission.id,pgIndex);
+    if(statsIssue){
+      out.className='out show';
+      formula.innerHTML='<b>'+statsIssue+'</b>';
+      diceInput.value='';
+      resultInput.disabled=true; verify.disabled=true;
+      badge.className='badge invalid'; badge.textContent='DATI PG DA COMPLETARE';
+      return;
+    }
     var ctx=context();
     if(opts.skipMode && ctx.mode===opts.skipMode){
       current={skip:true,ctx:ctx};
@@ -1719,7 +1744,7 @@ function buildIntro(mission){
   var rules=el('details',{class:'rules'}); rules.appendChild(el('summary',{},['Regole comuni a questa missione']));
   rules.appendChild(el('div',{},[
     el('p',{},['Gli incantesimi o le Conoscenze utilizzate hanno sempre riuscita al 100%.']),
-    el('p',{},['Si può utilizzare al massimo una Conoscenza e una Pozione per post. Se entrambe sono appropriate, possono essere usate insieme e i bonus si sommano.']),
+    el('p',{},['Si può utilizzare al massimo una Conoscenza e una Pozione per post. Se entrambe sono appropriate, possono essere usate insieme e i bonus si sommano quando la formula della prova prevede un Bonus Conoscenza o Pozione.']),
     el('p',{},['Si possono usare Oggetti o altro dalla Borsa per ottenere i bonus indicati nel Prezzario.']),
     el('p',{},['Quando una formula prevede una divisione, il risultato viene arrotondato per difetto. Se la soglia raggiunge o supera il massimo del dado, la prova è automaticamente riuscita.'])
   ]));
@@ -1784,28 +1809,29 @@ function buildM1(mission){
   steps.appendChild(b.step);
 
   var c=makeStep('m1','f3','Blocco o Cattura');
-  c.body.appendChild(el('div',{class:'step-desc'},['Ogni PG può intervenire su un bersaglio diverso. Inserisci per ciascuno la Destrezza del bersaglio scelto. Contro un bersaglio umano, indica anche quanta Fatica il PG ha già consumato prima di questo tiro: il sistema la sottrae dalla Fatica inserita nel pannello PG. Basta un successo per completare la Missione.']));
+  c.body.appendChild(el('div',{class:'step-desc'},['Ogni PG può intervenire su un bersaglio diverso. Per un Bersaglio umano determina prima la Destrezza con 10 + 1d8 (un tiro separato per ciascun criminale); per una Creatura usa la Destrezza indicata nel relativo specchietto. Riporta poi il valore totale nel campo del PG. Se cambi il tipo di Bersaglio, la Destrezza viene azzerata e va rideterminata. Contro un bersaglio umano la formula usa direttamente Destrezza + Fatica del PG, come indicato dal regolamento. Basta un successo per completare la Missione.']));
+  c.body.appendChild(simpleDice(8,'Destrezza Bersaglio Umano (10+1d8) - Inseguimento',function(v){return 'Destrezza totale del criminale: <b>'+(10+v)+'</b>. Riporta questo valore nel campo “Destrezza Bersaglio” del PG che lo affronta.';}));
   c.body.appendChild(createRollFactory(mission,{key:'f3',order:3,diceFaces:30,diceLabel:'Blocco o Cattura',knowledge:K_HI10,potion:P_HI10,
-    modes:[['Bersaglio Umano','umano'],['Bersaglio Creatura','creatura']],modeLabel:'Tipo Bersaglio',
-    fields:[{key:'targetDest',label:'Destrezza Bersaglio',type:'number',value:15,min:0},{key:'faticaSpesa',label:'Fatica consumata prima del tiro',type:'number',value:0,min:0}],
+    modes:[['— scegli —',''],['Bersaglio Umano','umano'],['Bersaglio Creatura','creatura']],modeLabel:'Tipo Bersaglio',
+    fields:[{key:'targetDest',label:'Destrezza Bersaglio',type:'number',value:'',min:1}],
     onModeChange:function(o){
-      var umano=o.modeSel && o.modeSel.value==='umano';
-      var fs=o.fields && o.fields.faticaSpesa;
-      if(fs && fs.parentNode) fs.parentNode.style.display=umano?'flex':'none';
-      if(fs && !umano) fs.value='0';
+      var td=o.fields && o.fields.targetDest;
+      /* Cambiando tipo di Bersaglio, la Destrezza precedente non è riutilizzabile:
+         per l'Umano deriva da 10+1d8, per la Creatura dallo specchietto. */
+      if(td) td.value='';
+    },
+    preCompute:function(s,x){
+      if(!x.mode) return {error:'Scegli prima se il Bersaglio è Umano oppure una Creatura.'};
+      return null;
     },
     computeFn:function(s,x){
       var d=Number(x.fields.targetDest);
-      if(!isFinite(d) || d<0) return {error:'Inserisci una Destrezza del Bersaglio valida.'};
+      if(!isFinite(d) || d<=0) return {error:'Determina e inserisci una Destrezza del Bersaglio valida prima di generare il tiro.'};
       if(x.mode==='creatura'){
         var sm=floorDiv(s.sapMagiz,5);
         return {value:s.empatia+sm+s.lvAmicoCreature-d+x.oggetti+x.knowledgeBonus+x.potionBonus,parts:[{label:'Empatia',val:s.empatia},{label:'Sapienza Magizoologica /5',val:sm},{label:'Lv Amico delle Creature',val:s.lvAmicoCreature},{label:'Destrezza Bersaglio',val:-d},{label:'Bonus Oggetti',val:x.oggetti},{label:'Conoscenza',val:x.knowledgeBonus},{label:'Pozione',val:x.potionBonus}]};
       }
-      var faticaSpesa=Number(x.fields.faticaSpesa);
-      if(!isFinite(faticaSpesa) || faticaSpesa<0) return {error:'Inserisci una Fatica consumata valida.'};
-      if(faticaSpesa>s.fatica) return {error:'La Fatica consumata non può superare la Fatica indicata nel pannello PG.'};
-      var faticaAttuale=s.fatica-faticaSpesa;
-      return {value:s.destrezza+faticaAttuale-d+x.oggetti+x.knowledgeBonus+x.potionBonus,parts:[{label:'Destrezza',val:s.destrezza},{label:'Fatica attuale',val:faticaAttuale},{label:'Destrezza Bersaglio',val:-d},{label:'Bonus Oggetti',val:x.oggetti},{label:'Conoscenza',val:x.knowledgeBonus},{label:'Pozione',val:x.potionBonus}]};
+      return {value:s.destrezza+s.fatica-d+x.oggetti+x.knowledgeBonus+x.potionBonus,parts:[{label:'Destrezza',val:s.destrezza},{label:'Fatica',val:s.fatica},{label:'Destrezza Bersaglio',val:-d},{label:'Bonus Oggetti',val:x.oggetti},{label:'Conoscenza',val:x.knowledgeBonus},{label:'Pozione',val:x.potionBonus}]};
     }}));
   c.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m1-f3'},['La Fase III si sblocca dopo aver superato l’Inseguimento Attivo.']));
   steps.appendChild(c.step);
@@ -1934,7 +1960,7 @@ function buildM2(mission){
   var b=makeStep('m2','f2','Irruzione');
   b.body.appendChild(el('div',{class:'step-desc'},['Ogni PG sceglie se entrare Furtivamente o Sfrontatamente. Il -5 della Fase I, se dovuto, viene applicato automaticamente. Nell’approccio furtivo Conoscenze e Pozioni non forniscono bonus; se viene utilizzato anche un solo incantesimo o una Pozione, il tentativo fallisce automaticamente.']));
   b.body.appendChild(createRollFactory(mission,{key:'f2',order:2,diceFaces:30,diceLabel:'Irruzione',knowledge:K_STD,potion:P_STD,
-    modes:[['Furtivamente','furtiva'],['Sfrontatamente','sfrontata']],modeLabel:'Metodo di ingresso',carryFn:function(){return allComplete('m2','f1')?(allSuccess('m2','f1')?0:-5):0;},
+    modes:[['— scegli —',''],['Furtivamente','furtiva'],['Sfrontatamente','sfrontata']],modeLabel:'Metodo di ingresso',carryFn:function(){return allComplete('m2','f1')?(allSuccess('m2','f1')?0:-5):0;},
     fields:[{key:'furtivaMagic',label:'Incantesimo o Pozione usati?',type:'select',options:[['No','no'],['Sì','si']]}],
     onModeChange:function(o){
       var furt=o.modeSel && o.modeSel.value==='furtiva';
@@ -1949,6 +1975,7 @@ function buildM2(mission){
       }
     },
     preCompute:function(s,c){
+      if(!c.mode) return {error:'Scegli prima il metodo di ingresso: Furtivamente oppure Sfrontatamente.'};
       if(c.mode==='furtiva' && c.fields.furtivaMagic==='si') return {forceFail:'Irruzione furtiva: l’uso di un incantesimo o di una Pozione provoca fallimento automatico.'};
       return null;
     },
@@ -1959,9 +1986,9 @@ function buildM2(mission){
   b.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m2-f2'},['La Fase II si sblocca dopo la Valutazione.'])); steps.appendChild(b.step);
 
   var c=makeStep('m2','f3','Confronto e Arresto');
-  c.body.appendChild(el('div',{class:'step-desc'},['Ogni PG indica il numero del Bersaglio che affronta. Più PG possono affrontare lo stesso Bersaglio; ogni Bersaglio è catturato se almeno uno dei PG assegnati riesce. Tutti i Bersagli devono essere catturati.']));
+  c.body.appendChild(el('div',{class:'step-desc'},['Ogni PG deve indicare esplicitamente il numero del Bersaglio che affronta: nessun Bersaglio viene preassegnato. Più PG possono affrontare lo stesso Bersaglio; ogni Bersaglio è catturato se almeno uno dei PG assegnati riesce. Tutti i Bersagli devono essere catturati.']));
   c.body.appendChild(createRollFactory(mission,{key:'f3',order:3,diceFaces:40,diceLabel:'Confronto e Arresto',knowledge:K_HI10,potion:P_HI10,
-    fields:[{key:'target',label:'Bersaglio n°',type:'number',value:1,min:1}],
+    fields:[{key:'target',label:'Bersaglio n°',type:'number',value:'',min:1}],
     carryFn:function(){
       if(!allComplete('m2','f2')) return 0;
       if(!allSuccess('m2','f2')) return -5;
@@ -2021,6 +2048,9 @@ function m3CurrentScortato(){
 }
 function updateM3ScortatoSummary(){
   if(!m3ScortatoSummary) return;
+  if(!state.m3.scType){
+    m3ScortatoSummary.innerHTML='Scegli prima se lo Scortato è una Persona/Gruppo oppure un Oggetto.'; return;
+  }
   if(!Number.isFinite(state.m3.initial)){
     m3ScortatoSummary.innerHTML='Determina prima il valore iniziale dello Scortato.'; return;
   }
@@ -2218,16 +2248,30 @@ function applyM3Imprevisto(v){
 function buildM3(mission){
   var panel=document.getElementById('panel-'+mission.id); panel.appendChild(buildIntro(mission));
   var sc=el('div',{class:'introcard'}); sc.appendChild(el('h2',{},['Passo 1 — chi o cosa scortiamo?']));
-  var type=makeSelect('m3-sc-type',[['Persona / Gruppo','persona'],['Oggetto','oggetto']]); type.value='oggetto';
+  var type=makeSelect('m3-sc-type',[['— scegli —',''],['Persona / Gruppo','persona'],['Oggetto','oggetto']]); type.value=''; state.m3.scType='';
   sc.appendChild(el('div',{class:'ctrls'},[makeField('Tipo Scortato',type)]));
-  sc.appendChild(el('div',{class:'notebox'},['Persona / Gruppo utilizza la Salute come Parametro di riferimento; Oggetto utilizza la Resistenza.']));
-  type.addEventListener('change',function(){state.m3.scType=type.value;resetM3TransportState();updateM3ScortatoSummary();});
+  sc.appendChild(el('div',{class:'notebox'},['Persona / Gruppo utilizza la Salute come Parametro di riferimento; Oggetto utilizza la Resistenza. Se cambi tipo di Scortato, il valore iniziale 10+1d8 viene azzerato e va rideterminato.']));
+  type.addEventListener('change',function(){
+    state.m3.scType=type.value;
+    /* v2: Persona/Gruppo e Oggetto hanno due Parametri iniziali distinti (Salute/Resistenza),
+       entrambi determinati da 10+1d8. Cambiare tipo richiede quindi una nuova determinazione. */
+    state.m3.initial=null;
+    if(inp) inp.value='';
+    if(msg) msg.textContent='';
+    resetM3TransportState();
+    updateM3ScortatoSummary();
+    evaluateM3();
+  });
   var die=el('div',{class:'subroll'}), dl=el('div',{class:'diceline'}), code=document.createElement('input'); code.type='text';code.readOnly=true;code.className='dicecode';code.value='[dice=1d8]Valore iniziale Scortato (10+1d8) - Scorta[/dice]';
   var cp=el('button',{class:'btn small',type:'button'},[el('i',{class:'fa-solid fa-dice-d20','aria-hidden':'true'}),'Copia']);cp.addEventListener(EVT,function(){copyText(code.value);});dl.appendChild(code);dl.appendChild(cp);die.appendChild(dl);
   var rl=el('div',{class:'resline'}), inp=document.createElement('input');inp.type='number';inp.step='1';inp.min='1';inp.max='8';inp.placeholder='1d8';var msg=el('span',{class:'formula'});rl.appendChild(inp);rl.appendChild(msg);die.appendChild(rl);sc.appendChild(die);
   m3ScortatoSummary=el('div',{class:'notebox'});sc.appendChild(m3ScortatoSummary);panel.appendChild(sc);
-  inp.addEventListener('change',function(){var v=Number(inp.value);if(!intInRange(v,1,8)){
-    state.m3.initial=null; resetM3TransportState(); msg.textContent='Risultato impossibile: 1-8.'; updateM3ScortatoSummary(); evaluateM3(); return;
+  inp.addEventListener('change',function(){var v=Number(inp.value);
+    if(!state.m3.scType){
+      state.m3.initial=null; inp.value=''; resetM3TransportState(); msg.textContent='Scegli prima il tipo di Scortato.'; updateM3ScortatoSummary(); evaluateM3(); return;
+    }
+    if(!intInRange(v,1,8)){
+      state.m3.initial=null; resetM3TransportState(); msg.textContent='Risultato impossibile: 1-8.'; updateM3ScortatoSummary(); evaluateM3(); return;
   }state.m3.initial=10+v;msg.innerHTML='Valore iniziale: <b>'+state.m3.initial+'</b>';resetM3TransportState();updateM3ScortatoSummary();evaluateM3();});
   updateM3ScortatoSummary();
   panel.appendChild(buildPGPanel(mission));
@@ -2235,7 +2279,7 @@ function buildM3(mission){
 
   var a=makeStep('m3','f1','Inizio del viaggio — scelta del mezzo');
   a.body.appendChild(el('div',{class:'step-desc'},['Tutti i PG usano lo stesso mezzo. Carrozza, Passaporta e Smaterializzazione richiedono un unico 1d30 per il gruppo; la Scopa non richiede il tiro principale e prevede 3 post per ogni PG. I controlli 1d5 vengono generati in base al mezzo e al numero dei PG. In questa Missione non si applicano i bonus, i malus e i parametri ordinari dei Mezzi di Trasporto: i mezzi sono concessi di base dal Ministero e si applica soltanto quanto indicato in questa guida.']));
-  var mezzo=makeSelect('m3-mezzo',[['Carrozza Volante — 1-25 su 1d30, 2 post/PG','carrozza'],['Passaporta — 1-20 su 1d30','passaporta'],['Smaterializzazione — 1-20 su 1d30','smaterializzazione'],['Scopa Volante — nessun 1d30, 3 post/PG','scopa']]);
+  var mezzo=makeSelect('m3-mezzo',[['— scegli —',''],['Carrozza Volante — 1-25 su 1d30, 2 post/PG','carrozza'],['Passaporta — 1-20 su 1d30','passaporta'],['Smaterializzazione — 1-20 su 1d30','smaterializzazione'],['Scopa Volante — nessun 1d30, 3 post/PG','scopa']]);
   a.body.appendChild(el('div',{class:'ctrls'},[makeField('Mezzo scelto',mezzo)]));
   var main=el('div',{class:'subroll',id:'m3-main-roll'}), mdl=el('div',{class:'diceline'}), mcode=document.createElement('input');mcode.type='text';mcode.readOnly=true;mcode.className='dicecode';
   var mcp=el('button',{class:'btn small',type:'button'},[el('i',{class:'fa-solid fa-dice-d20','aria-hidden':'true'}),'Copia']);mcp.addEventListener(EVT,function(){copyText(mcode.value);});mdl.appendChild(mcode);mdl.appendChild(mcp);main.appendChild(mdl);
@@ -2244,8 +2288,11 @@ function buildM3(mission){
   m3TransportChecks=el('div',{id:'m3-transport-checks'});a.body.appendChild(m3TransportChecks);
 
   function configureMezzo(){
-    state.m3.transport=mezzo.value; state.m3.events=[]; state.m3.destPenalty=0; state.m3.healthPenalty=0; state.m3.damage=0; state.m3.mainOutcome=null; minp.value=''; mb.className='badge';mb.textContent='';resetFrom('m3',2);clearM3ImprevistoView();
-    if(mezzo.value==='scopa'){
+    state.m3.transport=mezzo.value||null; state.m3.events=[]; state.m3.destPenalty=0; state.m3.healthPenalty=0; state.m3.damage=0; state.m3.mainOutcome=null; minp.value=''; mb.className='badge';mb.textContent='';resetFrom('m3',2);clearM3ImprevistoView();
+    if(!mezzo.value){
+      main.style.display='none'; mcode.value=''; m3TransportChecks.innerHTML='';
+      setOutcome('m3-transport-outcome','Scegli prima il mezzo di trasporto.','');
+    } else if(mezzo.value==='scopa'){
       main.style.display='none';state.m3.mainOutcome='success';mcode.value='(Scopa Volante: nessun tiro principale)';initM3Events();renderM3TransportChecks();
     } else {
       main.style.display='block'; var nome=mezzo.options[mezzo.selectedIndex].text.split(' — ')[0];mcode.value='[dice=1d30]Viaggio con '+nome+' - Scorta[/dice]';m3TransportChecks.innerHTML='';setOutcome('m3-transport-outcome','Inserisci l’esito del tiro principale di viaggio.','');
@@ -2254,6 +2301,10 @@ function buildM3(mission){
   }
   mezzo.addEventListener('change',configureMezzo);
   minp.addEventListener('change',function(){
+    if(!mezzo.value){
+      state.m3.transport=null; state.m3.mainOutcome=null; minp.value=''; mb.className='badge invalid'; mb.textContent='SCEGLI PRIMA IL MEZZO';
+      setOutcome('m3-transport-outcome','Scegli prima il mezzo di trasporto.',''); evaluateM3(); return;
+    }
     state.m3.transport=mezzo.value;var v=Number(minp.value);if(!intInRange(v,1,30)){
       state.m3.mainOutcome=null; state.m3.events=[]; state.m3.destPenalty=0; state.m3.healthPenalty=0; state.m3.damage=0; resetFrom('m3',2);
       if(m3TransportChecks) m3TransportChecks.innerHTML=''; updateM3ScortatoSummary();
@@ -2334,8 +2385,9 @@ function buildM4(mission){
   var c=makeStep('m4','f3','Raccolta e Uscita');
   c.body.appendChild(el('div',{class:'step-desc'},['Per ogni PG, prima scegli se tentare facoltativamente di rubare le prove. Chi fallisce il furto viene scoperto e non può effettuare la successiva Raccolta di Informazioni.']));
   c.body.appendChild(el('div',{class:'formula'},[el('b',{},['3a. Rubare le Prove — facoltativo'])]));
-  c.body.appendChild(createRollFactory(mission,{key:'f3a',order:3,diceFaces:30,diceLabel:'Rubare le Prove',knowledge:K_STD,potion:P_STD,modes:[['Non tenta','skip'],['Tenta di rubare','try']],modeLabel:'Scelta',skipMode:'skip',
+  c.body.appendChild(createRollFactory(mission,{key:'f3a',order:3,diceFaces:30,diceLabel:'Rubare le Prove',knowledge:K_STD,potion:P_STD,modes:[['— scegli —',''],['Non tenta','skip'],['Tenta di rubare','try']],modeLabel:'Scelta',skipMode:'skip',
     onModeChange:function(o){var skip=o.modeSel&&o.modeSel.value==='skip';if(o.kSel){o.kSel.disabled=skip;o.kSel.setAttribute('data-mode-disabled',skip?'1':'0');if(skip)o.kSel.value='0';}if(o.pSel){o.pSel.disabled=skip;o.pSel.setAttribute('data-mode-disabled',skip?'1':'0');if(skip)o.pSel.value='0';}},
+    preCompute:function(s,c){if(!c.mode)return {error:'Scegli esplicitamente se il PG tenta oppure non tenta di rubare le prove.'};return null;},
     computeFn:function(s,c){return {value:s.destrezza+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Destrezza',val:s.destrezza},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}}));
   c.body.appendChild(el('div',{class:'notebox statusbox',id:'outcome-m4-f3a'},['Conferma per ogni PG se tenta o meno il furto delle prove.']));
   c.body.appendChild(el('div',{class:'formula'},[el('b',{},['3b. Raccolta di Informazioni'])]));
@@ -2403,7 +2455,11 @@ function buildM5(mission){
 
   var b=makeStep('m5','f2','Contenimento');
   b.body.appendChild(el('div',{class:'step-desc'},['Ogni PG sceglie il proprio approccio. L’eventuale +5 della Fase I e gli eventuali -3 ai Parametri vengono applicati automaticamente. Tutti devono avere successo per evitare che la Missione risulti compromessa.']));
-  b.body.appendChild(createRollFactory(mission,{key:'f2',order:2,diceFaces:40,diceLabel:'Contenimento',knowledge:K_STD,potion:P_STD,modes:[['Barriere / Difese','difese'],['Approccio Diplomatico','diplomazia'],['Intervento con la Forza','forza']],modeLabel:'Approccio',carryFn:function(){return m5F1Success()?5:0;},
+  b.body.appendChild(createRollFactory(mission,{key:'f2',order:2,diceFaces:40,diceLabel:'Contenimento',knowledge:K_STD,potion:P_STD,modes:[['— scegli —',''],['Barriere / Difese','difese'],['Approccio Diplomatico','diplomazia'],['Intervento con la Forza','forza']],modeLabel:'Approccio',carryFn:function(){return m5F1Success()?5:0;},
+    preCompute:function(s,c){
+      if(!c.mode) return {error:'Scegli prima l’approccio da usare nella Fase II.'};
+      return null;
+    },
     computeFn:function(s,c){
       if(c.mode==='difese'){var sd=floorDiv(s.sapDif,2),r=m5Adjusted(s,'resistenza');return {value:sd+r+c.carry+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Sapienza Difensiva /2',val:sd},{label:'Resistenza attuale',val:r},{label:'Bonus Fase I',val:c.carry},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}
       if(c.mode==='diplomazia'){var sm=floorDiv(s.sapMen,5);return {value:s.volonta+s.lvPersuasore+s.dialettica+sm+c.carry+c.oggetti+c.knowledgeBonus+c.potionBonus,parts:[{label:'Volontà',val:s.volonta},{label:'Lv Persuasore',val:s.lvPersuasore},{label:'Dialettica',val:s.dialettica},{label:'Sapienza Mentale /5',val:sm},{label:'Bonus Fase I',val:c.carry},{label:'Bonus Oggetti',val:c.oggetti},{label:'Conoscenza',val:c.knowledgeBonus},{label:'Pozione',val:c.potionBonus}]};}
