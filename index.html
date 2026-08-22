@@ -1,3 +1,4 @@
+<!-- Revisione v7: BBCode dei dadi con domanda/risposte + popup eliminazione ancorato al punto visualizzato -->
 <!-- Revisione v6: sessioni Firebase multiple con autosalvataggio, ripresa, sola lettura e cancellazione definitiva protetta -->
 <!-- Revisione v5: anche la scelta facoltativa Rubare le Prove richiede una decisione esplicita; nessun ramo di gioco viene preselezionato -->
 <div id="rm-missioni" class="foglio" style="width:100% !important;max-width:none !important;margin:0 !important;padding:0 !important;">
@@ -1462,8 +1463,111 @@ function toast(msg){
   t.className = 'copytoast show';
   setTimeout(function(){ t.className = 'copytoast'; }, 1400);
 }
+function forumDiceBlock(domanda,risposte,dado){
+  var out='<b>'+domanda+'</b>';
+  if(risposte){ out+='\n[quote]'+risposte+'[/quote]'; }
+  out+='\n\n'+dado;
+  return out;
+}
+function thresholdAnswers(threshold,faces){
+  threshold=Math.floor(Number(threshold)); faces=Math.floor(Number(faces));
+  if(!isFinite(threshold)||!isFinite(faces)||faces<1) return '';
+  if(threshold<1) return '1-'+faces+'. Fallimento';
+  if(threshold>=faces) return '1-'+faces+'. Successo';
+  return '1-'+threshold+'. Successo\n'+(threshold+1)+'-'+faces+'. Fallimento';
+}
+function mappedPlusTenAnswers(faces,label){
+  var a=[];
+  for(var i=1;i<=faces;i++) a.push(i+'. '+label+' '+(10+i));
+  return a.join('\n');
+}
+function numberedAnswers(items){
+  var a=[];
+  for(var i=0;i<items.length;i++) a.push((i+1)+'. '+items[i]);
+  return a.join('\n');
+}
+function repeatedValueAnswers(faces,unit){
+  var a=[];
+  for(var i=1;i<=faces;i++) a.push(i+'. '+unit.replace('{n}',String(i)));
+  return a.join('\n');
+}
+function missionTransportControlAnswers(){
+  var tr=state && state.m3 ? state.m3.transport : null;
+  var outcome=state && state.m3 ? state.m3.mainOutcome : null;
+  var stat=(state && state.m3 && state.m3.scType==='persona')?'Salute':'Resistenza';
+  if(tr==='scopa') return '1. Folata/animale volante: -3 Destrezza cumulativo a tutti i PG\n2-5. Nessun malus';
+  if(tr==='carrozza' && outcome==='success') return '1. Turbolenza: -3 Destrezza cumulativo a tutti i PG\n2-5. Nessun malus';
+  if(tr==='carrozza' && outcome==='fail') return '1-3. Turbolenza forte: tira due 1d4 separati, uno per la perdita di Salute e uno per la perdita di Destrezza di tutti i PG\n4-5. Nessun malus';
+  if(tr==='passaporta' && outcome==='success') return '1. Lo Scortato atterra male: -5 '+stat+'; serve 1 post a testa per ritrovarlo\n2-5. Nessun malus';
+  if(tr==='passaporta' && outcome==='fail') return '1-3. Lo Scortato viene proiettato lontano: tira 1d5 per il danno allo Scortato; serve 1 post a testa per il recupero\n4-5. Nessun malus';
+  if(tr==='smaterializzazione' && outcome==='success') return '1. Effetti negativi della Smaterializzazione: -5 '+stat+' allo Scortato\n2-5. Nessun malus';
+  if(tr==='smaterializzazione' && outcome==='fail' && state.m3.scType==='persona') return '1-3. Smaterializzazione violenta: tira 1d4 per la perdita di Salute dello Scortato; serve 1 post per ogni PG per ritrovarlo e sistemarlo\n4-5. Nessun malus';
+  if(tr==='smaterializzazione' && outcome==='fail') return '1-3. Smaterializzazione violenta: -2 Resistenza allo Scortato; serve 1 post per ogni PG per ritrovarlo e sistemarlo\n4-5. Nessun malus';
+  return '1-5. Inserisci il risultato nel tool: l’effetto dipende dal mezzo e dall’esito del tiro principale.';
+}
+function missionForumCopy(value){
+  var raw=String(value||'');
+  var m=raw.match(/^\[dice=1d(\d+)\]([\s\S]*?)\[\/dice\]$/i);
+  if(!m) return raw;
+  var faces=parseInt(m[1],10), label=m[2], domanda='', risposte='';
+
+  if(label==='Determinazione della Missione - Ricerca Missioni'){
+    domanda='Quale Missione viene assegnata?';
+    risposte='1. Inseguimento\n2. Irruzione e Arresto\n3. Scorta e Protezione\n4. Sotto Copertura\n5. Sventare uno Scontro';
+  } else if(label.indexOf('Luogo della missione - ')===0){
+    var missionName=label.substring('Luogo della missione - '.length), found=null;
+    for(var mi=0;mi<MISSIONS.length;mi++) if(MISSIONS[mi].name===missionName){found=MISSIONS[mi];break;}
+    domanda='Qual è il luogo della Missione '+missionName.replace(/^\d+\.\s*/, '')+'?';
+    risposte=found?numberedAnswers(found.luoghi):('1-'+faces+'. Consulta la tabella del luogo nel tool.');
+  } else {
+    var tm=label.match(/^(.*?)\s*\(Riesce se 1-(\d+) su 1d(\d+)\)$/i);
+    if(tm){
+      domanda=tm[1]+': riesce?';
+      risposte=thresholdAnswers(parseInt(tm[2],10),parseInt(tm[3],10));
+    } else if(label.indexOf('Numero Bersagli - Irruzione e Arresto')===0){
+      domanda='Quanti Bersagli si trovano sul posto?';
+      var nb=[]; for(var n=1;n<=faces;n++) nb.push(n+'. '+n+(n===1?' Bersaglio':' Bersagli')); risposte=nb.join('\n');
+    } else if(label.indexOf('Destrezza Bersaglio')===0 && label.indexOf('10+1d8')!==-1){
+      domanda='Qual è la Destrezza del Bersaglio?';
+      risposte=mappedPlusTenAnswers(faces,'Destrezza totale:');
+    } else if(label.indexOf('Valore iniziale Scortato (10+1d8)')===0){
+      domanda='Qual è il valore iniziale dello Scortato?';
+      risposte=mappedPlusTenAnswers(faces,'Valore iniziale:');
+    } else if(label.indexOf('Viaggio con Carrozza Volante - Scorta')===0){
+      domanda='Il viaggio con la Carrozza Volante riesce senza inconvenienti?';
+      risposte='1-25. Successo\n26-30. Fallimento — il viaggio prosegue comunque, ma i controlli 1d5 applicano gli effetti da fallimento';
+    } else if(label.indexOf('Viaggio con Passaporta - Scorta')===0){
+      domanda='Il viaggio con la Passaporta riesce senza inconvenienti?';
+      risposte='1-20. Successo\n21-30. Fallimento — il viaggio prosegue comunque, ma i controlli 1d5 applicano gli effetti da fallimento';
+    } else if(label.indexOf('Viaggio con Smaterializzazione - Scorta')===0){
+      domanda='Il viaggio con la Smaterializzazione riesce senza inconvenienti?';
+      risposte='1-20. Successo\n21-30. Fallimento — il viaggio prosegue comunque, ma i controlli 1d5 applicano gli effetti da fallimento';
+    } else if(label.indexOf('Controllo mezzo - ')===0){
+      domanda='Che cosa accade durante questo tratto di viaggio?';
+      risposte=missionTransportControlAnswers();
+    } else if(label.indexOf('Perdita Salute - ')===0){
+      domanda='Quanta Salute viene persa?';
+      risposte=repeatedValueAnswers(faces,'-{n} Salute');
+    } else if(label.indexOf('Perdita Destrezza - ')===0){
+      domanda='Quanta Destrezza viene persa?';
+      risposte=repeatedValueAnswers(faces,'-{n} Destrezza');
+    } else if(label.indexOf('Entità del malus - ')===0){
+      domanda='Qual è l’entità del malus allo Scortato?';
+      if(state.m3.transport==='smaterializzazione' && state.m3.scType==='persona') risposte=repeatedValueAnswers(faces,'-{n} Salute allo Scortato');
+      else risposte=repeatedValueAnswers(faces,'{n} danni allo Scortato');
+    } else if(label==='Imprevisto lungo il percorso - Scorta'){
+      domanda='Quale Imprevisto avviene lungo il percorso?';
+      risposte='1. Distrazione/inciampo: -3 Destrezza a tutti i PG fino a fine role\n2. Lo Scortato viene separato: almeno 2 post di viaggio aggiuntivi\n3. Osservatore ostile: -5 automatico nella Fase III\n4. Ostacolo imprevisto: almeno 2 post di viaggio aggiuntivi\n5. Lo Scortato si agita: -2 Fatica a tutti i PG fino a fine role';
+    } else {
+      domanda=label+': qual è il risultato?';
+      risposte='1-'+faces+'. Inserisci il risultato nel tool per applicare immediatamente l’esito previsto.';
+    }
+  }
+  return forumDiceBlock(domanda,risposte,raw);
+}
 function copyText(value){
   if(!value) return;
+  value=missionForumCopy(value);
   if(navigator.clipboard && navigator.clipboard.writeText){
     navigator.clipboard.writeText(value).then(function(){ toast('Codice del tiro copiato'); }, function(){ fallbackCopy(value); });
   } else fallbackCopy(value);
@@ -3023,7 +3127,7 @@ function sessionPayload(){
     tipoMissione:mid?missionNameClean(mid):'',
     missionId:mid||'',
     updatedAt:firebase.firestore.FieldValue.serverTimestamp(),
-    toolVersion:'v6',
+    toolVersion:'v7',
     actionLog:SESSION_ACTIONS
   };
 }
@@ -3165,19 +3269,45 @@ function createSession(){
     setHomeMsg('Impossibile creare la Missione: '+err.message,'bad');
   });
 }
-function openDeleteModal(){
+function positionDeleteModalAtCurrentView(ev){
+  var m=sq('delete-session-modal');
+  if(!m) return;
+  var box=m.querySelector('.session-modal-box');
+  if(!box) return;
+  var anchorY=null;
+  if(ev && Number.isFinite(ev.clientY)) anchorY=ev.clientY;
+  if(anchorY===null){
+    var trigger=sq('btn-delete-session');
+    if(trigger){var tr=trigger.getBoundingClientRect();anchorY=tr.top+(tr.height/2);}
+  }
+  if(anchorY===null) anchorY=Math.max(24,Math.min((window.innerHeight||600)/2,(window.innerHeight||600)-24));
+  var mh=m.getBoundingClientRect().height||window.innerHeight||document.documentElement.clientHeight||600;
+  var bh=box.offsetHeight||0;
+  var top=anchorY-(bh/2), minTop=18, maxTop=Math.max(minTop,mh-bh-18);
+  top=Math.max(minTop,Math.min(maxTop,top));
+  box.style.position='absolute';
+  box.style.left='50%';
+  box.style.top=Math.round(top)+'px';
+  box.style.transform='translateX(-50%)';
+  box.style.margin='0';
+}
+function openDeleteModal(ev){
   if(!CURRENT_SESSION || !sessionCanEdit(CURRENT_SESSION_DATA)) return;
   sq('delete-session-check').checked=false;
   sq('btn-confirm-delete').disabled=true;
   sq('delete-session-msg').textContent='';
-  sq('delete-session-modal').classList.add('open');
-  sq('delete-session-modal').setAttribute('aria-hidden','false');
+  var m=sq('delete-session-modal');
+  m.classList.add('open');
+  m.setAttribute('aria-hidden','false');
+  requestAnimationFrame(function(){positionDeleteModalAtCurrentView(ev);});
 }
 function closeDeleteModal(){
   var m=sq('delete-session-modal');
   if(!m) return;
   m.classList.remove('open');
   m.setAttribute('aria-hidden','true');
+  var box=m.querySelector('.session-modal-box');
+  if(box){box.style.position='';box.style.left='';box.style.top='';box.style.transform='';box.style.margin='';}
 }
 function deleteCurrentSession(){
   if(!CURRENT_SESSION || !sessionCanEdit(CURRENT_SESSION_DATA) || !sq('delete-session-check').checked) return;
