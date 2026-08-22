@@ -1,3 +1,4 @@
+<!-- Revisione v6: sessioni Firebase multiple con autosalvataggio, ripresa, sola lettura e cancellazione definitiva protetta -->
 <!-- Revisione v5: anche la scelta facoltativa Rubare le Prove richiede una decisione esplicita; nessun ramo di gioco viene preselezionato -->
 <div id="rm-missioni" class="foglio" style="width:100% !important;max-width:none !important;margin:0 !important;padding:0 !important;">
 <!-- Revisione funzionale v4: valori PG obbligatori; nessun Bersaglio preassegnato; invalidazione dei valori legati al tipo di Bersaglio/Scortato; formule allineate al regolamento -->
@@ -1054,6 +1055,207 @@ margin:12px 0;}
   margin-right:7px;
 }
 
+
+/* ================================================================
+   SESSIONI FIREBASE — revisione v6
+================================================================ */
+#rm-missioni .session-home,
+#rm-missioni .session-toolbar-card{
+  margin:24px 0 !important;
+}
+#rm-missioni .session-card,
+#rm-missioni .session-toolbar-card{
+  background:var(--panel) !important;
+  border:1px solid var(--line) !important;
+  border-radius:12px !important;
+  box-shadow:0 1px 0 rgba(199,154,37,.08) !important;
+  overflow:hidden !important;
+}
+#rm-missioni .session-card-head{
+  padding:18px 22px !important;
+  background:var(--panel2) !important;
+  border-bottom:1px solid var(--line) !important;
+}
+#rm-missioni .session-card-head h2{
+  margin:0 !important;
+  color:var(--ink) !important;
+  font-family:'magic',var(--serif) !important;
+  font-size:1.45em !important;
+  font-weight:600 !important;
+}
+#rm-missioni .session-card-body{
+  padding:22px 24px 24px !important;
+}
+#rm-missioni .session-card-body > p{
+  margin-top:0 !important;
+  color:var(--ink-dim) !important;
+  line-height:1.65 !important;
+}
+#rm-missioni .session-warning,
+#rm-missioni .readonly-banner{
+  margin:14px 0 !important;
+  padding:13px 15px !important;
+  border:1px solid var(--gold) !important;
+  border-radius:8px !important;
+  background:#fff2c7 !important;
+  color:var(--ink) !important;
+  font-size:14px !important;
+  line-height:1.6 !important;
+}
+#rm-missioni .readonly-banner{
+  border-color:#c79a25 !important;
+  background:#fff8df !important;
+}
+#rm-missioni .session-new-row,
+#rm-missioni .session-topbar,
+#rm-missioni .session-actions,
+#rm-missioni .session-item-row{
+  display:flex !important;
+  gap:12px !important;
+  align-items:center !important;
+  flex-wrap:wrap !important;
+}
+#rm-missioni .session-new-row{
+  margin:16px 0 !important;
+}
+#rm-missioni .session-new-row input{
+  flex:1 1 320px !important;
+  min-width:0 !important;
+  min-height:48px !important;
+  padding:11px 14px !important;
+  border:1px solid var(--line) !important;
+  border-radius:8px !important;
+  background:var(--bg) !important;
+  color:var(--ink) !important;
+  font-family:var(--sans) !important;
+  font-size:16px !important;
+}
+#rm-missioni .session-topbar{
+  justify-content:space-between !important;
+  align-items:flex-start !important;
+}
+#rm-missioni .session-title{
+  color:var(--ink) !important;
+  font-family:'magic',var(--serif) !important;
+  font-size:1.25em !important;
+  font-weight:600 !important;
+  line-height:1.35 !important;
+}
+#rm-missioni .session-meta,
+#rm-missioni .session-status{
+  margin-top:5px !important;
+  color:var(--ink-dim) !important;
+  font-size:13px !important;
+  line-height:1.5 !important;
+}
+#rm-missioni .session-status.ok{color:var(--ok) !important;font-weight:700 !important;}
+#rm-missioni .session-status.bad{color:var(--bad) !important;font-weight:700 !important;}
+#rm-missioni .session-list{
+  display:grid !important;
+  gap:10px !important;
+  margin-top:18px !important;
+}
+#rm-missioni .session-item{
+  padding:15px 16px !important;
+  border:1px solid var(--line) !important;
+  border-radius:9px !important;
+  background:var(--bg2) !important;
+}
+#rm-missioni .session-item-row{
+  justify-content:space-between !important;
+}
+#rm-missioni .session-owner{
+  display:inline-flex !important;
+  margin-top:7px !important;
+  padding:4px 9px !important;
+  border:1px solid var(--line) !important;
+  border-radius:999px !important;
+  background:var(--bg) !important;
+  color:var(--ink-dim) !important;
+  font-size:12px !important;
+  font-weight:700 !important;
+}
+#rm-missioni .session-owner.mine{
+  border-color:var(--ok) !important;
+  color:var(--ok) !important;
+}
+#rm-missioni .session-danger-btn{
+  min-height:46px !important;
+  padding:0 16px !important;
+  border:1px solid #a45d49 !important;
+  border-radius:8px !important;
+  background:#fbefea !important;
+  color:#8b4938 !important;
+  font-family:var(--sans) !important;
+  font-size:15px !important;
+  font-weight:700 !important;
+  cursor:pointer !important;
+}
+#rm-missioni .session-danger-btn:hover{
+  background:#f6dfd6 !important;
+}
+#rm-missioni .session-modal{
+  display:none;
+  position:fixed !important;
+  inset:0 !important;
+  z-index:99999 !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:20px !important;
+  background:rgba(40,30,8,.62) !important;
+}
+#rm-missioni .session-modal.open{display:flex !important;}
+#rm-missioni .session-modal-box{
+  width:min(650px,100%) !important;
+  max-height:90vh !important;
+  overflow:auto !important;
+  padding:24px !important;
+  border:1px solid #a45d49 !important;
+  border-radius:12px !important;
+  background:#fffdf7 !important;
+  box-shadow:0 18px 60px rgba(0,0,0,.30) !important;
+}
+#rm-missioni .session-modal-box h3{
+  margin:0 0 12px !important;
+  color:#8b4938 !important;
+  font-family:'magic',var(--serif) !important;
+  font-size:1.45em !important;
+}
+#rm-missioni .session-modal-box p{
+  color:var(--ink) !important;
+  line-height:1.65 !important;
+}
+#rm-missioni .delete-confirm-line{
+  display:flex !important;
+  gap:10px !important;
+  align-items:flex-start !important;
+  margin:18px 0 !important;
+  padding:13px 14px !important;
+  border:1px solid #d4a08f !important;
+  border-radius:8px !important;
+  background:#fbefea !important;
+}
+#rm-missioni .delete-confirm-line input{
+  margin-top:4px !important;
+  transform:scale(1.15) !important;
+}
+#rm-missioni .delete-confirm-line span{
+  color:#6f3d31 !important;
+  font-size:14px !important;
+  line-height:1.55 !important;
+}
+@media(max-width:760px){
+  #rm-missioni .session-card-body{padding:18px 16px 20px !important;}
+  #rm-missioni .session-card-head{padding:16px !important;}
+  #rm-missioni .session-actions,
+  #rm-missioni .session-new-row{width:100% !important;}
+  #rm-missioni .session-actions .btn,
+  #rm-missioni .session-actions .session-danger-btn,
+  #rm-missioni .session-new-row .btn{width:100% !important;}
+  #rm-missioni .session-item-row{align-items:stretch !important;}
+  #rm-missioni .session-item-row > *{width:100% !important;}
+}
+
 </style>
 <div class="masthead">
 <div class="seal"><i class="fa-solid fa-wand-sparkles"></i></div>
@@ -1063,6 +1265,43 @@ margin:12px 0;}
 </div>
 
 <div class="wrap" style="width:100% !important;max-width:1120px !important;margin:0 auto !important;padding:0 24px !important;box-sizing:border-box !important;">
+
+<div id="mission-session-home" class="session-home">
+  <div class="session-card">
+    <div class="session-card-head"><h2>Missioni in corso</h2></div>
+    <div class="session-card-body">
+      <p>Crea una sessione per la tua Ricerca Missioni oppure riaprine una già iniziata. Ogni Missione viene salvata automaticamente mentre la compili.</p>
+      <div class="session-warning"><b>Le sessioni in corso sono personali.</b> Puoi visualizzare quelle degli altri giocatori, ma non modificarle o concluderle. Solo chi ha creato la sessione e il Narratore possono intervenire sui suoi dati.</div>
+      <div id="firebase-auth-status" class="session-status">Connessione a Firebase…</div>
+      <div class="session-new-row">
+        <input id="new-session-pg" type="text" maxlength="80" placeholder="Nome del PG principale (es. Coral)">
+        <button class="btn" id="btn-new-session" type="button" data-session-control="1">+ Nuova Missione</button>
+        <button class="btn ghost" id="btn-refresh-sessions" type="button" data-session-control="1">Aggiorna elenco</button>
+      </div>
+      <div id="session-home-msg" class="session-status"></div>
+      <div id="session-list" class="session-list"></div>
+    </div>
+  </div>
+</div>
+
+<div id="mission-workspace" style="display:none">
+  <div class="session-toolbar-card">
+    <div class="session-card-body">
+      <div class="session-topbar">
+        <div>
+          <div id="current-session-title" class="session-title">Missione in corso</div>
+          <div id="current-session-meta" class="session-meta"></div>
+          <div id="save-status" class="session-status"></div>
+        </div>
+        <div class="session-actions">
+          <button class="btn ghost" id="btn-back-sessions" type="button" data-session-control="1">← Torna alle Missioni</button>
+          <button class="session-danger-btn" id="btn-delete-session" type="button" data-session-control="1">Concludi ed elimina Missione</button>
+        </div>
+      </div>
+      <div id="readonly-banner" class="readonly-banner" style="display:none">Stai visualizzando la Missione di un altro giocatore. Puoi consultarla e usare i pulsanti di navigazione/copia, ma solo chi l'ha creata o il Narratore può modificarla o eliminarla.</div>
+    </div>
+  </div>
+
 
 <details class="remember-box">
 <summary>Ricorda:</summary>
@@ -1103,14 +1342,64 @@ margin:12px 0;}
 
 <div id="rm-panels"></div>
 
+
+</div><!-- /#mission-workspace -->
+
+<div class="session-modal" id="delete-session-modal" aria-hidden="true">
+  <div class="session-modal-box" role="dialog" aria-modal="true" aria-labelledby="delete-session-title">
+    <h3 id="delete-session-title">Attenzione: eliminazione definitiva</h3>
+    <p>Concludendo questa Missione, <b>tutti i dati salvati verranno cancellati definitivamente.</b></p>
+    <p><b>La Missione non potrà essere recuperata.</b> Se vorrai giocarla nuovamente, dovrai creare una nuova sessione e reinserire da zero i Parametri, le scelte e tutti i risultati ottenuti.</p>
+    <label class="delete-confirm-line">
+      <input type="checkbox" id="delete-session-check" data-session-control="1">
+      <span><b>Ho capito che questa Missione verrà cancellata definitivamente e che, se mi servirà ancora, dovrò rifarla da zero.</b></span>
+    </label>
+    <div class="session-actions">
+      <button class="btn ghost" id="btn-cancel-delete" type="button" data-session-control="1">Annulla</button>
+      <button class="session-danger-btn" id="btn-confirm-delete" type="button" data-session-control="1" disabled>Elimina definitivamente la Missione</button>
+    </div>
+    <div id="delete-session-msg" class="session-status bad"></div>
+  </div>
+</div>
+
 </div>
 
 <div class="copytoast" id="rm-toast">Copiato nel tuo appunti magico ✎</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
 <script type="text/javascript">
 (function(){
 
 var EVT = 'cli' + 'ck';
+
+/* ================================================================
+   SESSIONI FIREBASE
+================================================================ */
+var FIREBASE_CONFIG={
+  apiKey:"AIzaSyCvd56bSEL02s2OY2PSk7uyFX-CYRB4Vz0",
+  authDomain:"conteggi-eee1b.firebaseapp.com",
+  projectId:"conteggi-eee1b",
+  storageBucket:"conteggi-eee1b.firebasestorage.app",
+  messagingSenderId:"481320219586",
+  appId:"1:481320219586:web:87e974d618a302adfadc5b",
+  measurementId:"G-EFHVL4H1XW"
+};
+var SESSION_COLLECTION='ricerca_missioni';
+var NARRATOR_UID='TFgqfVrFLjW5SwqRFXmEi8tDhtM2';
+var FB={app:null,auth:null,db:null,user:null};
+var CURRENT_SESSION=null;
+var CURRENT_SESSION_DATA=null;
+var SESSION_ACTIONS=[];
+var RESTORING_SESSION=false;
+var SESSION_READONLY=false;
+var SAVE_TIMER=null;
+var SAVE_IN_FLIGHT=false;
+var PENDING_SAVE=false;
+
 
 /* ================================================================
    UTILITÀ
@@ -2493,6 +2782,505 @@ function evaluateM5(){
   else setOutcome('outcome-m5-f3','Inserisci almeno un successo, oppure completa tutti i tiri per determinare il fallimento.','');
 }
 
+
+/* ================================================================
+   SESSIONI FIREBASE — DASHBOARD, AUTOSALVATAGGIO E RIPRISTINO
+================================================================ */
+function sq(id){ return document.getElementById(id); }
+function sessionWorkspace(){ return sq('mission-workspace'); }
+
+function sessionCanEdit(data){
+  return !!(FB.user && data && (data.ownerUid===FB.user.uid || FB.user.uid===NARRATOR_UID));
+}
+
+function setSaveStatus(text,kind){
+  var n=sq('save-status');
+  if(!n) return;
+  n.textContent=text||'';
+  n.className='session-status'+(kind?' '+kind:'');
+}
+function setHomeMsg(text,kind){
+  var n=sq('session-home-msg');
+  if(!n) return;
+  n.textContent=text||'';
+  n.className='session-status'+(kind?' '+kind:'');
+}
+function formatTs(ts){
+  try{
+    var d=ts && typeof ts.toDate==='function' ? ts.toDate() : null;
+    return d ? d.toLocaleString('it-IT',{dateStyle:'short',timeStyle:'short'}) : '';
+  }catch(e){ return ''; }
+}
+
+function sessionIdFromHash(){
+  var h=String(window.location.hash||'').replace(/^#/,'');
+  if(h.indexOf('session=')!==0) return '';
+  try{ return decodeURIComponent(h.slice(8)); }catch(e){ return h.slice(8); }
+}
+function navigateToSession(id){
+  window.location.hash='session='+encodeURIComponent(id);
+  window.location.reload();
+}
+function navigateToDashboard(){
+  if(window.location.hash){
+    try{ history.replaceState(null,'',window.location.pathname+window.location.search); }
+    catch(e){ window.location.hash=''; }
+  }
+  window.location.reload();
+}
+
+function selectedMissionFromActions(){
+  var diceSeen=false, diceValue=null, manual=null, touched=null;
+  for(var i=0;i<SESSION_ACTIONS.length;i++){
+    var a=SESSION_ACTIONS[i];
+    if(!a || !a.loc) continue;
+    if(a.loc.id==='rm-mission-dice-result' && (a.type==='input'||a.type==='change')){
+      diceSeen=true;
+      var v=Number(a.value);
+      diceValue=(a.value!=='' && intInRange(v,1,5)) ? ('m'+v) : null;
+    }
+    if(a.type==='click' && a.loc.id && /^tab-m[1-5]$/.test(a.loc.id)){
+      manual=a.loc.id.replace(/^tab-/,'');
+    }
+    if(a.loc.id){
+      var mm=String(a.loc.id).match(/^(m[1-5])-/);
+      if(mm) touched=mm[1];
+    }
+  }
+  if(diceSeen && diceValue) return diceValue;
+  return manual || touched || null;
+}
+function selectedMission(){
+  var fromLog=selectedMissionFromActions();
+  if(fromLog) return fromLog;
+  var dice=sq('rm-mission-dice-result');
+  if(dice && dice.value!=='' && intInRange(Number(dice.value),1,5)) return 'm'+Number(dice.value);
+  if(CURRENT_SESSION_DATA && /^m[1-5]$/.test(CURRENT_SESSION_DATA.missionId||'')) return CURRENT_SESSION_DATA.missionId;
+  return null;
+}
+function missionNameClean(mid){
+  var m=missionById(mid);
+  return m ? m.name.replace(/^\d+\.\s*/,'') : '';
+}
+function primaryPgName(){
+  var mid=selectedMission();
+  var e=mid ? sq(mid+'-pg0-name') : null;
+  var n=e ? String(e.value||'').trim() : '';
+  return n || (CURRENT_SESSION_DATA && (CURRENT_SESSION_DATA.pgName||CURRENT_SESSION_DATA.initialPgName)) || 'PG';
+}
+function activeSessionLabel(){
+  var mid=selectedMission();
+  return primaryPgName()+' — '+(mid ? missionNameClean(mid) : 'Missione da determinare');
+}
+
+function updateSessionToolbar(){
+  if(!CURRENT_SESSION_DATA) return;
+  var title=sq('current-session-title');
+  if(title) title.textContent=activeSessionLabel();
+  var mine=FB.user && CURRENT_SESSION_DATA.ownerUid===FB.user.uid;
+  var narr=FB.user && FB.user.uid===NARRATOR_UID;
+  var parts=[];
+  parts.push(mine?'Sessione creata da questo browser':(narr?'Gestione Narratore':'Sessione di un altro giocatore'));
+  var t=formatTs(CURRENT_SESSION_DATA.updatedAt);
+  if(t) parts.push('ultimo salvataggio '+t);
+  if(sq('current-session-meta')) sq('current-session-meta').textContent=parts.join(' · ');
+  if(sq('readonly-banner')) sq('readonly-banner').style.display=SESSION_READONLY?'block':'none';
+  if(sq('btn-delete-session')) sq('btn-delete-session').style.display=sessionCanEdit(CURRENT_SESSION_DATA)?'inline-block':'none';
+}
+
+function elementPath(target){
+  var w=sessionWorkspace();
+  if(!w || !target || !w.contains(target)) return null;
+  if(target.id) return {id:target.id};
+  var path=[],n=target;
+  while(n && n!==w){
+    var par=n.parentElement;
+    if(!par) return null;
+    var idx=Array.prototype.indexOf.call(par.children,n);
+    if(idx<0) return null;
+    path.unshift(idx);
+    n=par;
+  }
+  return n===w ? {path:path} : null;
+}
+function resolveActionTarget(a){
+  var w=sessionWorkspace();
+  if(!w) return null;
+  if(a.loc && a.loc.id){
+    var by=sq(a.loc.id);
+    return by && w.contains(by) ? by : null;
+  }
+  var n=w,arr=a.loc&&a.loc.path?a.loc.path:[];
+  for(var i=0;i<arr.length;i++){
+    if(!n || !n.children || !n.children[arr[i]]) return null;
+    n=n.children[arr[i]];
+  }
+  return n===w ? null : n;
+}
+function actionFromEvent(e){
+  var w=sessionWorkspace();
+  var target=e.target;
+  if(!target || !w || !w.contains(target)) return null;
+  var control=target.closest ? target.closest('[data-session-control="1"]') : null;
+  if(control) return null;
+
+  if(e.type==='click'){
+    var b=target.closest ? target.closest('button') : (target.tagName==='BUTTON'?target:null);
+    if(!b || !w.contains(b)) return null;
+    var tx=(b.textContent||'').trim();
+    if(/^Copia\b/i.test(tx)) return null;
+    return {type:'click',loc:elementPath(b)};
+  }
+
+  if(['INPUT','SELECT','TEXTAREA'].indexOf(target.tagName)===-1) return null;
+  return {type:e.type,loc:elementPath(target),value:target.value,checked:!!target.checked};
+}
+function sameLoc(a,b){ return JSON.stringify(a||null)===JSON.stringify(b||null); }
+
+function recordSessionAction(e){
+  if(RESTORING_SESSION || SESSION_READONLY || !CURRENT_SESSION || !sessionCanEdit(CURRENT_SESSION_DATA)) return;
+  var a=actionFromEvent(e);
+  if(!a || !a.loc) return;
+  var last=SESSION_ACTIONS.length ? SESSION_ACTIONS[SESSION_ACTIONS.length-1] : null;
+  if((a.type==='input'||a.type==='change') && last &&
+     (last.type==='input'||last.type==='change') && sameLoc(a.loc,last.loc)){
+    SESSION_ACTIONS[SESSION_ACTIONS.length-1]=a;
+  }else{
+    SESSION_ACTIONS.push(a);
+  }
+  scheduleSessionSave();
+}
+function attachSessionRecorder(){
+  var w=sessionWorkspace();
+  if(!w || w.getAttribute('data-session-recorder')==='1') return;
+  w.setAttribute('data-session-recorder','1');
+  ['input','change','click'].forEach(function(ev){
+    w.addEventListener(ev,recordSessionAction,true);
+  });
+}
+function replayActions(actions){
+  RESTORING_SESSION=true;
+  try{
+    (actions||[]).forEach(function(a){
+      var t=resolveActionTarget(a);
+      if(!t){
+        console.warn('Ricerca Missioni: azione di ripristino non trovata',a);
+        return;
+      }
+      if(a.type==='click'){
+        if(!t.disabled && typeof t.click==='function') t.click();
+      }else{
+        if('value' in t) t.value=a.value==null?'':String(a.value);
+        if('checked' in t) t.checked=!!a.checked;
+        t.dispatchEvent(new Event(a.type,{bubbles:true}));
+      }
+    });
+  }finally{
+    RESTORING_SESSION=false;
+  }
+}
+function applyInitialPgName(name){
+  RESTORING_SESSION=true;
+  try{
+    for(var i=1;i<=5;i++){
+      var e=sq('m'+i+'-pg0-name');
+      if(e){
+        e.value=name||'PG 1';
+        e.dispatchEvent(new Event('change',{bubbles:true}));
+      }
+    }
+  }finally{
+    RESTORING_SESSION=false;
+  }
+}
+
+function setWorkspaceReadOnly(ro){
+  SESSION_READONLY=!!ro;
+  var w=sessionWorkspace();
+  if(!w) return;
+  Array.prototype.forEach.call(w.querySelectorAll('input,select,textarea,button'),function(n){
+    if(n.getAttribute('data-session-control')==='1') return;
+    if(n.classList && n.classList.contains('tabbtn')){
+      n.disabled=false;
+      return;
+    }
+    if(n.tagName==='BUTTON' && /^Copia\b/i.test((n.textContent||'').trim())){
+      n.disabled=false;
+      return;
+    }
+    n.disabled=SESSION_READONLY;
+  });
+  updateSessionToolbar();
+}
+
+function sessionPayload(){
+  var mid=selectedMission();
+  var name=primaryPgName();
+  return {
+    ownerUid:CURRENT_SESSION_DATA.ownerUid,
+    initialPgName:CURRENT_SESSION_DATA.initialPgName||name,
+    pgName:name,
+    tipoMissione:mid?missionNameClean(mid):'',
+    missionId:mid||'',
+    updatedAt:firebase.firestore.FieldValue.serverTimestamp(),
+    toolVersion:'v6',
+    actionLog:SESSION_ACTIONS
+  };
+}
+function scheduleSessionSave(){
+  if(!CURRENT_SESSION || SESSION_READONLY || !sessionCanEdit(CURRENT_SESSION_DATA)) return;
+  setSaveStatus('Salvataggio automatico…','');
+  if(SAVE_TIMER) clearTimeout(SAVE_TIMER);
+  SAVE_TIMER=setTimeout(saveSessionNow,900);
+}
+function saveSessionNow(){
+  if(!CURRENT_SESSION || SESSION_READONLY || !sessionCanEdit(CURRENT_SESSION_DATA)) return Promise.resolve();
+  if(SAVE_IN_FLIGHT){
+    PENDING_SAVE=true;
+    return Promise.resolve();
+  }
+  SAVE_IN_FLIGHT=true;
+  PENDING_SAVE=false;
+  var payload=sessionPayload();
+  return FB.db.collection(SESSION_COLLECTION).doc(CURRENT_SESSION).set(payload,{merge:true}).then(function(){
+    Object.keys(payload).forEach(function(k){
+      if(k!=='updatedAt') CURRENT_SESSION_DATA[k]=payload[k];
+    });
+    setSaveStatus('Missione salvata automaticamente ✓','ok');
+    updateSessionToolbar();
+  }).catch(function(err){
+    console.error(err);
+    setSaveStatus('Errore di salvataggio: non chiudere la pagina.','bad');
+  }).finally(function(){
+    SAVE_IN_FLIGHT=false;
+    if(PENDING_SAVE){
+      PENDING_SAVE=false;
+      scheduleSessionSave();
+    }
+  });
+}
+
+function openSessionDoc(id,data){
+  CURRENT_SESSION=id;
+  CURRENT_SESSION_DATA=data;
+  SESSION_ACTIONS=Array.isArray(data.actionLog)?data.actionLog.slice():[];
+  SESSION_READONLY=!sessionCanEdit(data);
+
+  if(sq('mission-session-home')) sq('mission-session-home').style.display='none';
+  if(sessionWorkspace()) sessionWorkspace().style.display='block';
+
+  applyInitialPgName(data.initialPgName||data.pgName||'PG 1');
+  replayActions(SESSION_ACTIONS);
+
+  var mid=selectedMission();
+  if(mid) activateMission(mid);
+
+  setWorkspaceReadOnly(SESSION_READONLY);
+  updateSessionToolbar();
+  setSaveStatus(SESSION_READONLY?'Modalità sola lettura.':'Missione caricata · autosalvataggio attivo',SESSION_READONLY?'':'ok');
+  setTimeout(function(){ window.scrollTo({top:0,behavior:'smooth'}); },20);
+}
+function loadSession(id){
+  setHomeMsg('Caricamento Missione…','');
+  return FB.db.collection(SESSION_COLLECTION).doc(id).get().then(function(doc){
+    if(!doc.exists) throw new Error('La Missione non esiste più.');
+    openSessionDoc(doc.id,doc.data());
+    setHomeMsg('','');
+  }).catch(function(err){
+    console.error(err);
+    setHomeMsg('Impossibile aprire la Missione: '+err.message,'bad');
+    if(sq('mission-session-home')) sq('mission-session-home').style.display='block';
+  });
+}
+function loadSessionList(){
+  var host=sq('session-list');
+  if(!host || !FB.db || !FB.user) return;
+  host.innerHTML='<div class="session-status">Caricamento sessioni…</div>';
+  FB.db.collection(SESSION_COLLECTION).get().then(function(snap){
+    var rows=[];
+    snap.forEach(function(doc){ rows.push({id:doc.id,data:doc.data()}); });
+    rows.sort(function(a,b){
+      var at=a.data.updatedAt&&a.data.updatedAt.seconds?a.data.updatedAt.seconds:0;
+      var bt=b.data.updatedAt&&b.data.updatedAt.seconds?b.data.updatedAt.seconds:0;
+      return bt-at;
+    });
+    host.innerHTML='';
+    if(!rows.length){
+      var empty=el('div',{class:'session-status'},['Non ci sono Missioni in corso. Puoi crearne una qui sopra.']);
+      host.appendChild(empty);
+      return;
+    }
+    rows.forEach(function(r){
+      var d=r.data;
+      var mine=d.ownerUid===FB.user.uid;
+      var narr=FB.user.uid===NARRATOR_UID;
+      var box=el('div',{class:'session-item'});
+      var row=el('div',{class:'session-item-row'});
+      var left=el('div',{});
+      left.appendChild(el('div',{class:'session-title'},[(d.pgName||'PG')+' — '+(d.tipoMissione||'Missione da determinare')]));
+      var dt=formatTs(d.updatedAt);
+      left.appendChild(el('div',{class:'session-meta'},[dt?'Aggiornata '+dt:'']));
+      left.appendChild(el('span',{class:'session-owner'+(mine?' mine':'')},[mine?'Tua Missione':(narr?'Gestibile dal Narratore':'Altro giocatore')]));
+      var b=el('button',{class:mine||narr?'btn':'btn ghost',type:'button','data-session-control':'1'},[mine||narr?'Riprendi':'Visualizza']);
+      b.addEventListener(EVT,function(){ navigateToSession(r.id); });
+      row.appendChild(left);
+      row.appendChild(b);
+      box.appendChild(row);
+      host.appendChild(box);
+    });
+  }).catch(function(err){
+    console.error(err);
+    host.innerHTML='';
+    host.appendChild(el('div',{class:'session-status bad'},['Non riesco a leggere le Missioni in corso: '+err.message]));
+  });
+}
+function createSession(){
+  var inp=sq('new-session-pg');
+  var name=(inp&&inp.value?inp.value:'').trim();
+  if(!name){
+    setHomeMsg('Inserisci prima il nome del PG principale.','bad');
+    if(inp) inp.focus();
+    return;
+  }
+  if(!FB.user){
+    setHomeMsg('Firebase non è ancora pronto. Riprova tra un momento.','bad');
+    return;
+  }
+  setHomeMsg('Creazione della Missione…','');
+  var data={
+    ownerUid:FB.user.uid,
+    initialPgName:name,
+    pgName:name,
+    tipoMissione:'',
+    missionId:'',
+    createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+    updatedAt:firebase.firestore.FieldValue.serverTimestamp(),
+    toolVersion:'v6',
+    actionLog:[]
+  };
+  FB.db.collection(SESSION_COLLECTION).add(data).then(function(ref){
+    navigateToSession(ref.id);
+  }).catch(function(err){
+    console.error(err);
+    setHomeMsg('Impossibile creare la Missione: '+err.message,'bad');
+  });
+}
+function openDeleteModal(){
+  if(!CURRENT_SESSION || !sessionCanEdit(CURRENT_SESSION_DATA)) return;
+  sq('delete-session-check').checked=false;
+  sq('btn-confirm-delete').disabled=true;
+  sq('delete-session-msg').textContent='';
+  sq('delete-session-modal').classList.add('open');
+  sq('delete-session-modal').setAttribute('aria-hidden','false');
+}
+function closeDeleteModal(){
+  var m=sq('delete-session-modal');
+  if(!m) return;
+  m.classList.remove('open');
+  m.setAttribute('aria-hidden','true');
+}
+function deleteCurrentSession(){
+  if(!CURRENT_SESSION || !sessionCanEdit(CURRENT_SESSION_DATA) || !sq('delete-session-check').checked) return;
+  var id=CURRENT_SESSION;
+  sq('btn-confirm-delete').disabled=true;
+  sq('delete-session-msg').textContent='Eliminazione definitiva in corso…';
+  FB.db.collection(SESSION_COLLECTION).doc(id).delete().then(function(){
+    CURRENT_SESSION=null;
+    CURRENT_SESSION_DATA=null;
+    SESSION_ACTIONS=[];
+    closeDeleteModal();
+    try{ sessionStorage.setItem('rm_deleted_notice','1'); }catch(e){}
+    navigateToDashboard();
+  }).catch(function(err){
+    console.error(err);
+    sq('delete-session-msg').textContent='Eliminazione non riuscita: '+err.message;
+    sq('btn-confirm-delete').disabled=false;
+  });
+}
+function backToDashboard(){
+  var done=Promise.resolve();
+  if(CURRENT_SESSION && sessionCanEdit(CURRENT_SESSION_DATA)) done=saveSessionNow();
+  done.finally(function(){ navigateToDashboard(); });
+}
+function setupSessionControls(){
+  attachSessionRecorder();
+  sq('btn-new-session').addEventListener(EVT,createSession);
+  sq('new-session-pg').addEventListener('keydown',function(e){
+    if(e.key==='Enter'){ e.preventDefault(); createSession(); }
+  });
+  sq('btn-refresh-sessions').addEventListener(EVT,loadSessionList);
+  sq('btn-back-sessions').addEventListener(EVT,backToDashboard);
+  sq('btn-delete-session').addEventListener(EVT,openDeleteModal);
+  sq('btn-cancel-delete').addEventListener(EVT,closeDeleteModal);
+  sq('delete-session-check').addEventListener('change',function(){
+    sq('btn-confirm-delete').disabled=!sq('delete-session-check').checked;
+  });
+  sq('btn-confirm-delete').addEventListener(EVT,deleteCurrentSession);
+  sq('delete-session-modal').addEventListener(EVT,function(e){
+    if(e.target===sq('delete-session-modal')) closeDeleteModal();
+  });
+  document.addEventListener('visibilitychange',function(){
+    if(document.visibilityState==='hidden' && CURRENT_SESSION && !SESSION_READONLY) saveSessionNow();
+  });
+  window.addEventListener('pagehide',function(){
+    if(CURRENT_SESSION && !SESSION_READONLY) saveSessionNow();
+  });
+}
+function setupFirebaseSessions(){
+  setupSessionControls();
+  var w=sessionWorkspace();
+  var home=sq('mission-session-home');
+  if(w) w.style.display='none';
+  if(home) home.style.display='block';
+
+  var st=sq('firebase-auth-status');
+  try{
+    if(typeof firebase==='undefined') throw new Error('SDK Firebase non caricato');
+    if(!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+    FB.app=firebase.app();
+    FB.auth=firebase.auth();
+    FB.db=firebase.firestore();
+
+    FB.auth.onAuthStateChanged(function(user){
+      if(user){
+        FB.user=user;
+        if(st){
+          st.textContent=user.uid===NARRATOR_UID?'Firebase connesso · modalità Narratore':'Firebase connesso · sessione anonima attiva';
+          st.className='session-status ok';
+        }
+        var sid=sessionIdFromHash();
+        if(sid) loadSession(sid);
+        else{
+          try{
+            if(sessionStorage.getItem('rm_deleted_notice')==='1'){
+              sessionStorage.removeItem('rm_deleted_notice');
+              setHomeMsg('Missione eliminata definitivamente. Per giocarla di nuovo dovrà essere ricreata da zero.','ok');
+            }
+          }catch(e){}
+          loadSessionList();
+        }
+        return;
+      }
+      FB.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(function(){
+        return FB.auth.signInAnonymously();
+      }).catch(function(err){
+        console.error(err);
+        if(st){
+          st.textContent='Errore autenticazione Firebase: '+err.message;
+          st.className='session-status bad';
+        }
+      });
+    });
+  }catch(err){
+    console.error(err);
+    if(st){
+      st.textContent='Firebase non disponibile: '+err.message;
+      st.className='session-status bad';
+    }
+  }
+}
+
+
 /* ================================================================
    ROUTING E AVVIO
 ================================================================ */
@@ -2511,6 +3299,8 @@ buildM4(MISSIONS[3]);
 buildM5(MISSIONS[4]);
 
 evaluateM1();evaluateM2();evaluateM3();evaluateM4();evaluateM5();
+
+setupFirebaseSessions();
 
 })();
 
